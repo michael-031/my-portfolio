@@ -3,12 +3,41 @@ import fb from './assets/facebook.png'
 import linkedin from './assets/linkedin.png'
 import github from './assets/github.png'
 import SplitText from "./SplitText";
+import './App.css'
+import logo from './assets/logo1.png'
+import html from './assets/html.png'
+import react from './assets/react.png'
+import ts from './assets/typescript.png'
+import js from './assets/javascript.png'
+import nextjs from './assets/nextjs.png'
+import c from './assets/C.png'
+import csharp from './assets/Csharp.png'
+import python from './assets/python.png'
+import arduino from './assets/Arduino.png'
+import tailwind from './assets/Tailwind.png'
+
+const techStack = [
+  { name: 'HTML/CSS', icon: html },
+  { name: 'React', icon: react },
+  { name: 'TypeScript', icon: ts },
+  { name: 'JavaScript', icon: js },
+  { name: 'Next.js', icon: nextjs },
+]
 
 function App() {
+  const loopedTechStack = [...techStack, ...techStack]
+  const otherTechStack = [
+    { name: 'C', icon: c },
+    { name: 'C#', icon: csharp },
+    { name: 'Python', icon: python },
+    { name: 'Arduino', icon: arduino },
+    { name: 'Tailwind CSS', icon: tailwind },
+  ]
+
   return (
     <main>
       <section className="bg-white-800 h-[64px] flex justify-between items-center px-16 shadow-md">
-        <img src={profile} alt="Hero Image" className="h-[32px] object-cover" />
+        <img src={logo} alt="Hero Image" className="h-[32px] object-cover" />
         <div class="buttons">
           <button className="text-black px-4 h-full">About Me</button>
           <button className="text-black px-4 h-full">My Projects</button>
@@ -92,6 +121,53 @@ function App() {
             <div className="absolute bottom-0 left-0 w-full h-10 bg-gradient-to-t from-white to-transparent translate-y-30"></div>
           </div>
         
+      </section>
+
+      <section className='tech-stack'>
+        <div id="tech-stack" className='flex justify-center'>
+          <h1
+              className="text-4xl font-bold mt-8"
+              style={{ fontFamily: "Century Gothic, sans-serif" }}
+            >
+              <span data-split-part className="text-[#322323] inline-block">
+                Tech Stack
+              </span>{""}
+              
+            </h1>
+          </div>
+
+          <div className='tech-logo-loop mt-8' aria-label="Looping tech stack logos">
+            <div className='tech-logo-track'>
+              {loopedTechStack.map((tech, index) => (
+                <div className='tech-logo-item' key={`${tech.name}-${index}`}>
+                  <img src={tech.icon} alt={tech.name} />
+                  <span>{tech.name}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div id='other-tech-stack' className='flex flex-col items-center mt-16'>
+            <h1
+              className="text-xl font-bold mb-6"
+              style={{ fontFamily: "Century Gothic, sans-serif" }}
+            >
+              <span className="text-[#322323] inline-block">
+                Other Tech Stack
+              </span>
+            </h1>
+
+            <div className='flex justify-center items-center gap-6 flex-wrap'>
+              {otherTechStack.map((tech) => (
+                <img
+                  key={tech.name}
+                  src={tech.icon}
+                  alt={tech.name}
+                  className='h-10 w-10'
+                />
+              ))}
+            </div>
+          </div>
       </section>
     </main>
   )

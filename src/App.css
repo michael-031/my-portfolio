@@ -1,0 +1,89 @@
+.tech-logo-loop {
+  position: relative;
+  overflow: hidden;
+  width: min(1120px, 94vw);
+  margin: 0 auto;
+  padding: 0.5rem 0;
+}
+
+.tech-logo-loop::before,
+.tech-logo-loop::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 64px;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.tech-logo-loop::before {
+  left: 0;
+  background: linear-gradient(to right, #ffffff, rgba(255, 255, 255, 0));
+}
+
+.tech-logo-loop::after {
+  right: 0;
+  background: linear-gradient(to left, #ffffff, rgba(255, 255, 255, 0));
+}
+
+.tech-logo-track {
+  display: flex;
+  gap: 2.25rem;
+  width: max-content;
+  animation: tech-loop 22s linear infinite;
+}
+
+.tech-logo-loop:hover .tech-logo-track {
+  animation-play-state: paused;
+}
+
+.tech-logo-item {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.25rem 0;
+}
+
+.tech-logo-item img {
+  height: 5rem;
+  width: auto;
+  object-fit: contain;
+}
+
+.tech-logo-item span {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111111;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+@keyframes tech-loop {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 768px) {
+  .tech-logo-loop::before,
+  .tech-logo-loop::after {
+    width: 32px;
+  }
+
+  .tech-logo-item {
+    gap: 0.5rem;
+  }
+
+  .tech-logo-item img {
+    height: 3.2rem;
+  }
+
+  .tech-logo-item span {
+    font-size: 1.25rem;
+  }
+}
