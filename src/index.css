@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Sniglet:wght@400;800&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+
+  font-family: "Sniglet", cursive;
+}
