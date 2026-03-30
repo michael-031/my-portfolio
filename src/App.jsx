@@ -15,6 +15,7 @@ import csharp from './assets/Csharp.png'
 import python from './assets/python.png'
 import arduino from './assets/Arduino.png'
 import tailwind from './assets/Tailwind.png'
+import figma from './assets/figma.png'
 
 const techStack = [
   { name: 'HTML/CSS', icon: html },
@@ -22,6 +23,7 @@ const techStack = [
   { name: 'TypeScript', icon: ts },
   { name: 'JavaScript', icon: js },
   { name: 'Next.js', icon: nextjs },
+  { name: 'Figma', icon: figma },
 ]
 
 function App() {
@@ -32,6 +34,7 @@ function App() {
     { name: 'Python', icon: python },
     { name: 'Arduino', icon: arduino },
     { name: 'Tailwind CSS', icon: tailwind },
+    
   ]
 
   return (
@@ -168,6 +171,20 @@ function App() {
               ))}
             </div>
           </div>
+      </section>
+
+      <section id="projects" className='h-[500px] bg-white-500 mt-16'>
+        <div className='flex justify-center'>
+          <h1
+              className="text-4xl font-bold mt-8"
+              style={{ fontFamily: "Century Gothic, sans-serif" }}
+            >
+              <span data-split-part className="text-[#322323] inline-block">
+                My Projects
+              </span>{""}
+            </h1>
+          </div>
+          
       </section>
     </main>
   )
