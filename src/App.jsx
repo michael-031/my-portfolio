@@ -67,22 +67,28 @@ function App() {
               <span data-split-part className="inline-block text-8xl">Michael</span>
             </h1>
           </SplitText>
-            <p className='text-xl'>
-              BS Computer Engineering Student | Future Innovator in Technology and Design
+            <p className='text-2xl ml-1 mt-8'>
+              Let’s Build and Level Up Together
             </p>
           </div>
           <div
-            id="name"
-            className="justify-center gap-16 z-0 h-[8rem] w-[980px] absolute top-[31rem] left-[33rem] bg-white rounded-sm shadow-xl px-16 py-10 flex gap-8 items-center"
+            id="education"
+            className="flex-row justify-center gap-40 z-0 h-[10rem] w-[980px] absolute top-[31rem] left-[33rem] bg-white rounded-sm shadow-xl px-16 py-10 flex gap-8 items-center"
           >
+            <div className="flex flex-col">
+              <span className="text-xl">Education</span>
+              <span className='mt-2'>Third Year</span>
+              <span>Bachelor of Science in Computer Engineering - CITU</span>
+            </div>
+            <div className="flex flex-col gap-2 mr-16">
             <a
               href="https://github.com/michael-031"
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 hover:opacity-70"
             >
-              <img src={github} alt="GitHub" className="h-10 w-10" />
-              <span className="text-black text-[15px]">github.com/michael-031</span>
+              <img src={github} alt="GitHub" className="h-8 w-8" />
+              <span className="text-black text-[12px]">github.com/michael-031</span>
             </a>
 
             <a
@@ -91,8 +97,8 @@ function App() {
               rel="noopener noreferrer"
               className="flex items-center gap-2 hover:opacity-70"
             >
-              <img src={fb} alt="Facebook" className="h-10 w-10" />
-              <span className="text-black text-[15px]">facebook.com/michaelzz450</span>
+              <img src={fb} alt="Facebook" className="h-8 w-8" />
+              <span className="text-black text-[12px]">facebook.com/michaelzz450</span>
             </a>
 
             <a
@@ -101,9 +107,12 @@ function App() {
               rel="noopener noreferrer"
               className="flex items-center gap-2 hover:opacity-70"
             >
-              <img src={linkedin} alt="LinkedIn" className="h-10 w-10" />
-              <span className="text-black text-[15px]">linkedin.com/michael-inoc</span>
+              <img src={linkedin} alt="LinkedIn" className="h-8 w-8" />
+              <span className="text-black text-[12px]">linkedin.com/michael-inoc</span>
             </a>
+            </div>
+
+            
           </div>
         
           <div
@@ -184,7 +193,7 @@ function App() {
               </span>{""}
             </h1>
           </div>
-          
+
       </section>
     </main>
   )
