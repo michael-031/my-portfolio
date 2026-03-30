@@ -16,6 +16,8 @@ import python from './assets/python.png'
 import arduino from './assets/Arduino.png'
 import tailwind from './assets/Tailwind.png'
 import figma from './assets/figma.png'
+import lemivon from './assets/projects/Lemivon.png'
+import lemivon_mobile from './assets/projects/lemivon_mobile.png'
 
 const techStack = [
   { name: 'HTML/CSS', icon: html },
@@ -35,6 +37,24 @@ function App() {
     { name: 'Arduino', icon: arduino },
     { name: 'Tailwind CSS', icon: tailwind },
     
+  ]
+  const projectSlots = [
+    {
+      id: 1,
+      title: 'Lemivon',
+      description: 'UI showcase for Lemivon with dedicated web and mobile previews.',
+      tech: ['MongoDB', 'Express.js', 'React', 'Node.js'],
+      webImage: lemivon,
+      mobileImage: lemivon_mobile,
+    },
+    ...Array.from({ length: 5 }, (_, index) => ({
+      id: index + 2,
+      title: `Project ${index + 2}`,
+      description: 'Add your project title, short description, tech stack, and links here.',
+      tech: ['Tech 1', 'Tech 2', 'Tech 3'],
+      webImage: null,
+      mobileImage: null,
+    })),
   ]
 
   return (
@@ -182,7 +202,7 @@ function App() {
           </div>
       </section>
 
-      <section id="projects" className='h-[500px] bg-white-500 mt-16'>
+      <section id="projects" className='min-h-[500px] bg-white-500 mt-16 px-8 pb-16'>
         <div className='flex justify-center'>
           <h1
               className="text-4xl font-bold mt-8"
@@ -194,6 +214,90 @@ function App() {
             </h1>
           </div>
 
+          <div className='mt-10 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto'>
+            {projectSlots.map((project) => (
+              <article
+                key={project.id}
+                className='rounded-xl border border-[#d9d9d9] bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md'
+              >
+                <div className='flex items-center justify-between'>
+                  <h2 className='text-xl font-semibold text-[#322323]'>{project.title}</h2>
+                  <span className='rounded-full bg-[#9BB193]/20 px-3 py-1 text-xs font-semibold text-[#556b4f]'>
+                    {project.webImage && project.mobileImage ? 'Showcase' : 'Slot'}
+                  </span>
+                </div>
+
+                <div className='mt-5'>
+                  <div className='relative h-[190px] w-full'>
+                    <div className='absolute left-0 top-2 w-[86%]'>
+                      <div className='rounded-xl border-[3px] border-[#1d1d1d] bg-[#1d1d1d] p-1 shadow-sm'>
+                        <div className='mb-1 flex items-center gap-1.5'>
+                          <span className='h-2.5 w-2.5 rounded-full bg-[#ff5f57]'></span>
+                          <span className='h-2.5 w-2.5 rounded-full bg-[#febc2e]'></span>
+                          <span className='h-2.5 w-2.5 rounded-full bg-[#28c840]'></span>
+                        </div>
+                        {project.webImage ? (
+                          <img
+                            src={project.webImage}
+                            alt={`${project.title} web UI`}
+                            className='aspect-[16/10] w-full rounded-md border border-[#2e2e2e] bg-white object-cover'
+                          />
+                        ) : (
+                          <div className='flex aspect-[16/10] items-center justify-center rounded-md border border-dashed border-[#8b8b8b] bg-[#f8f8f8] text-sm font-medium text-[#666]'>
+                            Web UI Image Slot
+                          </div>
+                        )}
+                      </div>
+                    </div>
+
+                    <div className='absolute bottom-0 right-[3%] w-[28%] max-w-[112px]'>
+                      <div className='rounded-[1.6rem] border-[#111] bg-[#111] p-1 shadow-md'>
+                        <div className='mx-auto mb-1 h-1.5 w-9 rounded-full bg-[#2f2f2f]'></div>
+                        {project.mobileImage ? (
+                          <img
+                            src={project.mobileImage}
+                            alt={`${project.title} mobile UI`}
+                            className='aspect-[9/16] w-full rounded-[1rem] bg-white object-cover'
+                          />
+                        ) : (
+                          <div className='flex aspect-[9/16] items-center justify-center rounded-[1rem] border border-dashed border-[#8b8b8b] bg-[#f8f8f8] px-2 text-center text-[10px] font-medium text-[#666]'>
+                            Mobile UI Image Slot
+                          </div>
+                        )}
+                        <div className='mx-auto mt-1 h-1.5 w-8 rounded-full bg-[#2f2f2f]'></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <p className='mt-4 text-sm text-[#4a4a4a]'>
+                  {project.description}
+                </p>
+
+                <div className='mt-5 flex gap-2'>
+                  {project.tech.map((techItem) => (
+                    <span key={`${project.id}-${techItem}`} className='rounded-md bg-[#f5f5f5] px-2 py-1 text-xs text-[#333]'>
+                      {techItem}
+                    </span>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+
+      </section>
+
+      <section id='about-me'>
+            <div className='flex justify-center'>
+                <h1
+                  className="text-4xl font-bold mt-8"
+                  style={{ fontFamily: "Century Gothic, sans-serif" }}
+                >
+                  <span data-split-part className="text-[#322323] inline-block">
+                    About Me
+                  </span>{""}
+              </h1>
+            </div>
       </section>
     </main>
   )
