@@ -36,11 +36,11 @@ const techStack = [
 
 function App() {
   const aboutGallery = [
-    { src: run, alt: 'Michael with his pet in a candid moment' },
-    { src: run1, alt: 'Michael after finishing a 10K run' },
-    { src: run2, alt: 'Michael with Divan during a 10K event' },
-    { src: hike, alt: 'Michael on a hiking trail with a scenic view' },
-    { src: hike1, alt: 'Michael on another hike in nature' },
+    { src: run, alt: 'Michael sharing a candid moment with his pet' },
+    { src: run1, alt: 'Michael crossing the finish line after a 10K run' },
+    { src: run2, alt: 'Michael and Divan at a 10K running event' },
+    { src: hike, alt: 'Michael hiking with a scenic mountain backdrop' },
+    { src: hike1, alt: 'Michael enjoying another outdoor hiking trail' },
   ]
   const [currentSlide, setCurrentSlide] = useState(0)
 
@@ -77,15 +77,15 @@ function App() {
     {
       id: 1,
       title: 'Lemivon',
-      description: 'UI showcase for Lemivon with dedicated web and mobile previews.',
+      description: 'A UI showcase for Lemivon with dedicated web and mobile previews.',
       tech: ['MongoDB', 'Express.js', 'React', 'Node.js'],
       webImage: lemivon,
       mobileImage: lemivon_mobile,
     },
-    ...Array.from({ length: 5 }, (_, index) => ({
+    ...Array.from({ length: 0 }, (_, index) => ({
       id: index + 2,
       title: `Project ${index + 2}`,
-      description: 'Add your project title, short description, tech stack, and links here.',
+      description: 'Project details coming soon: summary, stack, and links.',
       tech: ['Tech 1', 'Tech 2', 'Tech 3'],
       webImage: null,
       mobileImage: null,
@@ -95,12 +95,12 @@ function App() {
   return (
     <main>
       <section className="bg-white-800 h-[64px] flex justify-between items-center px-16 shadow-md">
-        <img src={logo} alt="Hero Image" className="h-[32px] object-cover" />
-        <div class="buttons">
-          <button className="text-black px-4 h-full">About Me</button>
-          <button className="text-black px-4 h-full">My Projects</button>
-          <button className="text-black px-4 h-full">My Designs</button>
-          <button className="text-black px-4 h-full">Contact Me</button>
+        <img src={logo} alt="Michael portfolio logo" className="h-[32px] object-cover" />
+        <div className="buttons">
+          <a href="#about-me" className="text-black px-4 h-full inline-flex items-center">About Me</a>
+          <a href="#projects" className="text-black px-4 h-full inline-flex items-center">My Projects</a>
+          <a href="#tech-stack" className="text-black px-4 h-full inline-flex items-center">My Designs</a>
+          <a href="#contact-me" className="text-black px-4 h-full inline-flex items-center">Contact Me</a>
         </div>
       </section>
 
@@ -123,17 +123,17 @@ function App() {
             </h1>
           </SplitText>
             <p className='text-2xl ml-1 mt-8'>
-              Let’s Build and Level Up Together
+              Let's build and level up together.
             </p>
           </div>
           <div
             id="education"
             className="flex-row justify-center gap-40 z-0 h-[10rem] w-[980px] absolute top-[31rem] left-[33rem] bg-white rounded-sm shadow-xl px-16 py-10 flex gap-8 items-center"
           >
-            <div className="flex flex-col">
+            <div className="flex flex-col ml-10">
               <span className="text-xl">Education</span>
-              <span className='mt-2'>Third Year</span>
-              <span>Bachelor of Science in Computer Engineering - CITU</span>
+              <span className='mt-2'>Third-Year Student</span>
+              <span>Bachelor of Science in Computer Engineering - CIT-U</span>
             </div>
             <div className="flex flex-col gap-2 mr-16">
             <a
@@ -163,7 +163,7 @@ function App() {
               className="flex items-center gap-2 hover:opacity-70"
             >
               <img src={linkedin} alt="LinkedIn" className="h-8 w-8" />
-              <span className="text-black text-[12px]">linkedin.com/michael-inoc</span>
+              <span className="text-black text-[12px]">linkedin.com/in/michael-inoc</span>
             </a>
             </div>
 
@@ -181,7 +181,7 @@ function App() {
 
             <img
               src={profile}
-              alt="Hero Image"
+              alt="Portrait of Michael Inoc"
               className="h-[500px] object-cover translate-y-30"
             />
 
@@ -244,7 +244,7 @@ function App() {
               style={{ fontFamily: "Century Gothic, sans-serif" }}
             >
               <span data-split-part className="text-[#322323] inline-block">
-                My Projects
+                Featured Projects
               </span>{""}
             </h1>
           </div>
@@ -253,57 +253,59 @@ function App() {
             {projectSlots.map((project) => (
               <article
                 key={project.id}
-                className='rounded-xl border border-[#d9d9d9] bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md'
+                className='project-card-hover rounded-xl border border-[#d9d9d9] bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-md'
               >
                 <div className='flex items-center justify-between'>
                   <h2 className='text-xl font-semibold text-[#322323]'>{project.title}</h2>
                   <span className='rounded-full bg-[#9BB193]/20 px-3 py-1 text-xs font-semibold text-[#556b4f]'>
-                    {project.webImage && project.mobileImage ? 'Showcase' : 'Slot'}
+                    {project.webImage && project.mobileImage ? 'Featured' : 'Planned'}
                   </span>
                 </div>
 
                 <div className='mt-5'>
                   <div className='relative h-[190px] w-full'>
                     <div className='absolute left-0 top-2 w-[86%]'>
-                      <div className='rounded-xl border-[3px] border-[#1d1d1d] bg-[#1d1d1d] p-1 shadow-sm'>
-                        <div className='mb-1 flex items-center gap-1.5'>
-                          <span className='h-2.5 w-2.5 rounded-full bg-[#ff5f57]'></span>
-                          <span className='h-2.5 w-2.5 rounded-full bg-[#febc2e]'></span>
-                          <span className='h-2.5 w-2.5 rounded-full bg-[#28c840]'></span>
+                      <div className='rounded-xl border-[1.5px] border-[#1d1d1d] bg-[#1d1d1d] p-[2.5px] shadow-sm'>
+                        <div className='mb-0.5 flex items-center gap-1'>
+                          <span className='h-2 w-2 rounded-full bg-[#ff5f57]'></span>
+                          <span className='h-2 w-2 rounded-full bg-[#febc2e]'></span>
+                          <span className='h-2 w-2 rounded-full bg-[#28c840]'></span>
                         </div>
                         {project.webImage ? (
                           <img
                             src={project.webImage}
                             alt={`${project.title} web UI`}
-                            className='aspect-[16/10] w-full rounded-md border border-[#2e2e2e] bg-white object-cover'
+                            className='aspect-[16/10] w-full rounded-md border-[1.5px] border-[#2e2e2e] bg-[#dfe5ea] object-contain'
                           />
                         ) : (
                           <div className='flex aspect-[16/10] items-center justify-center rounded-md border border-dashed border-[#8b8b8b] bg-[#f8f8f8] text-sm font-medium text-[#666]'>
-                            Web UI Image Slot
+                            Web preview coming soon
                           </div>
                         )}
                       </div>
                     </div>
 
                     <div className='absolute bottom-0 right-[3%] w-[28%] max-w-[112px]'>
-                      <div className='rounded-[1.6rem] border-[#111] bg-[#111] p-1 shadow-md'>
-                        <div className='mx-auto mb-1 h-1.5 w-9 rounded-full bg-[#2f2f2f]'></div>
+                      <div className='rounded-[1.6rem] border-[1.5px] border-[#111] bg-[#111] p-[2.5px] shadow-md'>
+                        <div className='mx-auto mb-0.5 h-1 w-8 rounded-full bg-[#2f2f2f]'></div>
                         {project.mobileImage ? (
                           <img
                             src={project.mobileImage}
                             alt={`${project.title} mobile UI`}
-                            className='aspect-[9/16] w-full rounded-[1rem] bg-white object-cover'
+                            className='aspect-[9/16] w-full rounded-[1rem] border-[1.5px] border-[#2e2e2e] bg-[#dfe5ea] object-contain'
                           />
                         ) : (
                           <div className='flex aspect-[9/16] items-center justify-center rounded-[1rem] border border-dashed border-[#8b8b8b] bg-[#f8f8f8] px-2 text-center text-[10px] font-medium text-[#666]'>
-                            Mobile UI Image Slot
+                            Mobile preview coming soon
                           </div>
                         )}
-                        <div className='mx-auto mt-1 h-1.5 w-8 rounded-full bg-[#2f2f2f]'></div>
+                        <div className='mx-auto mt-0.5 h-1 w-7 rounded-full bg-[#2f2f2f]'></div>
                       </div>
                     </div>
                   </div>
                 </div>
+
+                <div className='device-fade-separator' aria-hidden='true'></div>
 
                 <p className='mt-4 text-sm text-[#4a4a4a]'>
                   {project.description}
@@ -369,15 +371,85 @@ function App() {
             ))}
           </div>
 
-          <p className='about-slogan'>Building dreams with code, courage, and creativity.</p>
+          <p className='about-slogan'>Creating meaningful digital experiences with purpose.</p>
         </div>
       </section>
 
       <section id='contact-me' className='contact-me-section'>
-                
+        <div className='contact-me-shell'>
+          <div className='contact-me-header'>
+            <h2 className='contact-me-title'>Contact Me</h2>
+            <img src={logo} alt='Michael logo' className='contact-me-logo' />
+          </div>
+
+          <div className='contact-me-grid'>
+            <div className='contact-me-links'>
+              <a
+                href='https://github.com/michael-031'
+                target='_blank'
+                rel='noopener noreferrer'
+                className='contact-link'
+              >
+                <img src={github} alt='GitHub' />
+                <span>github.com/michael-031</span>
+              </a>
+
+              <a
+                href='https://www.facebook.com/michaelzz450'
+                target='_blank'
+                rel='noopener noreferrer'
+                className='contact-link'
+              >
+                <img src={fb} alt='Facebook' />
+                <span>facebook.com/michaelzz450</span>
+              </a>
+
+              <a
+                href='https://www.linkedin.com/in/john-michael-inoc-bb288326b/'
+                target='_blank'
+                rel='noopener noreferrer'
+                className='contact-link'
+              >
+                <img src={linkedin} alt='LinkedIn' />
+                <span>linkedin.com/in/john-michael-inoc-bb288326b</span>
+              </a>
+
+              <a href='tel:+639179523690' className='contact-link'>
+                <span className='contact-icon-text'>TEL</span>
+                <span>09179523690</span>
+              </a>
+            </div>
+
+            <div className='contact-me-actions'>
+              <p className='contact-label'>Portfolio Repository</p>
+              <a
+                href='https://github.com/michael-031/my-portfolio.git'
+                target='_blank'
+                rel='noopener noreferrer'
+                className='contact-action-link'
+              >
+                github.com/michael-031/my-portfolio.git
+              </a>
+
+              <p className='contact-label'>Resume</p>
+              <a
+                href='https://drive.google.com/drive/folders/1cICwQ2tPA8Ejfar6_dhrS7QN4833_SL8?usp=sharing'
+                target='_blank'
+                rel='noopener noreferrer'
+                className='contact-action-link'
+              >
+                View my resume folder on Google Drive
+              </a>
+            </div>
+          </div>
+        </div>
       </section>
     </main>
   )
 }
 
 export default App
+
+
+
+

@@ -177,6 +177,27 @@
   background: #3d5945;
 }
 
+.project-card-hover {
+  position: relative;
+  overflow: hidden;
+}
+
+.device-fade-separator {
+  margin-top: 0.45rem;
+  height: 1rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(149, 174, 152, 0), rgba(149, 174, 152, 0.6), rgba(149, 174, 152, 0));
+  filter: blur(5px);
+  opacity: 0;
+  transform: translateY(-5px);
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.project-card-hover:hover .device-fade-separator {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .about-slogan {
   margin: 1rem 0 0;
   text-align: center;
@@ -195,5 +216,100 @@
     width: 2.2rem;
     height: 2.2rem;
     font-size: 1.05rem;
+  }
+}
+
+.contact-me-section {
+  padding: 4rem 1rem 5rem;
+  background: #112846;
+}
+
+.contact-me-shell {
+  width: min(1080px, 94vw);
+  margin: 0 auto;
+  color: #f2f6fb;
+}
+
+.contact-me-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.contact-me-title {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 2.85rem);
+  color: #f7fbff;
+}
+
+.contact-me-logo {
+  height: clamp(38px, 5vw, 60px);
+  width: auto;
+  opacity: 0.8;
+}
+
+.contact-me-grid {
+  margin-top: 1.8rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.2rem;
+}
+
+.contact-me-links,
+.contact-me-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+}
+
+.contact-link,
+.contact-action-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.62rem;
+  color: #edf4fc;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.contact-link:hover,
+.contact-action-link:hover {
+  opacity: 0.85;
+  transform: translateX(2px);
+}
+
+.contact-link img {
+  width: 1.55rem;
+  height: 1.55rem;
+  object-fit: contain;
+}
+
+.contact-icon-text {
+  width: 1.55rem;
+  height: 1.55rem;
+  border-radius: 999px;
+  border: 1px solid rgba(237, 244, 252, 0.5);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.contact-label {
+  margin: 0.5rem 0 0;
+  font-size: clamp(1rem, 1.6vw, 1.3rem);
+  font-weight: 700;
+  color: #f7fbff;
+}
+
+@media (max-width: 860px) {
+  .contact-me-grid {
+    grid-template-columns: 1fr;
+    gap: 1.4rem;
   }
 }
