@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import profile from './assets/profile.png'
 import fb from './assets/facebook.png'
 import linkedin from './assets/linkedin.png'
@@ -18,6 +19,11 @@ import tailwind from './assets/Tailwind.png'
 import figma from './assets/figma.png'
 import lemivon from './assets/projects/Lemivon.png'
 import lemivon_mobile from './assets/projects/lemivon_mobile.png'
+import run from './assets/About Me/my_pitik.jpg'
+import run1 from './assets/About Me/10k_finish.jpg'
+import run2 from './assets/About Me/10k_with_divan.jpg'
+import hike from './assets/About Me/hike.jpg'
+import hike1 from './assets/About Me/hike2.jpg'
 
 const techStack = [
   { name: 'HTML/CSS', icon: html },
@@ -29,6 +35,35 @@ const techStack = [
 ]
 
 function App() {
+  const aboutGallery = [
+    { src: run, alt: 'Michael with his pet in a candid moment' },
+    { src: run1, alt: 'Michael after finishing a 10K run' },
+    { src: run2, alt: 'Michael with Divan during a 10K event' },
+    { src: hike, alt: 'Michael on a hiking trail with a scenic view' },
+    { src: hike1, alt: 'Michael on another hike in nature' },
+  ]
+  const [currentSlide, setCurrentSlide] = useState(0)
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % aboutGallery.length)
+    }, 3800)
+
+    return () => window.clearInterval(timer)
+  }, [aboutGallery.length])
+
+  const goToSlide = (index) => {
+    setCurrentSlide(index)
+  }
+
+  const goToPrevious = () => {
+    setCurrentSlide((prev) => (prev - 1 + aboutGallery.length) % aboutGallery.length)
+  }
+
+  const goToNext = () => {
+    setCurrentSlide((prev) => (prev + 1) % aboutGallery.length)
+  }
+
   const loopedTechStack = [...techStack, ...techStack]
   const otherTechStack = [
     { name: 'C', icon: c },
@@ -287,17 +322,59 @@ function App() {
 
       </section>
 
-      <section id='about-me'>
-            <div className='flex justify-center'>
-                <h1
-                  className="text-4xl font-bold mt-8"
-                  style={{ fontFamily: "Century Gothic, sans-serif" }}
-                >
-                  <span data-split-part className="text-[#322323] inline-block">
-                    About Me
-                  </span>{""}
-              </h1>
+      <section id='about-me' className='about-me-section'>
+        <div className='about-me-shell'>
+          <h2 className='about-me-title'>About Me</h2>
+
+          <div className='about-carousel' aria-label='About me photo carousel'>
+            <button
+              type='button'
+              className='about-arrow about-arrow-left'
+              onClick={goToPrevious}
+              aria-label='Show previous image'
+            >
+              &#10094;
+            </button>
+
+            <div className='about-carousel-stage'>
+              {aboutGallery.map((image, index) => (
+                <img
+                  key={image.alt}
+                  src={image.src}
+                  alt={image.alt}
+                  className={`about-slide ${index === currentSlide ? 'about-slide-active' : ''}`}
+                />
+              ))}
             </div>
+
+            <button
+              type='button'
+              className='about-arrow about-arrow-right'
+              onClick={goToNext}
+              aria-label='Show next image'
+            >
+              &#10095;
+            </button>
+          </div>
+
+          <div className='about-dots' aria-label='Carousel pagination'>
+            {aboutGallery.map((image, index) => (
+              <button
+                key={`${image.alt}-dot`}
+                type='button'
+                onClick={() => goToSlide(index)}
+                className={`about-dot ${index === currentSlide ? 'about-dot-active' : ''}`}
+                aria-label={`Go to image ${index + 1}`}
+              />
+            ))}
+          </div>
+
+          <p className='about-slogan'>Building dreams with code, courage, and creativity.</p>
+        </div>
+      </section>
+
+      <section id='contact-me' className='contact-me-section'>
+                
       </section>
     </main>
   )
