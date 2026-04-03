@@ -371,7 +371,7 @@ function App() {
             ))}
           </div>
 
-          <p className='about-slogan'>Creating meaningful digital experiences with purpose.</p>
+          <p className='about-slogan'>Leveling up in every mile and every lines.</p>
         </div>
       </section>
 
