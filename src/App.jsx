@@ -169,7 +169,6 @@ function App() {
 
             
           </div>
-        
           <div
             id="my-profile"
             className="rounded-sm bg-[#9BB193] absolute top-[7rem] left-[0rem] px-16 flex-col h-[500px] relative shadow-md"
