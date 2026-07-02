@@ -39,6 +39,7 @@
     background: #d9d9d9;
     box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
     z-index: 1;
+    animation: hero-card-slide-right 1.35s cubic-bezier(0.19, 1, 0.22, 1) 0.72s both;
   }
 
   #name-card {
@@ -53,6 +54,7 @@
     background: #ffffff !important;
     box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18) !important;
     z-index: 3 !important;
+    animation: hero-card-slide-left 1.45s cubic-bezier(0.19, 1, 0.22, 1) 0.62s both;
   }
 
   #name {
@@ -64,6 +66,46 @@
     height: auto !important;
     padding: 0 !important;
     z-index: 4 !important;
+  }
+
+  #name h1,
+  #name p,
+  #education > div:first-child span,
+  #education > div:last-child a {
+    opacity: 0;
+    animation: hero-element-fade 620ms ease-out both;
+  }
+
+  #name h1 {
+    animation-delay: 0.08s;
+  }
+
+  #name p {
+    animation-delay: 0.22s;
+  }
+
+  #education > div:first-child span:first-child {
+    animation-delay: 0.3s;
+  }
+
+  #education > div:first-child span:nth-child(2) {
+    animation-delay: 0.38s;
+  }
+
+  #education > div:first-child span:nth-child(3) {
+    animation-delay: 0.46s;
+  }
+
+  #education > div:last-child a:nth-child(1) {
+    animation-delay: 0.28s;
+  }
+
+  #education > div:last-child a:nth-child(2) {
+    animation-delay: 0.38s;
+  }
+
+  #education > div:last-child a:nth-child(3) {
+    animation-delay: 0.48s;
   }
 
   #name h1 {
@@ -183,6 +225,7 @@
     border-radius: 0 !important;
     background: #a4b797 !important;
     box-shadow: 0 8px 18px rgba(0, 0, 0, 0.14) !important;
+    animation: hero-card-slide-up 1.6s cubic-bezier(0.19, 1, 0.22, 1) 0.82s both;
   }
 
   #my-profile img {
@@ -197,6 +240,7 @@
     object-position: center bottom;
     transform: translateX(-50%) !important;
     z-index: 3;
+    animation: hero-profile-rise 1.25s cubic-bezier(0.19, 1, 0.22, 1) 1.05s both;
   }
 
   #my-profile .absolute {
@@ -233,6 +277,76 @@
     transform: none !important;
     background: linear-gradient(to top, #f5f5f3 8%, rgba(245, 245, 243, 0) 82%) !important;
     z-index: 4;
+  }
+
+  @keyframes hero-element-fade {
+    from {
+      opacity: 0;
+      filter: blur(3px);
+    }
+    to {
+      opacity: 1;
+      filter: blur(0);
+    }
+  }
+
+  @keyframes hero-card-slide-left {
+    from {
+      opacity: 0;
+      transform: translateX(-2.2rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes hero-card-slide-right {
+    from {
+      opacity: 0;
+      transform: translateX(2.2rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes hero-card-slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(2.4rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes hero-profile-rise {
+    from {
+      opacity: 0;
+      transform: translateX(-50%) translateY(3rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #hero::after,
+    #name-card,
+    #my-profile,
+    #my-profile img,
+    #name h1,
+    #name p,
+    #education > div:first-child span,
+    #education > div:last-child a {
+      animation: none !important;
+      opacity: 1 !important;
+      filter: none !important;
+    }
   }
 }
 
