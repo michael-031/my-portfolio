@@ -646,3 +646,385 @@
     gap: 1.4rem;
   }
 }
+
+/* ==========================================
+   ENHANCED PORTFOLIO UI & CARDS STYLING
+   ========================================== */
+
+/* Stacked Card Deck (Reference 3 style) */
+.project-deck-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 480px;
+  width: 100%;
+  max-width: 900px;
+  margin: 3rem auto;
+  perspective: 1000px;
+  padding: 0 2rem;
+}
+
+.deck-card {
+  position: absolute;
+  width: 380px;
+  height: 380px;
+  background: #ffffff;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 1.5rem;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
+              box-shadow 0.4s ease, 
+              border-color 0.3s ease,
+              opacity 0.4s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transform-style: preserve-3d;
+}
+
+/* Card positions when stacked */
+.deck-card.card-left {
+  transform: translateX(-160px) rotate(-7deg) scale(0.9);
+  z-index: 10;
+  opacity: 0.85;
+}
+
+.deck-card.card-right {
+  transform: translateX(160px) rotate(7deg) scale(0.9);
+  z-index: 10;
+  opacity: 0.85;
+}
+
+.deck-card.card-center {
+  transform: translateX(0) rotate(0deg) scale(1);
+  z-index: 20;
+  opacity: 1;
+  box-shadow: 0 20px 40px rgba(25, 40, 29, 0.1);
+  border-color: #d1dbd0;
+}
+
+/* Hovering the container spreads the deck */
+.project-deck-container:hover .deck-card.card-left {
+  transform: translateX(-240px) rotate(-3deg) scale(0.95);
+  opacity: 0.95;
+}
+
+.project-deck-container:hover .deck-card.card-right {
+  transform: translateX(240px) rotate(3deg) scale(0.95);
+  opacity: 0.95;
+}
+
+.project-deck-container:hover .deck-card.card-center {
+  transform: translateX(0) rotate(0deg) scale(1.03);
+}
+
+/* Hovering a specific card highlights and brings it to front */
+.project-deck-container .deck-card:hover {
+  z-index: 50 !important;
+  transform: scale(1.08) rotate(0deg) !important;
+  opacity: 1 !important;
+  box-shadow: 0 25px 50px rgba(25, 40, 29, 0.18) !important;
+  border-color: #9BB193 !important;
+}
+
+/* Card Elements matching reference 3 (Tarsi style) */
+.deck-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin-bottom: 0.75rem;
+}
+
+.deck-card-tag {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: 9999px;
+  font-family: "Century Gothic", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.deck-card-tag.black-tag {
+  background: #111111;
+  color: #ffffff;
+}
+
+.deck-card-tag.outline-tag {
+  background: transparent;
+  color: #556b4f;
+  border: 1.5px solid #dcdcdc;
+}
+
+.deck-card-header {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 0.75rem;
+}
+
+.deck-card-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 0.85rem;
+  background: #f0f4ef;
+  border: 1px solid #d1dbd0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.deck-card-icon img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.deck-card-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #322323;
+  font-family: "Century Gothic", sans-serif;
+  margin: 0;
+}
+
+.deck-card-description {
+  font-size: 0.88rem;
+  color: #4a4a4a;
+  line-height: 1.45;
+  margin-bottom: auto;
+  font-family: "Sniglet", cursive;
+}
+
+.deck-card-store-badges {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.deck-store-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  background: #111111;
+  color: white;
+  padding: 0.45rem 0.95rem;
+  border-radius: 0.5rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.deck-store-badge:hover {
+  background: #333333;
+  transform: translateY(-1px);
+}
+
+.deck-store-badge svg {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+/* Filipino Builders App Card (Reference 1 style) */
+.builder-card {
+  position: relative;
+  background: #ffffff;
+  border: 1.5px solid #eef2f6;
+  border-radius: 1.25rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.02);
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 250px;
+}
+
+.builder-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(25, 40, 29, 0.08);
+  border-color: #9BB193;
+}
+
+.builder-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.builder-card-icon-container {
+  width: 48px;
+  height: 48px;
+  border-radius: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.builder-card-icon-container.placeholder {
+  background: #f0f4ef;
+  color: #556b4f;
+  font-weight: 800;
+  font-size: 1.25rem;
+  font-family: "Century Gothic", sans-serif;
+}
+
+.builder-card-icon-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.builder-card-upvote {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  border: 1.5px solid #eef2f6;
+  border-radius: 0.75rem;
+  padding: 0.3rem 0.7rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 42px;
+  user-select: none;
+}
+
+.builder-card-upvote:hover {
+  background: #f7faf7;
+  border-color: #9BB193;
+  transform: scale(1.05);
+}
+
+.builder-card-upvote.upvoted {
+  background: #9BB193;
+  border-color: #9BB193;
+  color: #ffffff;
+}
+
+.builder-card-upvote.upvoted svg {
+  stroke: #ffffff;
+}
+
+.builder-card-upvote.upvoted span {
+  color: #ffffff;
+}
+
+.builder-card-upvote svg {
+  width: 12px;
+  height: 12px;
+  stroke: #556b4f;
+  stroke-width: 3px;
+  fill: none;
+  transition: transform 0.2s ease;
+}
+
+.builder-card-upvote:hover svg {
+  transform: translateY(-2px);
+}
+
+.builder-card-upvote span {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #322323;
+  margin-top: 1px;
+}
+
+.builder-card-title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #322323;
+  font-family: "Century Gothic", sans-serif;
+  margin-top: 1rem;
+  margin-bottom: 0.35rem;
+  line-height: 1.3;
+}
+
+.builder-card-tagline {
+  font-size: 0.88rem;
+  color: #6b7280;
+  line-height: 1.45;
+  margin-bottom: 1.5rem;
+  font-family: "Sniglet", cursive;
+}
+
+.builder-card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1.5px solid #f8fafc;
+  padding-top: 0.85rem;
+  margin-top: auto;
+}
+
+.builder-card-category {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #4b5563;
+  background: #f1f5f9;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  font-family: "Century Gothic", sans-serif;
+}
+
+.builder-card-author {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
+.builder-card-avatar {
+  width: 22px;
+  height: 22px;
+  border-radius: 9999px;
+  background: #9BB193;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Century Gothic", sans-serif;
+}
+
+.builder-card-author-name {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #4b5563;
+  font-family: "Sniglet", cursive;
+}
+
+/* Media Query adjustments for layout components */
+@media (max-width: 840px) {
+  .project-deck-container {
+    height: auto;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1rem;
+  }
+  
+  .deck-card {
+    position: relative !important;
+    transform: none !important;
+    width: 100% !important;
+    max-width: 420px;
+    height: auto;
+    opacity: 1 !important;
+  }
+  
+  .project-deck-container:hover .deck-card {
+    transform: none !important;
+  }
+}
