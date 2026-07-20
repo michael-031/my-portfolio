@@ -1,8 +1,5 @@
 import { useEffect, useState } from 'react'
 import profile from './assets/profile.png'
-import fb from './assets/facebook.png'
-import linkedin from './assets/linkedin.png'
-import github from './assets/github.png'
 import SplitText from "./SplitText";
 import './App.css'
 import logo from './assets/logo1.png'
@@ -24,6 +21,9 @@ import run1 from './assets/About Me/10k_finish.jpg'
 import run2 from './assets/About Me/10k_with_divan.jpg'
 import hike from './assets/About Me/hike.jpg'
 import hike1 from './assets/About Me/hike2.jpg'
+import githubSvgString from './assets/github-contributions.svg?raw'
+import { GithubLogo, LinkedinLogo, FacebookLogo, GraduationCap, ArrowRight, Atom, CaretLeft, CaretRight, EnvelopeSimple, Phone } from "@phosphor-icons/react";
+import { motion } from "framer-motion";
 
 const techStack = [
   { name: 'HTML/CSS', icon: html },
@@ -64,14 +64,13 @@ function App() {
     setCurrentSlide((prev) => (prev + 1) % aboutGallery.length)
   }
 
-  const loopedTechStack = [...techStack, ...techStack]
   const otherTechStack = [
     { name: 'C', icon: c },
     { name: 'C#', icon: csharp },
     { name: 'Python', icon: python },
     { name: 'Arduino', icon: arduino },
     { name: 'Tailwind CSS', icon: tailwind },
-    
+
   ]
   const initialProjectsList = [
     {
@@ -126,7 +125,6 @@ function App() {
 
   const [projects, setProjects] = useState(initialProjectsList)
   const [upvotedState, setUpvotedState] = useState({})
-  const [centerId, setCenterId] = useState(1)
 
   const handleUpvote = (projectId) => {
     setUpvotedState(prev => {
@@ -149,276 +147,218 @@ function App() {
     })
   }
 
-  let leftId, rightId
-  if (centerId === 1) {
-    leftId = 2
-    rightId = 3
-  } else if (centerId === 2) {
-    leftId = 3
-    rightId = 1
-  } else {
-    leftId = 1
-    rightId = 2
-  }
-
   return (
     <main>
-      <section className="bg-white-800 h-[64px] flex justify-between items-center px-16 shadow-md">
-        <img src={logo} alt="Michael portfolio logo" className="h-[32px] object-cover" />
-        <div className="buttons">
-          <a href="#about-me" className="text-black px-4 h-full inline-flex items-center">About Me</a>
-          <a href="#projects" className="text-black px-4 h-full inline-flex items-center">My Projects</a>
-          <a href="#tech-stack" className="text-black px-4 h-full inline-flex items-center">My Designs</a>
-          <a href="#contact-me" className="text-black px-4 h-full inline-flex items-center">Contact Me</a>
+      <header className="sticky top-0 z-50 backdrop-blur-md bg-white/70 border-b border-gray-100 flex justify-center h-[72px] transition-all duration-300">
+        <div className="w-full max-w-[1440px] flex justify-between items-center px-8 md:px-16 h-full">
+          <img src={logo} alt="Michael portfolio logo" className="h-[32px] object-contain ml-3" />
+          <nav className="flex gap-2">
+            <a href="#about-me" className="nav-link px-4 h-full inline-flex items-center">About Me</a>
+            <a href="#projects" className="nav-link px-4 h-full inline-flex items-center">Projects</a>
+            <a href="#tech-stack" className="nav-link px-4 h-full inline-flex items-center">Stack</a>
+            <a href="#contact-me" className="nav-link px-4 h-full inline-flex items-center">Contact</a>
+          </nav>
+        </div>
+      </header>
+
+      <section id="hero" className="min-h-[100dvh] flex items-center justify-center w-full px-4 md:px-8 py-16 lg:py-24">
+        <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          {/* Left Column: Intro & Info */}
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-7 flex flex-col items-start text-left"
+          >
+            <span className="hero-eyebrow">
+              Michael Inoc // Computer Engineering Student
+            </span>
+            <SplitText delay={100} duration={1}>
+              <h1 className="hero-title text-5xl md:text-7xl font-bold mt-2 mb-6">
+                Hello, <br />I'm <span className="text-[#3d5945]">Michael</span>
+              </h1>
+            </SplitText>
+            <p className="hero-description text-xl md:text-2xl mb-8 font-sans font-light">
+              Let's build and level up together. Crafting premium web applications, interactive interfaces, and robust systems.
+            </p>
+            
+            <div className="flex flex-wrap items-center gap-6">
+              <a href="#projects" className="hero-btn-primary group">
+                View My Work
+                <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+              </a>
+              <div className="flex items-center gap-3">
+                <a
+                  href="https://github.com/michael-031"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-icon-btn"
+                  title="GitHub Profile"
+                >
+                  <GithubLogo size={22} weight="bold" />
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/john-michael-inoc-bb288326b/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-icon-btn"
+                  title="LinkedIn Profile"
+                >
+                  <LinkedinLogo size={22} weight="bold" />
+                </a>
+                <a
+                  href="https://www.facebook.com/michaelzz450"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-icon-btn"
+                  title="Facebook Profile"
+                >
+                  <FacebookLogo size={22} weight="bold" />
+                </a>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Right Column: Image and Context Badges */}
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-5 flex flex-col gap-6 w-full max-w-md mx-auto lg:max-w-none"
+          >
+            {/* Profile Frame with glass/border and custom shape */}
+            <div className="profile-frame aspect-[4/5] w-full relative">
+              {/* Ambient Background Circles */}
+              <div className="absolute top-1/2 left-1/2 w-[350px] h-[350px] -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white/30 z-10 pointer-events-none"></div>
+              <div className="absolute top-1/2 left-1/2 w-[450px] h-[450px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10 z-10 pointer-events-none"></div>
+              
+              <img
+                src={profile}
+                alt="Portrait of Michael Inoc"
+                className="w-full h-full object-cover"
+              />
+              {/* bottom gradient fade */}
+              <div className="absolute bottom-0 left-0 w-full h-1/4 bg-gradient-to-t from-[#9BB193]/60 to-transparent pointer-events-none"></div>
+            </div>
+
+            {/* Education Context Card */}
+            <div className="education-card p-6 flex items-start gap-4">
+              <div className="p-3 bg-[#eef3ee] rounded-xl text-[#3d5945] flex-shrink-0">
+                <GraduationCap size={28} weight="duotone" />
+              </div>
+              <div>
+                <h4 className="text-sm font-semibold text-gray-900 font-sans">Education</h4>
+                <p className="text-xs text-[#556b4f] font-mono mt-0.5">Third-Year Student</p>
+                <p className="text-sm text-gray-600 mt-1 font-sans">BS in Computer Engineering — CIT-U</p>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
-      <section id="hero" className = "flex flex-wrap h-[765px] bg-white-500">
-        <div
-          id="name-card"
-          className="z-1 h-[20rem] w-[980px] absolute top-[10rem] left-[33rem] bg-white rounded-sm shadow-xl px-16 py-10"
-        ></div>
-          <div id="name" className="z-1 bg-[#fffff] absolute top-[10rem] left-[35rem] px-16 flex-col h-[200px] ">
-          <SplitText delay={50} duration={1}>
-            <h1
-              className="text-6xl font-bold mt-8"
+      <section id='tech-stack' className='py-24 bg-white mt-12 border-t border-gray-50'>
+        <div className='max-w-6xl mx-auto px-4 md:px-8'>
+          <div className="flex flex-col items-start mb-12">
+            <span className="text-[#556b4f] uppercase tracking-wider text-xs font-bold font-mono mb-2">01 — Expertise</span>
+            <h2
+              className="text-4xl font-bold text-[#1a1515] font-sans"
               style={{ fontFamily: "Century Gothic, sans-serif" }}
             >
-              <span data-split-part className="text-[#322323] inline-block">
-                Hello, <br />
-                I'm
-              </span>{""}
-              <span data-split-part className="inline-block text-8xl">Michael</span>
-            </h1>
-          </SplitText>
-            <p className='text-2xl ml-1 mt-8'>
-              Let's build and level up together.
-            </p>
+              My stack
+            </h2>
           </div>
-          <div
-            id="education"
-            className="flex-row justify-center gap-40 z-0 h-[10rem] w-[980px] absolute top-[31rem] left-[33rem] bg-white rounded-sm shadow-xl px-16 py-10 flex gap-8 items-center"
+
+          <motion.div 
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, amount: 0.15 }}
+            variants={{
+              hidden: {},
+              show: {
+                transition: {
+                  staggerChildren: 0.04
+                }
+              }
+            }}
+            className='tech-grid'
           >
-            <div className="flex flex-col ml-10">
-              <span className="text-xl">Education</span>
-              <span className='mt-2'>Third-Year Student</span>
-              <span>Bachelor of Science in Computer Engineering - CIT-U</span>
-            </div>
-            <div className="flex flex-col gap-2 mr-16">
-            <a
-              href="https://github.com/michael-031"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 hover:opacity-70"
-            >
-              <img src={github} alt="GitHub" className="h-8 w-8" />
-              <span className="text-black text-[12px]">github.com/michael-031</span>
-            </a>
-
-            <a
-              href="https://www.facebook.com/michaelzz450"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 hover:opacity-70"
-            >
-              <img src={fb} alt="Facebook" className="h-8 w-8" />
-              <span className="text-black text-[12px]">facebook.com/michaelzz450</span>
-            </a>
-
-            <a
-              href="https://www.linkedin.com/in/john-michael-inoc-bb288326b/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 hover:opacity-70"
-            >
-              <img src={linkedin} alt="LinkedIn" className="h-8 w-8" />
-              <span className="text-black text-[12px]">linkedin.com/in/michael-inoc</span>
-            </a>
-            </div>
-
-            
-          </div>
-          <div
-            id="my-profile"
-            className="rounded-sm bg-[#9BB193] absolute top-[7rem] left-[0rem] px-16 flex-col h-[500px] relative shadow-md"
-          >
-            {/* Circular lines */}
-            <div className="absolute top-1/2 left-1/2 w-[350px] h-[350px] -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white/40"></div>
-
-            <div className="absolute top-1/2 left-1/2 w-[450px] h-[450px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/20"></div>
-
-            <img
-              src={profile}
-              alt="Portrait of Michael Inoc"
-              className="h-[500px] object-cover translate-y-30"
-            />
-
-            <div className="absolute bottom-0 left-0 w-full h-10 bg-gradient-to-t from-white to-transparent translate-y-30"></div>
-          </div>
-        
-      </section>
-
-      <section className='tech-stack'>
-        <div id="tech-stack" className='flex justify-center'>
-          <h1
-              className="text-4xl font-bold mt-8"
-              style={{ fontFamily: "Century Gothic, sans-serif" }}
-            >
-              <span data-split-part className="text-[#322323] inline-block">
-                Tech Stack
-              </span>{""}
-              
-            </h1>
-          </div>
-
-          <div className='tech-logo-loop mt-8' aria-label="Looping tech stack logos">
-            <div className='tech-logo-track'>
-              {loopedTechStack.map((tech, index) => (
-                <div className='tech-logo-item' key={`${tech.name}-${index}`}>
-                  <img src={tech.icon} alt={tech.name} />
-                  <span>{tech.name}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          <div id='other-tech-stack' className='flex flex-col items-center mt-16'>
-            <h1
-              className="text-xl font-bold mb-6"
-              style={{ fontFamily: "Century Gothic, sans-serif" }}
-            >
-              <span className="text-[#322323] inline-block">
-                Other Tech Stack
-              </span>
-            </h1>
-
-            <div className='flex justify-center items-center gap-6 flex-wrap'>
-              {otherTechStack.map((tech) => (
+            {[...techStack, ...otherTechStack].map((tech) => (
+              <motion.div
+                variants={{
+                  hidden: { opacity: 0, y: 15 },
+                  show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } }
+                }}
+                key={tech.name}
+                className='tech-card'
+                title={tech.name}
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.98 }}
+              >
                 <img
-                  key={tech.name}
                   src={tech.icon}
                   alt={tech.name}
-                  className='h-10 w-10'
                 />
-              ))}
-            </div>
-          </div>
+                <span className="tech-name">{tech.name}</span>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
       </section>
 
-      <section id="projects" className="min-h-[600px] bg-gradient-to-b from-white to-[#f7faf7] mt-16 px-8 pb-16">
-        <div className="flex flex-col items-center text-center max-w-4xl mx-auto">
-          <span className="text-[#556b4f] uppercase tracking-wider text-sm font-bold font-sans">02 — Projects</span>
-          <h1
-            className="text-4xl font-bold mt-2 mb-3"
-            style={{ fontFamily: "Century Gothic, sans-serif" }}
-          >
-            Featured Projects Showcase
-          </h1>
-          <p className="text-gray-500 font-sans max-w-xl">
-            Explore interactive concepts and live deployments. Click any card in the stack below to focus, or browse the grid.
-          </p>
-        </div>
-
-        {/* 3D Stacked Card Deck (Reference 3 style) */}
-        <div className="project-deck-container" aria-label="3D stacked project deck">
-          {projects.map((project) => {
-            let positionClass = "card-center";
-            if (project.id === leftId) positionClass = "card-left";
-            if (project.id === rightId) positionClass = "card-right";
-            
-            return (
-              <div
-                key={`deck-${project.id}`}
-                className={`deck-card ${positionClass}`}
-                onClick={() => setCenterId(project.id)}
-              >
-                <div>
-                  <div className="deck-card-tags">
-                    <span className="deck-card-tag black-tag">{project.tags[0]}</span>
-                    {project.tags.slice(1).map((t, idx) => (
-                      <span key={idx} className="deck-card-tag outline-tag">{t}</span>
-                    ))}
-                  </div>
-                  
-                  <div className="deck-card-header">
-                    <div className="deck-card-icon">
-                      {project.webImage ? (
-                        <img src={react} alt="App icon" className="w-7 h-7 object-contain" />
-                      ) : (
-                        <span className="text-lg font-bold text-[#556b4f]">
-                          {project.title.charAt(0)}
-                        </span>
-                      )}
-                    </div>
-                    <h3 className="deck-card-title">{project.title}</h3>
-                  </div>
-                  
-                  <p className="deck-card-description">{project.tagline}</p>
-                </div>
-
-                <div>
-                  {project.id === 1 && (
-                    <div className="flex gap-2 justify-center py-2 bg-slate-50 rounded-lg border border-gray-100 mb-2">
-                      <span className="text-xs text-gray-500">Includes Web & Mobile Previews</span>
-                    </div>
-                  )}
-
-                  <div className="deck-card-store-badges">
-                    <a 
-                      href={project.repoUrl} 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="deck-store-badge flex-1"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <svg viewBox="0 0 24 24">
-                        <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
-                      </svg>
-                      <span>Repository</span>
-                    </a>
-                    <a 
-                      href={project.demoUrl === "#" ? "#projects" : project.demoUrl} 
-                      className="deck-store-badge flex-1"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <svg viewBox="0 0 24 24">
-                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
-                      </svg>
-                      <span>Live Demo</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Projects Grid (Reference 1 style) */}
-        <div className="flex justify-between items-center max-w-6xl mx-auto mt-16 mb-6">
-          <h2 className="text-2xl font-bold font-sans text-[#322323]">Fresh from Michael's Desk</h2>
-          <a href="#contact-me" className="text-[#556b4f] hover:underline font-bold text-sm flex items-center gap-1">
-            Let's collaborate <span className="text-lg">→</span>
+      <section id="projects" className="min-h-[600px] bg-gradient-to-b from-white to-[#f7faf7] mt-16 px-8 pb-24">
+        <div className="flex justify-between items-end max-w-6xl mx-auto mb-12 border-b border-gray-100 pb-6">
+          <div className="flex flex-col items-start">
+            <span className="text-[#556b4f] uppercase tracking-wider text-xs font-bold font-mono mb-2">02 — Projects</span>
+            <h1
+              className="text-4xl font-bold text-[#1a1515]"
+              style={{ fontFamily: "Century Gothic, sans-serif" }}
+            >
+              Fresh from Michael's Desk
+            </h1>
+          </div>
+          <a href="#contact-me" className="text-[#556b4f] hover:underline font-bold text-sm flex items-center gap-1 mb-1 transition-all duration-300">
+            Let's collaborate <ArrowRight size={16} />
           </a>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+        <motion.div 
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={{
+            hidden: {},
+            show: {
+              transition: {
+                staggerChildren: 0.08
+              }
+            }
+          }}
+          className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto"
+        >
           {projects.map((project) => (
-            <article key={project.id} className="builder-card">
+            <motion.article 
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+              }}
+              key={project.id} 
+              className="builder-card"
+            >
               <div>
                 <div className="builder-card-top">
                   <div className={`builder-card-icon-container ${project.webImage ? "" : "placeholder"}`}>
                     {project.webImage ? (
-                      <img src={react} alt="Tech icon" />
+                      <Atom size={24} weight="duotone" className="text-[#3d5945]" />
                     ) : (
                       project.title.charAt(0)
                     )}
                   </div>
-                  <div 
+                  <div
                     className={`builder-card-upvote ${upvotedState[project.id] ? "upvoted" : ""}`}
                     onClick={() => handleUpvote(project.id)}
                   >
                     <svg viewBox="0 0 24 24">
-                      <path d="M12 4v16M12 4l-6 6M12 4l6 6" strokeLinecap="round" strokeLinejoin="round"/>
+                      <path d="M12 4v16M12 4l-6 6M12 4l6 6" strokeLinecap="round" strokeLinejoin="round" />
                     </svg>
                     <span>{project.initialUpvotes}</span>
                   </div>
@@ -483,26 +423,29 @@ function App() {
                   </div>
                 </div>
               </div>
-            </article>
+            </motion.article>
           ))}
-        </div>
+        </motion.div>
       </section>
 
-      <section id='about-me' className='about-me-section'>
-        <div className='about-me-shell'>
-          <h2 className='about-me-title'>About Me</h2>
+      <section id='about-me' className='about-me-section py-24 bg-gradient-to-b from-[#f7faf7] to-[#eef3ee]'>
+        <div className='about-me-shell max-w-6xl mx-auto px-4 md:px-8'>
+          <div className="flex flex-col items-center mb-12 text-center">
+            <span className="text-[#556b4f] uppercase tracking-wider text-xs font-bold font-mono mb-2">03 — Story</span>
+            <h2 className='about-me-title text-4xl font-bold text-[#1a1515] font-sans' style={{ fontFamily: "Century Gothic, sans-serif" }}>About Me</h2>
+          </div>
 
-          <div className='about-carousel' aria-label='About me photo carousel'>
+          <div className='about-carousel relative' aria-label='About me photo carousel'>
             <button
               type='button'
               className='about-arrow about-arrow-left'
               onClick={goToPrevious}
               aria-label='Show previous image'
             >
-              &#10094;
+              <CaretLeft size={20} weight="bold" />
             </button>
 
-            <div className='about-carousel-stage'>
+            <div className='about-carousel-stage rounded-2xl overflow-hidden shadow-lg border border-[#d3ddd3]'>
               {aboutGallery.map((image, index) => (
                 <img
                   key={image.alt}
@@ -519,7 +462,7 @@ function App() {
               onClick={goToNext}
               aria-label='Show next image'
             >
-              &#10095;
+              <CaretRight size={20} weight="bold" />
             </button>
           </div>
 
@@ -535,75 +478,62 @@ function App() {
             ))}
           </div>
 
-          <p className='about-slogan'>Leveling up in every mile and every lines.</p>
+          <p className='about-slogan mt-8 font-sans font-medium text-lg text-center text-[#3d5945]'>Leveling up in every mile and every line.</p>
         </div>
       </section>
 
-      <section id='contact-me' className='contact-me-section'>
-        <div className='contact-me-shell'>
-          <div className='contact-me-header'>
-            <h2 className='contact-me-title'>Contact Me</h2>
-            <img src={logo} alt='Michael logo' className='contact-me-logo' />
+      <section id='contact-me' className='py-24 bg-white border-t border-gray-100'>
+        <div className='max-w-6xl mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center'>
+          {/* Left Column: Contact details */}
+          <div className="lg:col-span-5 flex flex-col items-start text-left">
+            <span className="text-[#556b4f] uppercase tracking-wider text-xs font-bold font-mono mb-2">04 — Contact</span>
+            <h2 className='text-4xl font-bold mb-6 text-[#1a1515] font-sans' style={{ fontFamily: "Century Gothic, sans-serif" }}>
+              Let's connect
+            </h2>
+            <p className="text-gray-600 mb-8 font-sans leading-relaxed">
+              If you have an idea, want to collaborate, or just want to chat about code and computer engineering, drop me a message.
+            </p>
+
+            <div className="flex flex-col gap-4 w-full">
+              <a
+                href='mailto:inoc.johnmichael@gmail.com'
+                className='flex items-center gap-3 text-lg font-medium text-gray-700 hover:text-[#3d5945] transition-colors font-sans'
+              >
+                <EnvelopeSimple size={24} weight="duotone" className="text-[#3d5945]" />
+                inocjohnmichael@gmail.com
+              </a>
+              <a
+                href='tel:+639179523690'
+                className='flex items-center gap-3 text-lg font-medium text-gray-700 hover:text-[#3d5945] transition-colors font-sans'
+              >
+                <Phone size={24} weight="duotone" className="text-[#3d5945]" />
+                +63 917 952 3690
+              </a>
+            </div>
+
+            <div className='flex gap-6 items-center mt-10 border-t border-gray-100 pt-6 w-full'>
+              <a href='https://www.linkedin.com/in/john-michael-inoc-bb288326b/' target='_blank' rel='noopener noreferrer' className='footer-link'>LinkedIn</a>
+              <span className='text-gray-300'>•</span>
+              <a href='https://www.facebook.com/michaelzz450' target='_blank' rel='noopener noreferrer' className='footer-link'>Facebook</a>
+              <span className='text-gray-300'>•</span>
+              <a href='https://github.com/michael-031' target='_blank' rel='noopener noreferrer' className='footer-link'>GitHub</a>
+            </div>
           </div>
 
-          <div className='contact-me-grid'>
-            <div className='contact-me-links'>
+          {/* Right Column: Contributions Card */}
+          <div className="lg:col-span-7 w-full">
+            <div className="contributions-card p-6 md:p-8">
+              <h4 className="text-sm font-semibold text-gray-900 font-sans mb-6 flex items-center gap-2">
+                <Atom size={20} className="text-[#3d5945]" />
+                GitHub Contributions
+              </h4>
               <a
                 href='https://github.com/michael-031'
                 target='_blank'
                 rel='noopener noreferrer'
-                className='contact-link'
-              >
-                <img src={github} alt='GitHub' />
-                <span>github.com/michael-031</span>
-              </a>
-
-              <a
-                href='https://www.facebook.com/michaelzz450'
-                target='_blank'
-                rel='noopener noreferrer'
-                className='contact-link'
-              >
-                <img src={fb} alt='Facebook' />
-                <span>facebook.com/michaelzz450</span>
-              </a>
-
-              <a
-                href='https://www.linkedin.com/in/john-michael-inoc-bb288326b/'
-                target='_blank'
-                rel='noopener noreferrer'
-                className='contact-link'
-              >
-                <img src={linkedin} alt='LinkedIn' />
-                <span>linkedin.com/in/john-michael-inoc-bb288326b</span>
-              </a>
-
-              <a href='tel:+639179523690' className='contact-link'>
-                <span className='contact-icon-text'>TEL</span>
-                <span>09179523690</span>
-              </a>
-            </div>
-
-            <div className='contact-me-actions'>
-              <p className='contact-label'>Portfolio Repository</p>
-              <a
-                href='https://github.com/michael-031/my-portfolio.git'
-                target='_blank'
-                rel='noopener noreferrer'
-                className='contact-action-link'
-              >
-                github.com/michael-031/my-portfolio.git
-              </a>
-
-              <p className='contact-label'>Resume</p>
-              <a
-                href='https://drive.google.com/drive/folders/1cICwQ2tPA8Ejfar6_dhrS7QN4833_SL8?usp=sharing'
-                target='_blank'
-                rel='noopener noreferrer'
-                className='contact-action-link'
-              >
-                View my resume folder on Google Drive
-              </a>
+                className='block max-w-full overflow-x-auto w-full'
+                dangerouslySetInnerHTML={{ __html: githubSvgString }}
+              />
             </div>
           </div>
         </div>
