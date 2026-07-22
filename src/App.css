@@ -1132,3 +1132,37 @@
   object-fit: cover;
   object-position: top;
 }
+
+/* ==========================================
+   CIRCULAR INFINITE CAROUSEL KEYFRAMES
+   ========================================== */
+@keyframes circleScrollLeft {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes circleScrollRight {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.animate-circle-left {
+  animation: circleScrollLeft 45s linear infinite;
+}
+
+.animate-circle-right {
+  animation: circleScrollRight 38s linear infinite;
+}
+
+.animate-circle-left:hover,
+.animate-circle-right:hover {
+  animation-play-state: paused !important;
+}

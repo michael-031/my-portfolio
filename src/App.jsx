@@ -24,6 +24,7 @@ import hike from './assets/About Me/hike.jpg'
 import hike1 from './assets/About Me/hike2.jpg'
 import GitHubContributions from "./GitHubContributions";
 import HeroParallaxWrapper from "./HeroParallax";
+import ProjectDetailModal from "./ProjectDetailModal";
 import { GithubLogo, LinkedinLogo, FacebookLogo, GraduationCap, ArrowRight, Atom, CaretLeft, CaretRight, EnvelopeSimple, Phone, Code, Lightning, Gear } from "@phosphor-icons/react";
 import { motion } from "framer-motion";
 
@@ -38,6 +39,7 @@ const techStack = [
 ]
 
 function App() {
+  const [selectedProject, setSelectedProject] = useState(null)
   const aboutGallery = [
     { src: run, alt: 'Michael sharing a candid moment with his pet' },
     { src: run1, alt: 'Michael crossing the finish line after a 10K run' },
@@ -76,23 +78,46 @@ function App() {
 
   ]
 
+  const scrollToSection = (e, id) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      const headerOffset = 72;
+      const extraScrollDown = id === 'projects' ? 60 : 0;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset + extraScrollDown;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
 
   return (
     <main>
       <header className="sticky top-0 z-50 backdrop-blur-md bg-white/70 border-b border-gray-100 flex justify-center h-[72px] transition-all duration-300">
         <div className="w-full max-w-[1440px] flex justify-between items-center px-8 md:px-16 h-full">
-          <img src={logo} alt="Michael portfolio logo" className="h-[32px] object-contain ml-3" />
+          <img src={logo} alt="Michael portfolio logo" className="h-[32px] object-contain ml-3 cursor-pointer" onClick={(e) => scrollToSection(e, 'hero')} />
           <nav className="flex gap-2">
-            <a href="#projects" className="nav-link px-4 h-full inline-flex items-center">Projects</a>
-            <a href="#tech-stack" className="nav-link px-4 h-full inline-flex items-center">Stack</a>
-            <a href="#about-me" className="nav-link px-4 h-full inline-flex items-center">About Me</a>
-            <a href="#contact-me" className="nav-link px-4 h-full inline-flex items-center">Contact</a>
+            <a href="#projects" onClick={(e) => scrollToSection(e, 'projects')} className="nav-link px-4 h-full inline-flex items-center">Projects</a>
+            <a href="#tech-stack" onClick={(e) => scrollToSection(e, 'tech-stack')} className="nav-link px-4 h-full inline-flex items-center">Stack</a>
+            <a href="#about-me" onClick={(e) => scrollToSection(e, 'about-me')} className="nav-link px-4 h-full inline-flex items-center">About Me</a>
+            <a href="#contact-me" onClick={(e) => scrollToSection(e, 'contact-me')} className="nav-link px-4 h-full inline-flex items-center">Contact</a>
           </nav>
         </div>
       </header>
 
-      <HeroParallaxWrapper>
-        <section id="hero" className="min-h-[100dvh] flex items-center justify-center w-full px-4 md:px-8 py-16 lg:py-24">
+      {selectedProject && (
+        <ProjectDetailModal
+          project={selectedProject}
+          onClose={() => setSelectedProject(null)}
+        />
+      )}
+
+      <HeroParallaxWrapper onSelectProject={setSelectedProject}>
+        <section id="hero" className="min-h-[100dvh] lg:min-h-[120vh] flex items-center justify-center w-full px-4 md:px-8 py-20 lg:py-28">
           <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             {/* Left Column: Intro & Info */}
             <motion.div
@@ -131,7 +156,7 @@ function App() {
               </div>
 
               <div className="flex flex-wrap items-center gap-6">
-                <a href="#projects" className="hero-btn-primary group">
+                <a href="#projects" onClick={(e) => scrollToSection(e, 'projects')} className="hero-btn-primary group">
                   View My Work
                   <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
                 </a>
@@ -217,7 +242,7 @@ function App() {
           </div>
         </section>
 
-        <section id="projects" className="min-h-[180vh] py-20 px-4 md:px-8 flex flex-col justify-start">
+        <section id="projects" className="min-h-[140vh] py-20 px-4 md:px-8 flex flex-col justify-start">
           <div className="flex justify-between items-end max-w-6xl mx-auto mb-12 border-b border-gray-200/80 pb-6 w-full">
             <div className="flex flex-col items-start">
               <span className="text-[#556b4f] uppercase tracking-wider text-xs font-bold font-mono mb-2">01 — Projects</span>
@@ -225,7 +250,7 @@ function App() {
                 Fresh from Michael's Desk
               </h2>
             </div>
-            <a href="#contact-me" className="text-[#556b4f] hover:underline font-bold text-sm flex items-center gap-1 mb-1 transition-all duration-300">
+            <a href="#contact-me" onClick={(e) => scrollToSection(e, 'contact-me')} className="text-[#556b4f] hover:underline font-bold text-sm flex items-center gap-1 mb-1 transition-all duration-300">
               Let's collaborate <ArrowRight size={16} />
             </a>
           </div>

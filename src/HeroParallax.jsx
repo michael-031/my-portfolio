@@ -10,197 +10,228 @@ import { ArrowUpRight, CheckCircle, Copy } from "@phosphor-icons/react";
 import lemivon from './assets/projects/Lemivon.png';
 import lemivon_mobile from './assets/projects/lemivon_mobile.png';
 
+export const tlcEngineProject = {
+  id: "tlc-engine",
+  title: "TLC Engine",
+  monogram: "TLC",
+  category: "Multi-Tenant Platform",
+  roleTitle: "Co-Project Lead, Frontend & UI/UX Designer",
+  period: "2025 – Present",
+  displayLink: "github.com/michael-031/tlc-engine",
+  link: "https://github.com/michael-031",
+  subtitle: "Multi-Tenant Platform with Role-Based Access Control (RBAC)",
+  description: "TLC Engine is an enterprise multi-tenant management platform built to deliver secure, role-isolated administrative workflows, fine-grained RBAC permission controls, and unified UI/UX design across multiple organization tenants.",
+  contributions: [
+    "Initiated and co-led the development of a multi-tenant platform with role-based access control (RBAC).",
+    "Designed intuitive UI/UX and developed core frontend features of the system.",
+    "Evaluated and refined teammates' UI/UX designs to ensure consistency, usability, and quality."
+  ],
+  challenges: "Designing a scalable multi-tenant RBAC architecture required strict state isolation and dynamic role propagation. I implemented robust frontend permission guards, modular layout shells, and centralized state management to maintain high performance, security, and design consistency across all tenant views.",
+  tech: ["React", "TypeScript", "Node.js", "RBAC", "Tailwind CSS"],
+};
+
+export const tecnectProject = {
+  id: "tecnect",
+  title: "TecnecT",
+  monogram: "TCT",
+  category: "Campus Web Platform",
+  roleTitle: "UI/UX & Frontend Developer",
+  period: "2025",
+  displayLink: "github.com/michael-031/tecnect",
+  link: "https://github.com/michael-031",
+  subtitle: "Campus Equipment Rentals, Lost & Found, and Real-Time Messaging",
+  description: "TecnecT is a comprehensive campus web application empowering students and faculty to seamlessly handle equipment rentals, manage lost-and-found item tracking, and communicate instantly through embedded real-time messaging.",
+  contributions: [
+    "Designed and developed the user interface for a campus web application supporting rentals, lost-and-found services, and real-time messaging.",
+    "Built responsive frontend components and ensured smooth user experience across devices.",
+    "Collaborated with backend developers to integrate APIs and application features."
+  ],
+  challenges: "Integrating real-time messaging alongside campus inventory rentals required synchronized state updates across mobile and desktop viewports. I engineered responsive components and streamlined WebSocket API integration to maintain fast data delivery and fluid user interaction.",
+  tech: ["React", "Python", "FastAPI", "WebSockets", "Tailwind CSS"],
+};
+
+export const lemivonProject = {
+  id: "lemivon",
+  title: "Lemivon",
+  monogram: "LLF",
+  category: "AI Study Platform",
+  roleTitle: "Frontend & Backend Contributor",
+  period: "2025",
+  displayLink: "study-taa.vercel.app",
+  link: "https://study-taa.vercel.app",
+  image: lemivon,
+  subtitle: "AI-Powered Study & Automated Material Organization Platform",
+  description: "Lemivon is a modern study platform that uses AI to help users organize study materials and improve learning efficiency. I was responsible for backend development and contributed to parts of the frontend, ensuring a functional and user-friendly experience.",
+  contributions: [
+    "Contributed to the development of an AI-powered study platform focused on automated material organization and learning efficiency.",
+    "Engaged in implementing frontend components and basic backend functionalities.",
+    "Worked with the team to improve performance and responsiveness of the application."
+  ],
+  challenges: "One challenge was maintaining performance while handling many study resources and user interactions. I optimized backend queries and improved data flow between services to keep the experience smooth and scalable.",
+  tech: ["React", "Node.js", "Express.js", "MongoDB", "Tailwind CSS"],
+};
+
 const products = [
-  // ROW 1
+  // ROW 1: TLC Engine
   {
-    title: "Lemivon UI Showcase",
-    category: "Full-Stack Web",
-    link: "https://github.com/michael-031",
+    title: "TLC Engine",
+    category: "Project Name",
+    projectDetails: tlcEngineProject,
+    type: "mock",
+    subtitle: "Multi-Tenant Platform with Role-Based Access Control (RBAC)",
+    bgGradient: "from-[#1e2e24] via-slate-900 to-black",
+    tech: ["TLC Engine", "Multi-Tenant", "2025 – Present"],
+  },
+  {
+    title: "Platform Overview",
+    category: "Brief Description",
+    projectDetails: tlcEngineProject,
+    type: "mock",
+    subtitle: "Multi-tenant platform built for role-isolated administrative workflows, fine-grained RBAC permission controls, and unified UI/UX design.",
+    bgGradient: "from-slate-900 via-[#27392c] to-zinc-950",
+    tech: ["RBAC", "Multi-Tenant", "Enterprise"],
+  },
+  {
+    title: "Architecture & Stack",
+    category: "Tech Stack Used",
+    projectDetails: tlcEngineProject,
+    type: "code",
+    filename: "RBACGuard.tsx",
+    codeSnippet: `export function RBACGuard({ role, required, children }) {
+  const { userPermissions } = useAuthContext();
+  const hasAccess = checkTenantPermission(userPermissions, required);
+  if (!hasAccess) return <AccessDeniedFallback />;
+  return <>{children}</>;
+}`,
+    tech: ["React", "TypeScript", "Node.js", "RBAC"],
+  },
+  {
+    title: "Co-Project Lead & UI/UX",
+    category: "My Role",
+    projectDetails: tlcEngineProject,
+    type: "mock",
+    subtitle: "Co-led development, architected core frontend RBAC features, and evaluated teammate UI/UX designs for consistency & usability.",
+    bgGradient: "from-emerald-950 via-slate-900 to-zinc-950",
+    tech: ["Co-Project Lead", "Frontend", "UI/UX Designer"],
+  },
+  {
+    title: "TLC System Preview",
+    category: "Sample Image of the App",
+    projectDetails: tlcEngineProject,
     type: "image",
     thumbnail: lemivon,
     secondaryImage: lemivon_mobile,
-    tech: ["React", "Node.js", "MongoDB", "Express"],
-  },
-  {
-    title: "Apps Script Automation Engine",
-    category: "Automation",
-    link: "https://github.com/michael-031",
-    type: "code",
-    filename: "automation.gs",
-    codeSnippet: `function processDailyIngest() {
-  const ss = SpreadsheetApp.getActiveSpreadsheet();
-  const sheet = ss.getSheetByName('DataIngest');
-  const rows = sheet.getDataRange().getValues();
-  rows.forEach((row, idx) => {
-    if (idx === 0) return;
-    const [id, email, status, amount] = row;
-    if (status === 'PENDING') {
-      sendReport(email, id, amount);
-      sheet.getRange(idx + 1, 3).setValue('DONE');
-    }
-  });
-}`,
-    tech: ["Apps Script", "JavaScript", "Sheets API"],
-  },
-  {
-    title: "Full-Stack Web App Template",
-    category: "Web Template",
-    link: "https://github.com/michael-031",
-    type: "code",
-    filename: "AppStarter.tsx",
-    codeSnippet: `import React, { useState } from 'react';
-import { UseTheme } from '@/hooks/use-theme';
-
-export default function AppStarter() {
-  const { theme, toggleTheme } = UseTheme();
-  return (
-    <main className={\`app-shell \${theme}\`}>
-      <Header onToggle={toggleTheme} />
-      <HeroSection title="Full-Stack Starter" />
-    </main>
-  );
-}`,
-    tech: ["React", "TypeScript", "Tailwind CSS"],
-  },
-  {
-    title: "BatasPH.ai Legal Assistant",
-    category: "AI Concept",
-    link: "https://github.com/michael-031",
-    type: "mock",
-    subtitle: "AI-Powered Legal Assistant for Citizens",
-    bgGradient: "from-emerald-950 via-slate-900 to-zinc-950",
-    tech: ["Python", "Next.js", "FastAPI", "Gemini API"],
-  },
-  {
-    title: "Gorun Offline Fitness Tracker",
-    category: "Mobile Concept",
-    link: "https://github.com/michael-031",
-    type: "mock",
-    subtitle: "Privacy-First Offline Route Logger",
-    bgGradient: "from-slate-900 via-teal-950 to-slate-900",
-    tech: ["React Native", "Expo", "Leaflet"],
+    tech: ["Multi-Tenant UI", "Dashboard"],
   },
 
-  // ROW 2
+  // ROW 2: TecnecT
   {
-    title: "Google Drive Backup Workflow",
-    category: "Automation",
-    link: "https://github.com/michael-031",
-    type: "code",
-    filename: "drive_backup.gs",
-    codeSnippet: `function backupSpreadsheetsToDrive() {
-  const folder = DriveApp.getFolderById("BACKUP_ID");
-  const files = DriveApp.getFilesByType(MimeType.GOOGLE_SHEETS);
-  while (files.hasNext()) {
-    const file = files.next();
-    file.makeCopy(file.getName() + "_Backup", folder);
-  }
-}`,
-    tech: ["Apps Script", "Drive API", "Cron Trigger"],
-  },
-  {
-    title: "SaaS Analytics Dashboard",
-    category: "Web Template",
-    link: "https://github.com/michael-031",
+    title: "TecnecT",
+    category: "Project Name",
+    projectDetails: tecnectProject,
     type: "mock",
-    subtitle: "Real-time Metrics & Financial Chart UI",
-    bgGradient: "from-zinc-900 via-[#1e2e24] to-[#141e17]",
-    tech: ["Next.js", "Recharts", "Tailwind"],
+    subtitle: "Campus Equipment Rentals, Lost & Found, and Real-Time Messaging",
+    bgGradient: "from-slate-950 via-[#27392c] to-[#1a1515]",
+    tech: ["TecnecT", "Campus Web App", "2025"],
   },
   {
-    title: "Lemivon Mobile Layout",
-    category: "UI/UX Mobile",
-    link: "https://github.com/michael-031",
-    type: "image",
-    thumbnail: lemivon_mobile,
-    tech: ["React Native", "Figma", "Tailwind"],
+    title: "Campus Web Platform",
+    category: "Brief Description",
+    projectDetails: tecnectProject,
+    type: "mock",
+    subtitle: "Comprehensive campus web application supporting student equipment rentals, lost-and-found item tracking, and real-time messaging.",
+    bgGradient: "from-zinc-950 via-slate-900 to-[#1e2e24]",
+    tech: ["Campus App", "Rentals", "Messaging"],
   },
   {
-    title: "FastAPI Microservices Template",
-    category: "Backend Template",
-    link: "https://github.com/michael-031",
+    title: "Real-Time API & Stack",
+    category: "Tech Stack Used",
+    projectDetails: tecnectProject,
     type: "code",
     filename: "server.py",
-    codeSnippet: `from fastapi import FastAPI, Depends
-from pydantic import BaseModel
+    codeSnippet: `from fastapi import FastAPI, WebSocket
 
-app = FastAPI(title="Workflow API")
+app = FastAPI(title="TecnecT Realtime API")
 
-@app.post("/api/v1/sync")
-async def trigger_sync(payload: dict):
-    return {"status": "success", "processed": True}`,
-    tech: ["Python", "FastAPI", "PostgreSQL"],
+@app.websocket("/ws/chat/{student_id}")
+async def chat_endpoint(websocket: WebSocket, student_id: str):
+    await manager.connect(websocket, student_id)
+    # Real-time WebSocket messaging`,
+    tech: ["React", "Python", "FastAPI", "WebSockets"],
   },
   {
-    title: "Modern E-Commerce Storefront",
-    category: "Web Template",
-    link: "https://github.com/michael-031",
+    title: "UI/UX & Frontend Dev",
+    category: "My Role",
+    projectDetails: tecnectProject,
     type: "mock",
-    subtitle: "High-Conversion Retail Storefront UI",
+    subtitle: "Designed & developed campus application UI, built responsive frontend components, and integrated real-time APIs.",
     bgGradient: "from-[#27392c] via-slate-900 to-black",
-    tech: ["React", "Stripe API", "Node.js"],
+    tech: ["UI/UX Developer", "Frontend", "API Integration"],
+  },
+  {
+    title: "TecnecT Campus Interface",
+    category: "Sample Image of the App",
+    projectDetails: tecnectProject,
+    type: "image",
+    thumbnail: lemivon_mobile,
+    tech: ["Mobile & Web UX", "Campus App"],
   },
 
-  // ROW 3
+  // ROW 3: Lemivon
   {
-    title: "Google Sheets Data Ingestion",
-    category: "Automation",
-    link: "https://github.com/michael-031",
-    type: "code",
-    filename: "sheets_ingest.gs",
-    codeSnippet: `function fetchExternalWebhookData() {
-  const url = "https://api.example.com/v1/leads";
-  const res = UrlFetchApp.fetch(url);
-  const data = JSON.parse(res.getContentText());
-  appendDataToSheet(data.leads);
-}`,
-    tech: ["Apps Script", "REST Webhooks", "JSON"],
-  },
-  {
-    title: "Embedded Arduino Controller",
-    category: "Hardware / C++",
-    link: "https://github.com/michael-031",
+    title: "Lemivon",
+    category: "Project Name",
+    projectDetails: lemivonProject,
     type: "mock",
-    subtitle: "Real-Time Sensor Telemetry Interface",
-    bgGradient: "from-slate-950 via-[#3d5945]/40 to-slate-900",
-    tech: ["C++", "Arduino", "WebSockets"],
+    subtitle: "AI-Powered Study & Automated Material Organization Platform",
+    bgGradient: "from-[#27392c] via-zinc-900 to-slate-950",
+    tech: ["Lemivon", "AI Platform", "2025"],
   },
   {
-    title: "Anti-Slop Design System",
-    category: "UI Kit",
-    link: "https://github.com/michael-031",
+    title: "AI Study Platform",
+    category: "Brief Description",
+    projectDetails: lemivonProject,
+    type: "mock",
+    subtitle: "Modern study platform utilizing AI to help users organize study materials and improve overall learning efficiency.",
+    bgGradient: "from-slate-900 via-[#1e2e24] to-black",
+    tech: ["AI Engine", "Material Auto-Org", "Full-Stack"],
+  },
+  {
+    title: "Backend & Data Flow Stack",
+    category: "Tech Stack Used",
+    projectDetails: lemivonProject,
     type: "code",
-    filename: "Button.tsx",
-    codeSnippet: `export const PrimaryButton = ({ children, onClick }) => (
-  <button
-    onClick={onClick}
-    className="px-6 py-3 rounded-full bg-[#3d5945] text-[#1a1515] font-semibold shadow-md hover:bg-[#27392c] transition-all"
-  >
-    {children}
-  </button>
-);`,
-    tech: ["TypeScript", "Tailwind CSS", "Framer Motion"],
+    filename: "queryOptimizer.js",
+    codeSnippet: `// Lemivon Data Flow & Query Optimization
+export async function getStudyResources(userId) {
+  return await MaterialModel.find({ userId })
+    .lean()
+    .select('title category aiSummary tags')
+    .exec();
+}`,
+    tech: ["React", "Node.js", "Express", "MongoDB"],
   },
   {
-    title: "Personal Portfolio Platform",
-    category: "Full-Stack Web",
-    link: "https://github.com/michael-031",
+    title: "Full-Stack Contributor",
+    category: "My Role",
+    projectDetails: lemivonProject,
+    type: "mock",
+    subtitle: "Responsible for backend development & query optimization, implemented frontend components, and enhanced application responsiveness.",
+    bgGradient: "from-emerald-950 via-slate-900 to-zinc-950",
+    tech: ["Backend Dev", "Frontend Contributor", "Performance"],
+  },
+  {
+    title: "Lemivon Web Interface",
+    category: "Sample Image of the App",
+    projectDetails: lemivonProject,
     type: "image",
     thumbnail: lemivon,
-    tech: ["React 19", "Vite", "Tailwind CSS"],
-  },
-  {
-    title: "Automated PDF Report Generator",
-    category: "Automation",
-    link: "https://github.com/michael-031",
-    type: "mock",
-    subtitle: "Doc & PDF Auto Generation from Sheets",
-    bgGradient: "from-[#1a1515] via-[#27392c] to-[#1a1515]",
-    tech: ["Apps Script", "Docs API", "Drive API"],
+    secondaryImage: lemivon_mobile,
+    tech: ["Web Showcase", "Live App"],
   },
 ];
 
-export default function HeroParallaxWrapper({ children }) {
+export default function HeroParallaxWrapper({ children, onSelectProject }) {
   const containerRef = useRef(null);
 
   const { scrollYProgress } = useScroll({
@@ -210,17 +241,17 @@ export default function HeroParallaxWrapper({ children }) {
 
   const springConfig = { stiffness: 200, damping: 26, bounce: 0 };
 
-  // 1. Horizontal Motion (translateX) moves smoothly as user scrolls
+  // 1. Horizontal Motion (translateX): Slides card rows horizontally during vertical scroll
   const translateX = useSpring(
-    useTransform(scrollYProgress, [0, 0.2, 1], [0, 0, 850]),
+    useTransform(scrollYProgress, [0, 0.32, 0.82, 1], [0, 0, 450, 450]),
     springConfig
   );
   const translateXReverse = useSpring(
-    useTransform(scrollYProgress, [0, 0.2, 1], [0, 0, -850]),
+    useTransform(scrollYProgress, [0, 0.32, 0.82, 1], [0, 0, -450, -450]),
     springConfig
   );
 
-  // 2. 3D Tilt: 16deg behind Hero, flattens to 0deg EARLY when Projects title enters screen (0.15 to 0.32)
+  // 2. 3D Tilt: 16deg behind Hero, flattens to 0deg when entering Projects section
   const rotateX = useSpring(
     useTransform(scrollYProgress, [0, 0.15, 0.32], [16, 16, 0]),
     springConfig
@@ -230,86 +261,102 @@ export default function HeroParallaxWrapper({ children }) {
     springConfig
   );
 
-  // 3. Vertical TranslateY: moves cleanly to +1050px (below Fresh from Michael's Desk) when section title is in view
+  // 3. Vertical TranslateY: Frozen at 950px (pushed DOWN below header) between 0.32 and 0.82
   const translateY = useSpring(
-    useTransform(scrollYProgress, [0, 0.2, 0.35, 1], [-80, 280, 950, 1480]),
+    useTransform(scrollYProgress, [0, 0.18, 0.32, 0.82, 1], [-80, 450, 1150, 950, 1950]),
     springConfig
   );
 
-  // 4. Opacity: transitions to 1.0 EARLY (0.12 to 0.3), and prolongs fade out (1 to 0) gradually from 0.42 to 0.95
+  // 4. Opacity: stays 1.0 throughout horizontal pagination, fading late as section exits
   const opacity = useSpring(
-    useTransform(scrollYProgress, [0, 0.12, 0.3, 0.42, 0.95], [0.22, 0.22, 1, 1, 0]),
+    useTransform(scrollYProgress, [0, 0.12, 0.25, 0.85, 1], [0.22, 0.22, 1, 1, 0.35]),
     springConfig
   );
 
-  const firstRow = products.slice(0, 5);
-  const secondRow = products.slice(5, 10);
-  const thirdRow = products.slice(10, 15);
+  // 5. Dynamic Scale: 1.0 behind Hero -> freezes at 0.78 during Projects pagination so all 3 rows fit cleanly
+  const scale = useSpring(
+    useTransform(scrollYProgress, [0, 0.15, 0.32, 0.82, 1], [1, 1, 0.78, 0.78, 0.78]),
+    springConfig
+  );
+
+  // Repeat 4x to ensure 50% shift equals 2 full sets for seamless 360-degree endless circular carousel loop
+  const firstRow = [...products.slice(0, 5), ...products.slice(0, 5), ...products.slice(0, 5), ...products.slice(0, 5)];
+  const secondRow = [...products.slice(5, 10), ...products.slice(5, 10), ...products.slice(5, 10), ...products.slice(5, 10)];
+  const thirdRow = [...products.slice(10, 15), ...products.slice(10, 15), ...products.slice(10, 15), ...products.slice(10, 15)];
 
   return (
     <div ref={containerRef} className="relative w-full overflow-hidden">
       {/* 3D Parallax Layer: background in Hero -> flattens & settles right below Fresh from Michael's Desk title */}
-      <div className="absolute inset-0 z-0 overflow-hidden [perspective:1000px] [transform-style:preserve-3d]">
+      <div className="absolute inset-0 z-0 pointer-events-auto overflow-hidden [perspective:1000px] [transform-style:preserve-3d]">
         <motion.div
           style={{
             rotateX,
             rotateZ,
             translateY,
             opacity,
+            scale,
           }}
           className="w-full pt-12"
         >
-          {/* ROW 1 */}
-          <motion.div className="flex flex-row-reverse space-x-reverse space-x-12 mb-8">
-            {firstRow.map((product) => (
-              <ProductCard
-                product={product}
-                translate={translateX}
-                key={product.title}
-              />
-            ))}
+          {/* ROW 1 (Circular Loop Left - TLC Engine) */}
+          <motion.div style={{ x: translateX }} className="mb-8 overflow-visible">
+            <RowCarouselTrack products={firstRow} direction="left" rowId="row1" onSelectProject={onSelectProject} />
           </motion.div>
 
-          {/* ROW 2 */}
-          <motion.div className="flex flex-row space-x-12 mb-8">
-            {secondRow.map((product) => (
-              <ProductCard
-                product={product}
-                translate={translateXReverse}
-                key={product.title}
-              />
-            ))}
+          {/* ROW 2 (Circular Loop Right - TecnecT) */}
+          <motion.div style={{ x: translateXReverse }} className="mb-8 overflow-visible">
+            <RowCarouselTrack products={secondRow} direction="right" rowId="row2" onSelectProject={onSelectProject} />
           </motion.div>
 
-          {/* ROW 3 */}
-          <motion.div className="flex flex-row-reverse space-x-reverse space-x-12">
-            {firstRow.map((product, idx) => (
-              <ProductCard
-                product={thirdRow[idx] || product}
-                translate={translateX}
-                key={`row3-${product.title}`}
-              />
-            ))}
+          {/* ROW 3 (Circular Loop Left - Lemivon) */}
+          <motion.div style={{ x: translateX }} className="overflow-visible">
+            <RowCarouselTrack products={thirdRow} direction="left" rowId="row3" onSelectProject={onSelectProject} />
           </motion.div>
         </motion.div>
       </div>
 
       {/* Foreground Content: Hero, Projects Header */}
-      <div className="relative z-10">
+      <div className="relative z-10 pointer-events-none [&_a]:pointer-events-auto [&_button]:pointer-events-auto [&_input]:pointer-events-auto">
         {children}
       </div>
     </div>
   );
 }
 
+const RowCarouselTrack = ({ products, direction = "left", rowId, onSelectProject }) => {
+  const [isHovered, setIsHovered] = React.useState(false);
+
+  return (
+    <div
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      style={{
+        animationPlayState: isHovered ? "paused" : "running",
+      }}
+      className={`flex flex-row gap-12 pr-12 w-max pointer-events-auto ${direction === "left" ? "animate-circle-left" : "animate-circle-right"
+        }`}
+    >
+      {products.map((product, idx) => (
+        <ProductCard
+          product={product}
+          key={`${rowId}-${idx}-${product.title}`}
+          onSelectProject={onSelectProject}
+        />
+      ))}
+    </div>
+  );
+};
+
 export const ProductCard = ({
   product,
   translate,
+  onSelectProject,
 }) => {
   const [copied, setCopied] = React.useState(false);
 
   const handleCopy = (e) => {
     e.preventDefault();
+    e.stopPropagation();
     if (product.codeSnippet) {
       navigator.clipboard.writeText(product.codeSnippet);
       setCopied(true);
@@ -317,22 +364,27 @@ export const ProductCard = ({
     }
   };
 
+  const handleClick = (e) => {
+    e.preventDefault();
+    if (onSelectProject && product.projectDetails) {
+      onSelectProject(product.projectDetails);
+    }
+  };
+
   return (
     <motion.div
-      style={{
-        x: translate,
-      }}
+      style={translate ? { x: translate } : undefined}
       whileHover={{
         y: -16,
         scale: 1.02,
       }}
+      onClick={handleClick}
       key={product.title}
-      className="group/product h-80 w-[24rem] sm:w-[28rem] relative flex-shrink-0 rounded-2xl overflow-hidden shadow-xl border border-gray-200/80 bg-white/95 backdrop-blur-sm pointer-events-auto"
+      className="group/product h-80 w-[24rem] sm:w-[28rem] relative flex-shrink-0 rounded-2xl overflow-hidden shadow-xl border border-gray-200/80 bg-white/95 backdrop-blur-sm pointer-events-auto cursor-pointer"
     >
       <a
-        href={product.link}
-        target="_blank"
-        rel="noopener noreferrer"
+        href="#"
+        onClick={handleClick}
         className="block h-full w-full relative"
       >
         {/* Render Image Card */}
