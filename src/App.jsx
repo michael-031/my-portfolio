@@ -21,8 +21,8 @@ import run1 from './assets/About Me/10k_finish.jpg'
 import run2 from './assets/About Me/10k_with_divan.jpg'
 import hike from './assets/About Me/hike.jpg'
 import hike1 from './assets/About Me/hike2.jpg'
-import githubSvgString from './assets/github-contributions.svg?raw'
-import { GithubLogo, LinkedinLogo, FacebookLogo, GraduationCap, ArrowRight, Atom, CaretLeft, CaretRight, EnvelopeSimple, Phone } from "@phosphor-icons/react";
+import GitHubContributions from "./GitHubContributions";
+import { GithubLogo, LinkedinLogo, FacebookLogo, GraduationCap, ArrowRight, Atom, CaretLeft, CaretRight, EnvelopeSimple, Phone, Code, Lightning, Gear } from "@phosphor-icons/react";
 import { motion } from "framer-motion";
 
 const techStack = [
@@ -171,17 +171,34 @@ function App() {
             className="lg:col-span-7 flex flex-col items-start text-left"
           >
             <span className="hero-eyebrow">
-              Michael Inoc // Computer Engineering Student
+              Michael Inoc // Full-Stack Web Developer & Automation Specialist
             </span>
             <SplitText delay={100} duration={1}>
-              <h1 className="hero-title text-5xl md:text-7xl font-bold mt-2 mb-6">
+              <h1 className="hero-title text-5xl md:text-7xl font-bold mt-2 mb-4">
                 Hello, <br />I'm <span className="text-[#3d5945]">Michael</span>
               </h1>
             </SplitText>
-            <p className="hero-description text-xl md:text-2xl mb-8 font-sans font-light">
-              Let's build and level up together. Crafting premium web applications, interactive interfaces, and robust systems.
+
+            <h2 className="text-xl md:text-2xl font-semibold text-[#27392c] mb-4 font-sans flex flex-wrap items-center gap-2">
+              Full-Stack Web Developer <span className="text-[#9BB193]">•</span> Apps Script Automation
+            </h2>
+
+            <p className="hero-description text-lg md:text-xl mb-6 font-sans font-light text-gray-600 leading-relaxed">
+              Crafting high-performance full-stack web applications, interactive user experiences, and tailored <span className="font-medium text-gray-900">Google Apps Script automations</span> to streamline workflows and boost productivity.
             </p>
             
+            <div className="flex flex-wrap gap-2.5 mb-8">
+              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#eef3ee] text-[#3d5945] text-xs font-semibold font-mono border border-[#d3ddd3]">
+                <Code size={15} weight="bold" /> Full-Stack Web Developer
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#eef3ee] text-[#3d5945] text-xs font-semibold font-mono border border-[#d3ddd3]">
+                <Lightning size={15} weight="bold" /> Apps Script Automation
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#eef3ee] text-[#3d5945] text-xs font-semibold font-mono border border-[#d3ddd3]">
+                <GraduationCap size={15} weight="bold" /> Computer Engineering
+              </span>
+            </div>
+
             <div className="flex flex-wrap items-center gap-6">
               <a href="#projects" className="hero-btn-primary group">
                 View My Work
@@ -241,15 +258,28 @@ function App() {
               <div className="absolute bottom-0 left-0 w-full h-1/4 bg-gradient-to-t from-[#9BB193]/60 to-transparent pointer-events-none"></div>
             </div>
 
-            {/* Education Context Card */}
-            <div className="education-card p-6 flex items-start gap-4">
-              <div className="p-3 bg-[#eef3ee] rounded-xl text-[#3d5945] flex-shrink-0">
-                <GraduationCap size={28} weight="duotone" />
+            {/* Context Cards Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="education-card p-5 flex items-start gap-3">
+                <div className="p-2.5 bg-[#eef3ee] rounded-xl text-[#3d5945] flex-shrink-0">
+                  <GraduationCap size={24} weight="duotone" />
+                </div>
+                <div>
+                  <h4 className="text-xs font-semibold text-gray-900 font-sans">Education</h4>
+                  <p className="text-[11px] text-[#556b4f] font-mono mt-0.5">3rd-Year Student</p>
+                  <p className="text-xs text-gray-600 mt-1 font-sans">BS Computer Engineering — CIT-U</p>
+                </div>
               </div>
-              <div>
-                <h4 className="text-sm font-semibold text-gray-900 font-sans">Education</h4>
-                <p className="text-xs text-[#556b4f] font-mono mt-0.5">Third-Year Student</p>
-                <p className="text-sm text-gray-600 mt-1 font-sans">BS in Computer Engineering — CIT-U</p>
+
+              <div className="education-card p-5 flex items-start gap-3">
+                <div className="p-2.5 bg-[#eef3ee] rounded-xl text-[#3d5945] flex-shrink-0">
+                  <Gear size={24} weight="duotone" />
+                </div>
+                <div>
+                  <h4 className="text-xs font-semibold text-gray-900 font-sans">Core Expertise</h4>
+                  <p className="text-[11px] text-[#556b4f] font-mono mt-0.5">Web & Automation</p>
+                  <p className="text-xs text-gray-600 mt-1 font-sans">Full-Stack & Apps Script</p>
+                </div>
               </div>
             </div>
           </motion.div>
@@ -371,31 +401,30 @@ function App() {
               <div>
                 {/* Custom browser layout preview for Lemivon if present */}
                 {project.id === 1 && (
-                  <div className="relative h-[160px] w-full mb-4 overflow-hidden rounded-lg bg-gray-50 border border-gray-100 p-2">
-                    <div className="absolute left-1 top-1 w-[82%]">
-                      <div className="rounded-lg border border-[#333] bg-[#1d1d1d] p-[2px] shadow-sm">
-                        <div className="mb-0.5 flex items-center gap-0.5 scale-75 origin-left">
-                          <span className="h-1.5 w-1.5 rounded-full bg-[#ff5f57]"></span>
-                          <span className="h-1.5 w-1.5 rounded-full bg-[#febc2e]"></span>
-                          <span className="h-1.5 w-1.5 rounded-full bg-[#28c840]"></span>
-                        </div>
-                        <img
-                          src={project.webImage}
-                          alt={`${project.title} web UI`}
-                          className="aspect-[16/10] w-full rounded-sm border border-[#2e2e2e] bg-[#dfe5ea] object-contain"
-                        />
+                  <div className="preview-devices-container">
+                    {/* PC Device */}
+                    <div className="device-pc">
+                      <div className="device-chrome-bar">
+                        <span className="device-dot red"></span>
+                        <span className="device-dot yellow"></span>
+                        <span className="device-dot green"></span>
+                      </div>
+                      <div className="device-screen">
+                        <img src={project.webImage} alt={`${project.title} PC interface`} />
                       </div>
                     </div>
 
-                    <div className="absolute bottom-1 right-1 w-[26%] max-w-[80px] z-10">
-                      <div className="rounded-xl border border-[#333] bg-[#111] p-[2px] shadow-md">
-                        <div className="mx-auto mb-0.5 h-0.5 w-4 rounded-full bg-[#2f2f2f]"></div>
-                        <img
-                          src={project.mobileImage}
-                          alt={`${project.title} mobile UI`}
-                          className="aspect-[9/16] w-full rounded-[0.5rem] border border-[#2e2e2e] bg-[#dfe5ea] object-contain"
-                        />
-                        <div className="mx-auto mt-0.5 h-0.5 w-3 rounded-full bg-[#2f2f2f]"></div>
+                    {/* Tablet Device */}
+                    <div className="device-tablet">
+                      <div className="device-screen">
+                        <img src={project.webImage} alt={`${project.title} Tablet interface`} />
+                      </div>
+                    </div>
+
+                    {/* Mobile Device */}
+                    <div className="device-mobile">
+                      <div className="device-screen">
+                        <img src={project.mobileImage} alt={`${project.title} Mobile interface`} />
                       </div>
                     </div>
                   </div>
@@ -520,21 +549,9 @@ function App() {
             </div>
           </div>
 
-          {/* Right Column: Contributions Card */}
+          {/* Right Column: Live GitHub Contributions Card */}
           <div className="lg:col-span-7 w-full">
-            <div className="contributions-card p-6 md:p-8">
-              <h4 className="text-sm font-semibold text-gray-900 font-sans mb-6 flex items-center gap-2">
-                <Atom size={20} className="text-[#3d5945]" />
-                GitHub Contributions
-              </h4>
-              <a
-                href='https://github.com/michael-031'
-                target='_blank'
-                rel='noopener noreferrer'
-                className='block max-w-full overflow-x-auto w-full'
-                dangerouslySetInnerHTML={{ __html: githubSvgString }}
-              />
-            </div>
+            <GitHubContributions username="michael-031" />
           </div>
         </div>
       </section>
