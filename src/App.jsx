@@ -26,8 +26,9 @@ import GitHubContributions from "./GitHubContributions";
 import HeroParallaxWrapper from "./HeroParallax";
 import ProjectDetailModal from "./ProjectDetailModal";
 import Timeline from "./Timeline";
+import SplashScreen from "./SplashScreen";
 import { GithubLogo, LinkedinLogo, FacebookLogo, GraduationCap, ArrowRight, Atom, CaretLeft, CaretRight, EnvelopeSimple, Phone, Code, Lightning, Gear } from "@phosphor-icons/react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const techStack = [
   { name: 'HTML/CSS', icon: html },
@@ -40,6 +41,7 @@ const techStack = [
 ]
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true)
   const [selectedProject, setSelectedProject] = useState(null)
   const [activeSection, setActiveSection] = useState('hero')
 
@@ -154,6 +156,10 @@ function App() {
 
   return (
     <main>
+      <AnimatePresence mode="wait">
+        {isLoading && <SplashScreen onFinish={() => setIsLoading(false)} />}
+      </AnimatePresence>
+
       <header className="sticky top-0 z-50 backdrop-blur-md bg-white/70 border-b border-gray-100 flex justify-center h-[72px] transition-all duration-300">
         <div className="w-full max-w-[1440px] flex justify-between items-center px-8 md:px-16 h-full">
           <img src={logo} alt="Michael portfolio logo" className="h-[32px] object-contain ml-3 cursor-pointer" onClick={(e) => scrollToSection(e, 'hero')} />
