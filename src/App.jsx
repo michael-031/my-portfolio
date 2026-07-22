@@ -22,6 +22,7 @@ import run2 from './assets/About Me/10k_with_divan.jpg'
 import hike from './assets/About Me/hike.jpg'
 import hike1 from './assets/About Me/hike2.jpg'
 import GitHubContributions from "./GitHubContributions";
+import ProjectShowcase from "./ProjectShowcase";
 import { GithubLogo, LinkedinLogo, FacebookLogo, GraduationCap, ArrowRight, Atom, CaretLeft, CaretRight, EnvelopeSimple, Phone, Code, Lightning, Gear } from "@phosphor-icons/react";
 import { motion } from "framer-motion";
 
@@ -72,80 +73,7 @@ function App() {
     { name: 'Tailwind CSS', icon: tailwind },
 
   ]
-  const initialProjectsList = [
-    {
-      id: 1,
-      title: 'Lemivon',
-      tagline: 'A modern UI showcase with responsive web and mobile layouts.',
-      description: 'A UI showcase for Lemivon with dedicated web and mobile previews, designed to look stunning on both desktop and handheld viewports.',
-      tech: ['MongoDB', 'Express.js', 'React', 'Node.js'],
-      category: 'Development',
-      authorName: 'Michael Inoc',
-      authorAvatar: 'M',
-      webImage: lemivon,
-      mobileImage: lemivon_mobile,
-      tags: ['#1 UI SHOWCASE', 'FULLSTACK', 'PORTFOLIO FAVORITE'],
-      demoUrl: 'https://github.com/michael-031',
-      repoUrl: 'https://github.com/michael-031/my-portfolio.git',
-      initialUpvotes: 42,
-    },
-    {
-      id: 2,
-      title: 'BatasPH.ai',
-      tagline: 'Batas ng Pilipinas, Naiintindihan ng Lahat.',
-      description: 'An AI-powered legal assistant project designed to help Filipino citizens understand local laws and regulations using natural language queries.',
-      tech: ['Python', 'Next.js', 'FastAPI', 'Gemini API'],
-      category: 'AI',
-      authorName: 'Michael Inoc',
-      authorAvatar: 'M',
-      webImage: null,
-      mobileImage: null,
-      tags: ['#1 AI APP', 'LEGAL TECH', 'UPCOMING TEMPLATE'],
-      demoUrl: '#',
-      repoUrl: '#',
-      initialUpvotes: 18,
-    },
-    {
-      id: 3,
-      title: 'Gorun Tracker',
-      tagline: 'An offline-first runs and activity tracker.',
-      description: 'A privacy-focused offline fitness tracker that plots routes, monitors pacing, and logs workouts locally in indexedDB.',
-      tech: ['TypeScript', 'React Native', 'Expo', 'Leaflet'],
-      category: 'Health',
-      authorName: 'Michael Inoc',
-      authorAvatar: 'M',
-      webImage: null,
-      mobileImage: null,
-      tags: ['FITNESS APP', 'OFFLINE FIRST', 'GEOLOCATION'],
-      demoUrl: '#',
-      repoUrl: '#',
-      initialUpvotes: 7,
-    }
-  ]
 
-  const [projects, setProjects] = useState(initialProjectsList)
-  const [upvotedState, setUpvotedState] = useState({})
-
-  const handleUpvote = (projectId) => {
-    setUpvotedState(prev => {
-      const isUpvoted = !prev[projectId]
-      setProjects(currentProjects =>
-        currentProjects.map(proj => {
-          if (proj.id === projectId) {
-            return {
-              ...proj,
-              initialUpvotes: isUpvoted ? proj.initialUpvotes + 1 : proj.initialUpvotes - 1
-            }
-          }
-          return proj
-        })
-      )
-      return {
-        ...prev,
-        [projectId]: isUpvoted
-      }
-    })
-  }
 
   return (
     <main>
@@ -335,127 +263,7 @@ function App() {
         </div>
       </section>
 
-      <section id="projects" className="min-h-[600px] bg-gradient-to-b from-white to-[#f7faf7] mt-16 px-8 pb-24">
-        <div className="flex justify-between items-end max-w-6xl mx-auto mb-12 border-b border-gray-100 pb-6">
-          <div className="flex flex-col items-start">
-            <span className="text-[#556b4f] uppercase tracking-wider text-xs font-bold font-mono mb-2">02 — Projects</span>
-            <h1
-              className="text-4xl font-bold text-[#1a1515]"
-              style={{ fontFamily: "Century Gothic, sans-serif" }}
-            >
-              Fresh from Michael's Desk
-            </h1>
-          </div>
-          <a href="#contact-me" className="text-[#556b4f] hover:underline font-bold text-sm flex items-center gap-1 mb-1 transition-all duration-300">
-            Let's collaborate <ArrowRight size={16} />
-          </a>
-        </div>
-
-        <motion.div 
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.1 }}
-          variants={{
-            hidden: {},
-            show: {
-              transition: {
-                staggerChildren: 0.08
-              }
-            }
-          }}
-          className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto"
-        >
-          {projects.map((project) => (
-            <motion.article 
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
-              }}
-              key={project.id} 
-              className="builder-card"
-            >
-              <div>
-                <div className="builder-card-top">
-                  <div className={`builder-card-icon-container ${project.webImage ? "" : "placeholder"}`}>
-                    {project.webImage ? (
-                      <Atom size={24} weight="duotone" className="text-[#3d5945]" />
-                    ) : (
-                      project.title.charAt(0)
-                    )}
-                  </div>
-                  <div
-                    className={`builder-card-upvote ${upvotedState[project.id] ? "upvoted" : ""}`}
-                    onClick={() => handleUpvote(project.id)}
-                  >
-                    <svg viewBox="0 0 24 24">
-                      <path d="M12 4v16M12 4l-6 6M12 4l6 6" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                    <span>{project.initialUpvotes}</span>
-                  </div>
-                </div>
-
-                <h3 className="builder-card-title">{project.title}</h3>
-                <p className="builder-card-tagline">{project.tagline}</p>
-              </div>
-
-              <div>
-                {/* Custom browser layout preview for Lemivon if present */}
-                {project.id === 1 && (
-                  <div className="preview-devices-container">
-                    {/* PC Device */}
-                    <div className="device-pc">
-                      <div className="device-chrome-bar">
-                        <span className="device-dot red"></span>
-                        <span className="device-dot yellow"></span>
-                        <span className="device-dot green"></span>
-                      </div>
-                      <div className="device-screen">
-                        <img src={project.webImage} alt={`${project.title} PC interface`} />
-                      </div>
-                    </div>
-
-                    {/* Tablet Device */}
-                    <div className="device-tablet">
-                      <div className="device-screen">
-                        <img src={project.webImage} alt={`${project.title} Tablet interface`} />
-                      </div>
-                    </div>
-
-                    {/* Mobile Device */}
-                    <div className="device-mobile">
-                      <div className="device-screen">
-                        <img src={project.mobileImage} alt={`${project.title} Mobile interface`} />
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {project.id !== 1 && (
-                  <div className="h-[160px] w-full mb-4 flex items-center justify-center border border-dashed border-gray-200 rounded-lg bg-gray-50 text-gray-400 font-sans text-xs text-center px-4">
-                    Interactive previews and assets will be uploaded upon development
-                  </div>
-                )}
-
-                <div className="flex flex-wrap gap-1.5 mb-4">
-                  {project.tech.map((t) => (
-                    <span key={t} className="text-[10px] font-bold text-gray-500 bg-gray-100 px-2 py-0.5 rounded">
-                      {t}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="builder-card-footer">
-                  <span className="builder-card-category">{project.category}</span>
-                  <div className="builder-card-author">
-                    <span className="builder-card-avatar">{project.authorAvatar}</span>
-                    <span className="builder-card-author-name">{project.authorName}</span>
-                  </div>
-                </div>
-              </div>
-            </motion.article>
-          ))}
-        </motion.div>
-      </section>
+      <ProjectShowcase />
 
       <section id='about-me' className='about-me-section py-24 bg-gradient-to-b from-[#f7faf7] to-[#eef3ee]'>
         <div className='about-me-shell max-w-6xl mx-auto px-4 md:px-8'>
