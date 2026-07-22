@@ -14,6 +14,7 @@ import python from './assets/python.png'
 import arduino from './assets/Arduino.png'
 import tailwind from './assets/Tailwind.png'
 import figma from './assets/figma.png'
+import appscript from './assets/google-apps-script.png'
 import lemivon from './assets/projects/Lemivon.png'
 import lemivon_mobile from './assets/projects/lemivon_mobile.png'
 import run from './assets/About Me/my_pitik.jpg'
@@ -22,7 +23,7 @@ import run2 from './assets/About Me/10k_with_divan.jpg'
 import hike from './assets/About Me/hike.jpg'
 import hike1 from './assets/About Me/hike2.jpg'
 import GitHubContributions from "./GitHubContributions";
-import ProjectShowcase from "./ProjectShowcase";
+import HeroParallaxWrapper from "./HeroParallax";
 import { GithubLogo, LinkedinLogo, FacebookLogo, GraduationCap, ArrowRight, Atom, CaretLeft, CaretRight, EnvelopeSimple, Phone, Code, Lightning, Gear } from "@phosphor-icons/react";
 import { motion } from "framer-motion";
 
@@ -32,6 +33,7 @@ const techStack = [
   { name: 'TypeScript', icon: ts },
   { name: 'JavaScript', icon: js },
   { name: 'Next.js', icon: nextjs },
+  { name: 'Apps Script', icon: appscript },
   { name: 'Figma', icon: figma },
 ]
 
@@ -81,160 +83,185 @@ function App() {
         <div className="w-full max-w-[1440px] flex justify-between items-center px-8 md:px-16 h-full">
           <img src={logo} alt="Michael portfolio logo" className="h-[32px] object-contain ml-3" />
           <nav className="flex gap-2">
-            <a href="#about-me" className="nav-link px-4 h-full inline-flex items-center">About Me</a>
             <a href="#projects" className="nav-link px-4 h-full inline-flex items-center">Projects</a>
             <a href="#tech-stack" className="nav-link px-4 h-full inline-flex items-center">Stack</a>
+            <a href="#about-me" className="nav-link px-4 h-full inline-flex items-center">About Me</a>
             <a href="#contact-me" className="nav-link px-4 h-full inline-flex items-center">Contact</a>
           </nav>
         </div>
       </header>
 
-      <section id="hero" className="min-h-[100dvh] flex items-center justify-center w-full px-4 md:px-8 py-16 lg:py-24">
-        <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-          {/* Left Column: Intro & Info */}
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-7 flex flex-col items-start text-left"
+      <HeroParallaxWrapper>
+        <section id="hero" className="min-h-[100dvh] flex items-center justify-center w-full px-4 md:px-8 py-16 lg:py-24">
+          <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+            {/* Left Column: Intro & Info */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="lg:col-span-7 flex flex-col items-start text-left"
+            >
+              <span className="hero-eyebrow">
+                Michael Inoc // Full-Stack Web Developer & Automation Specialist
+              </span>
+              <SplitText delay={100} duration={1}>
+                <h1 className="hero-title text-5xl md:text-7xl font-bold mt-2 mb-4">
+                  Hello, <br />I'm <span className="text-[#3d5945]">Michael</span>
+                </h1>
+              </SplitText>
+
+              <h2 className="text-xl md:text-2xl font-semibold text-[#27392c] mb-4 font-sans flex flex-wrap items-center gap-2">
+                Full-Stack Web Developer <span className="text-[#9BB193]">•</span> Apps Script Automation
+              </h2>
+
+              <p className="hero-description text-lg md:text-xl mb-6 font-sans font-light text-gray-600 leading-relaxed">
+                Crafting high-performance full-stack web applications, interactive user experiences, and tailored <span className="font-medium text-gray-900">Google Apps Script automations</span> to streamline workflows and boost productivity.
+              </p>
+
+              <div className="flex flex-wrap gap-2.5 mb-8">
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#eef3ee] text-[#3d5945] text-xs font-semibold font-mono border border-[#d3ddd3]">
+                  <Code size={15} weight="bold" /> Full-Stack Web Developer
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#eef3ee] text-[#3d5945] text-xs font-semibold font-mono border border-[#d3ddd3]">
+                  <Lightning size={15} weight="bold" /> Apps Script Automation
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#eef3ee] text-[#3d5945] text-xs font-semibold font-mono border border-[#d3ddd3]">
+                  <GraduationCap size={15} weight="bold" /> Computer Engineering
+                </span>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-6">
+                <a href="#projects" className="hero-btn-primary group">
+                  View My Work
+                  <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+                </a>
+                <div className="flex items-center gap-3">
+                  <a
+                    href="https://github.com/michael-031"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="social-icon-btn"
+                    title="GitHub Profile"
+                  >
+                    <GithubLogo size={22} weight="bold" />
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/in/john-michael-inoc-bb288326b/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="social-icon-btn"
+                    title="LinkedIn Profile"
+                  >
+                    <LinkedinLogo size={22} weight="bold" />
+                  </a>
+                  <a
+                    href="https://www.facebook.com/michaelzz450"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="social-icon-btn"
+                    title="Facebook Profile"
+                  >
+                    <FacebookLogo size={22} weight="bold" />
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Right Column: Image and Context Badges */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="lg:col-span-5 flex flex-col gap-6 w-full max-w-md mx-auto lg:max-w-none"
+            >
+              {/* Profile Frame with glass/border and custom shape */}
+              <div className="profile-frame aspect-[4/5] w-full relative">
+                {/* Ambient Background Circles */}
+                <div className="absolute top-1/2 left-1/2 w-[350px] h-[350px] -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white/30 z-10 pointer-events-none"></div>
+                <div className="absolute top-1/2 left-1/2 w-[450px] h-[450px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10 z-10 pointer-events-none"></div>
+
+                <img
+                  src={profile}
+                  alt="Portrait of Michael Inoc"
+                  className="w-full h-full object-cover"
+                />
+                {/* bottom gradient fade */}
+                <div className="absolute bottom-0 left-0 w-full h-1/4 bg-gradient-to-t from-[#9BB193]/60 to-transparent pointer-events-none"></div>
+              </div>
+
+              {/* Context Cards Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="education-card p-5 flex items-start gap-3">
+                  <div className="p-2.5 bg-[#eef3ee] rounded-xl text-[#3d5945] flex-shrink-0">
+                    <GraduationCap size={24} weight="duotone" />
+                  </div>
+                  <div>
+                    <h4 className="text-xs font-semibold text-gray-900 font-sans">Education</h4>
+                    <p className="text-[11px] text-[#556b4f] font-mono mt-0.5">3rd-Year Student</p>
+                    <p className="text-xs text-gray-600 mt-1 font-sans">BS Computer Engineering — CIT-U</p>
+                  </div>
+                </div>
+
+                <div className="education-card p-5 flex items-start gap-3">
+                  <div className="p-2.5 bg-[#eef3ee] rounded-xl text-[#3d5945] flex-shrink-0">
+                    <Gear size={24} weight="duotone" />
+                  </div>
+                  <div>
+                    <h4 className="text-xs font-semibold text-gray-900 font-sans">Core Expertise</h4>
+                    <p className="text-[11px] text-[#556b4f] font-mono mt-0.5">Web & Automation</p>
+                    <p className="text-xs text-gray-600 mt-1 font-sans">Full-Stack & Apps Script</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+
+        <section id="projects" className="min-h-[180vh] py-20 px-4 md:px-8 flex flex-col justify-start">
+          <div className="flex justify-between items-end max-w-6xl mx-auto mb-12 border-b border-gray-200/80 pb-6 w-full">
+            <div className="flex flex-col items-start">
+              <span className="text-[#556b4f] uppercase tracking-wider text-xs font-bold font-mono mb-2">01 — Projects</span>
+              <h2 className="text-4xl md:text-5xl font-bold text-[#1a1515] font-sans" style={{ fontFamily: "Century Gothic, sans-serif" }}>
+                Fresh from Michael's Desk
+              </h2>
+            </div>
+            <a href="#contact-me" className="text-[#556b4f] hover:underline font-bold text-sm flex items-center gap-1 mb-1 transition-all duration-300">
+              Let's collaborate <ArrowRight size={16} />
+            </a>
+          </div>
+        </section>
+      </HeroParallaxWrapper>
+
+      <section id='tech-stack' className='py-24 bg-transparent my-12 relative z-10'>
+        <motion.div
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.05 }}
+          className='max-w-6xl mx-auto px-4 md:px-8'
+        >
+          <motion.div
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } }
+            }}
+            className="flex flex-col items-start mb-12"
           >
-            <span className="hero-eyebrow">
-              Michael Inoc // Full-Stack Web Developer & Automation Specialist
-            </span>
-            <SplitText delay={100} duration={1}>
-              <h1 className="hero-title text-5xl md:text-7xl font-bold mt-2 mb-4">
-                Hello, <br />I'm <span className="text-[#3d5945]">Michael</span>
-              </h1>
-            </SplitText>
-
-            <h2 className="text-xl md:text-2xl font-semibold text-[#27392c] mb-4 font-sans flex flex-wrap items-center gap-2">
-              Full-Stack Web Developer <span className="text-[#9BB193]">•</span> Apps Script Automation
-            </h2>
-
-            <p className="hero-description text-lg md:text-xl mb-6 font-sans font-light text-gray-600 leading-relaxed">
-              Crafting high-performance full-stack web applications, interactive user experiences, and tailored <span className="font-medium text-gray-900">Google Apps Script automations</span> to streamline workflows and boost productivity.
-            </p>
-            
-            <div className="flex flex-wrap gap-2.5 mb-8">
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#eef3ee] text-[#3d5945] text-xs font-semibold font-mono border border-[#d3ddd3]">
-                <Code size={15} weight="bold" /> Full-Stack Web Developer
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#eef3ee] text-[#3d5945] text-xs font-semibold font-mono border border-[#d3ddd3]">
-                <Lightning size={15} weight="bold" /> Apps Script Automation
-              </span>
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#eef3ee] text-[#3d5945] text-xs font-semibold font-mono border border-[#d3ddd3]">
-                <GraduationCap size={15} weight="bold" /> Computer Engineering
-              </span>
-            </div>
-
-            <div className="flex flex-wrap items-center gap-6">
-              <a href="#projects" className="hero-btn-primary group">
-                View My Work
-                <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
-              </a>
-              <div className="flex items-center gap-3">
-                <a
-                  href="https://github.com/michael-031"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="social-icon-btn"
-                  title="GitHub Profile"
-                >
-                  <GithubLogo size={22} weight="bold" />
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/john-michael-inoc-bb288326b/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="social-icon-btn"
-                  title="LinkedIn Profile"
-                >
-                  <LinkedinLogo size={22} weight="bold" />
-                </a>
-                <a
-                  href="https://www.facebook.com/michaelzz450"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="social-icon-btn"
-                  title="Facebook Profile"
-                >
-                  <FacebookLogo size={22} weight="bold" />
-                </a>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Right Column: Image and Context Badges */}
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.9, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="lg:col-span-5 flex flex-col gap-6 w-full max-w-md mx-auto lg:max-w-none"
-          >
-            {/* Profile Frame with glass/border and custom shape */}
-            <div className="profile-frame aspect-[4/5] w-full relative">
-              {/* Ambient Background Circles */}
-              <div className="absolute top-1/2 left-1/2 w-[350px] h-[350px] -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white/30 z-10 pointer-events-none"></div>
-              <div className="absolute top-1/2 left-1/2 w-[450px] h-[450px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10 z-10 pointer-events-none"></div>
-              
-              <img
-                src={profile}
-                alt="Portrait of Michael Inoc"
-                className="w-full h-full object-cover"
-              />
-              {/* bottom gradient fade */}
-              <div className="absolute bottom-0 left-0 w-full h-1/4 bg-gradient-to-t from-[#9BB193]/60 to-transparent pointer-events-none"></div>
-            </div>
-
-            {/* Context Cards Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <div className="education-card p-5 flex items-start gap-3">
-                <div className="p-2.5 bg-[#eef3ee] rounded-xl text-[#3d5945] flex-shrink-0">
-                  <GraduationCap size={24} weight="duotone" />
-                </div>
-                <div>
-                  <h4 className="text-xs font-semibold text-gray-900 font-sans">Education</h4>
-                  <p className="text-[11px] text-[#556b4f] font-mono mt-0.5">3rd-Year Student</p>
-                  <p className="text-xs text-gray-600 mt-1 font-sans">BS Computer Engineering — CIT-U</p>
-                </div>
-              </div>
-
-              <div className="education-card p-5 flex items-start gap-3">
-                <div className="p-2.5 bg-[#eef3ee] rounded-xl text-[#3d5945] flex-shrink-0">
-                  <Gear size={24} weight="duotone" />
-                </div>
-                <div>
-                  <h4 className="text-xs font-semibold text-gray-900 font-sans">Core Expertise</h4>
-                  <p className="text-[11px] text-[#556b4f] font-mono mt-0.5">Web & Automation</p>
-                  <p className="text-xs text-gray-600 mt-1 font-sans">Full-Stack & Apps Script</p>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      <section id='tech-stack' className='py-24 bg-white mt-12 border-t border-gray-50'>
-        <div className='max-w-6xl mx-auto px-4 md:px-8'>
-          <div className="flex flex-col items-start mb-12">
-            <span className="text-[#556b4f] uppercase tracking-wider text-xs font-bold font-mono mb-2">01 — Expertise</span>
+            <span className="text-[#556b4f] uppercase tracking-wider text-xs font-bold font-mono mb-2">02 — Expertise</span>
             <h2
               className="text-4xl font-bold text-[#1a1515] font-sans"
               style={{ fontFamily: "Century Gothic, sans-serif" }}
             >
               My stack
             </h2>
-          </div>
+          </motion.div>
 
-          <motion.div 
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.15 }}
+          <motion.div
             variants={{
               hidden: {},
               show: {
                 transition: {
-                  staggerChildren: 0.04
+                  staggerChildren: 0.04,
+                  delayChildren: 0.1
                 }
               }
             }}
@@ -243,8 +270,8 @@ function App() {
             {[...techStack, ...otherTechStack].map((tech) => (
               <motion.div
                 variants={{
-                  hidden: { opacity: 0, y: 15 },
-                  show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } }
+                  hidden: { opacity: 0, y: 25, scale: 0.95 },
+                  show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.45, ease: "easeOut" } }
                 }}
                 key={tech.name}
                 className='tech-card'
@@ -260,10 +287,8 @@ function App() {
               </motion.div>
             ))}
           </motion.div>
-        </div>
+        </motion.div>
       </section>
-
-      <ProjectShowcase />
 
       <section id='about-me' className='about-me-section py-24 bg-gradient-to-b from-[#f7faf7] to-[#eef3ee]'>
         <div className='about-me-shell max-w-6xl mx-auto px-4 md:px-8'>

@@ -1095,9 +1095,17 @@
   border-radius: 9999px;
 }
 
-.device-dot.red { background: #ef4444; }
-.device-dot.yellow { background: #eab308; }
-.device-dot.green { background: #22c55e; }
+.device-dot.red {
+  background: #ef4444;
+}
+
+.device-dot.yellow {
+  background: #eab308;
+}
+
+.device-dot.green {
+  background: #22c55e;
+}
 
 .device-screen {
   position: relative;
