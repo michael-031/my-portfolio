@@ -25,6 +25,7 @@ import hike1 from './assets/About Me/hike2.jpg'
 import GitHubContributions from "./GitHubContributions";
 import HeroParallaxWrapper from "./HeroParallax";
 import ProjectDetailModal from "./ProjectDetailModal";
+import Timeline from "./Timeline";
 import { GithubLogo, LinkedinLogo, FacebookLogo, GraduationCap, ArrowRight, Atom, CaretLeft, CaretRight, EnvelopeSimple, Phone, Code, Lightning, Gear } from "@phosphor-icons/react";
 import { motion } from "framer-motion";
 
@@ -40,6 +41,62 @@ const techStack = [
 
 function App() {
   const [selectedProject, setSelectedProject] = useState(null)
+  const [activeSection, setActiveSection] = useState('hero')
+
+  const experienceData = [
+    {
+      role: "Software Engineering Intern",
+      company: "Innodata Knowledge and Services Inc.",
+      date: "June 2026 – July 2026",
+      type: "Internship",
+      location: "Software Engineering",
+      content: (
+        <div className="space-y-3">
+          <p className="text-gray-700 font-sans leading-relaxed">
+            Engineered software components and web application features during a Software Engineering Internship at Innodata Knowledge and Services Inc.
+          </p>
+          <ul className="space-y-2 text-sm text-gray-600 font-sans">
+            <li className="flex items-start gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#3d5945] mt-2 shrink-0"></span>
+              <span>Engaged in full-stack web development, API integration, and modular component architecture.</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#3d5945] mt-2 shrink-0"></span>
+              <span>Collaborated with senior software engineers to maintain clean code standards, perform code reviews, and resolve technical bugs.</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#3d5945] mt-2 shrink-0"></span>
+              <span>Applied modern software development methodologies and agile workflows in an enterprise environment.</span>
+            </li>
+          </ul>
+        </div>
+      ),
+    },
+  ];
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ['projects', 'experience', 'tech-stack', 'about-me', 'contact-me'];
+      const scrollPosition = window.scrollY + 250;
+
+      let current = 'hero';
+      for (const sectionId of sections) {
+        const section = document.getElementById(sectionId);
+        if (section) {
+          const top = section.offsetTop;
+          if (scrollPosition >= top) {
+            current = sectionId;
+          }
+        }
+      }
+      setActiveSection(current);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const aboutGallery = [
     { src: run, alt: 'Michael sharing a candid moment with his pet' },
     { src: run1, alt: 'Michael crossing the finish line after a 10K run' },
@@ -100,11 +157,34 @@ function App() {
       <header className="sticky top-0 z-50 backdrop-blur-md bg-white/70 border-b border-gray-100 flex justify-center h-[72px] transition-all duration-300">
         <div className="w-full max-w-[1440px] flex justify-between items-center px-8 md:px-16 h-full">
           <img src={logo} alt="Michael portfolio logo" className="h-[32px] object-contain ml-3 cursor-pointer" onClick={(e) => scrollToSection(e, 'hero')} />
-          <nav className="flex gap-2">
-            <a href="#projects" onClick={(e) => scrollToSection(e, 'projects')} className="nav-link px-4 h-full inline-flex items-center">Projects</a>
-            <a href="#tech-stack" onClick={(e) => scrollToSection(e, 'tech-stack')} className="nav-link px-4 h-full inline-flex items-center">Stack</a>
-            <a href="#about-me" onClick={(e) => scrollToSection(e, 'about-me')} className="nav-link px-4 h-full inline-flex items-center">About Me</a>
-            <a href="#contact-me" onClick={(e) => scrollToSection(e, 'contact-me')} className="nav-link px-4 h-full inline-flex items-center">Contact</a>
+          <nav className="flex gap-1 md:gap-2 h-full">
+            {[
+              { id: 'projects', label: 'Projects' },
+              { id: 'experience', label: 'Experience' },
+              { id: 'tech-stack', label: 'Stack' },
+              { id: 'about-me', label: 'About Me' },
+              { id: 'contact-me', label: 'Contact' },
+            ].map((item) => {
+              const isActive = activeSection === item.id;
+              return (
+                <a
+                  key={item.id}
+                  href={`#${item.id}`}
+                  onClick={(e) => scrollToSection(e, item.id)}
+                  className={`nav-link px-3.5 md:px-4 h-full inline-flex items-center relative font-sans text-sm transition-colors duration-200 ${isActive ? 'text-[#3d5945] font-bold' : 'text-gray-600 hover:text-[#3d5945]'
+                    }`}
+                >
+                  <span>{item.label}</span>
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeSectionLine"
+                      className="absolute bottom-0 left-2 right-2 h-[3px] bg-[#3d5945] rounded-full"
+                      transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                </a>
+              );
+            })}
           </nav>
         </div>
       </header>
@@ -257,6 +337,9 @@ function App() {
         </section>
       </HeroParallaxWrapper>
 
+      {/* Work Experience Section with Aceternity Timeline */}
+      <Timeline data={experienceData} />
+
       <section id='tech-stack' className='py-24 bg-transparent my-12 relative z-10'>
         <motion.div
           initial="hidden"
@@ -271,7 +354,7 @@ function App() {
             }}
             className="flex flex-col items-start mb-12"
           >
-            <span className="text-[#556b4f] uppercase tracking-wider text-xs font-bold font-mono mb-2">02 — Expertise</span>
+            <span className="text-[#556b4f] uppercase tracking-wider text-xs font-bold font-mono mb-2">03 — Expertise</span>
             <h2
               className="text-4xl font-bold text-[#1a1515] font-sans"
               style={{ fontFamily: "Century Gothic, sans-serif" }}
