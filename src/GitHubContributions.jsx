@@ -127,7 +127,7 @@ export default function GitHubContributions({ username = 'michael-031' }) {
   ];
 
   return (
-    <div className="w-full bg-white/90 backdrop-blur-md border border-[#e2e8f0] rounded-2xl p-6 shadow-sm font-sans transition-all duration-300 hover:shadow-md">
+    <div className="w-full bg-white/90 backdrop-blur-md border border-[#e2e8f0] rounded-2xl p-4 sm:p-6 shadow-sm font-sans transition-all duration-300 hover:shadow-md">
       {/* Top Header Row */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5">
         <div className="flex items-center gap-2.5">

@@ -154,6 +154,14 @@ function App() {
   };
 
 
+  const handleSelectProject = (project, section = 0) => {
+    if (project) {
+      setSelectedProject({ project, section });
+    } else {
+      setSelectedProject(null);
+    }
+  };
+
   return (
     <main>
       <AnimatePresence mode="wait">
@@ -161,7 +169,7 @@ function App() {
       </AnimatePresence>
 
       <header className="sticky top-0 z-50 backdrop-blur-md bg-white/70 border-b border-gray-100 flex justify-center h-[72px] transition-all duration-300">
-        <div className="w-full max-w-[1440px] flex justify-between items-center px-8 md:px-16 h-full">
+        <div className="w-full max-w-[1440px] flex justify-between items-center px-3 sm:px-8 md:px-16 h-full">
           <img src={logo} alt="Michael portfolio logo" className="h-[32px] object-contain ml-3 cursor-pointer" onClick={(e) => scrollToSection(e, 'hero')} />
           <nav className="flex gap-1 md:gap-2 h-full">
             {[
@@ -197,26 +205,27 @@ function App() {
 
       {selectedProject && (
         <ProjectDetailModal
-          project={selectedProject}
+          project={selectedProject.project || selectedProject}
+          initialSection={selectedProject.section ?? 0}
           onClose={() => setSelectedProject(null)}
         />
       )}
 
-      <HeroParallaxWrapper onSelectProject={setSelectedProject}>
-        <section id="hero" className="min-h-[100dvh] lg:min-h-[120vh] flex items-center justify-center w-full px-4 md:px-8 py-20 lg:py-28">
-          <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      <HeroParallaxWrapper onSelectProject={handleSelectProject}>
+        <section id="hero" className="min-h-[100dvh] lg:min-h-[120vh] flex items-center justify-center w-full px-3 sm:px-6 md:px-8 py-16 lg:py-28">
+          <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
             {/* Left Column: Intro & Info */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="lg:col-span-7 flex flex-col items-start text-left"
+              className="lg:col-span-7 flex flex-col items-start text-left w-full"
             >
               <span className="hero-eyebrow">
                 Michael Inoc // Full-Stack Web Developer & Automation Specialist
               </span>
               <SplitText delay={100} duration={1}>
-                <h1 className="hero-title text-5xl md:text-7xl font-bold mt-2 mb-4">
+                <h1 className="hero-title text-4xl sm:text-5xl md:text-7xl font-bold mt-2 mb-4">
                   Hello, <br />I'm <span className="text-[#3d5945]">Michael</span>
                 </h1>
               </SplitText>
@@ -225,23 +234,23 @@ function App() {
                 Full-Stack Web Developer <span className="text-[#9BB193]">•</span> Apps Script Automation
               </h2>
 
-              <p className="hero-description text-lg md:text-xl mb-6 font-sans font-light text-gray-600 leading-relaxed">
+              <p className="hero-description text-base sm:text-lg md:text-xl mb-6 font-sans font-light text-gray-600 leading-relaxed">
                 Crafting high-performance full-stack web applications, interactive user experiences, and tailored <span className="font-medium text-gray-900">Google Apps Script automations</span> to streamline workflows and boost productivity.
               </p>
 
               <div className="flex flex-wrap gap-2.5 mb-8">
-                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#eef3ee] text-[#3d5945] text-xs font-semibold font-mono border border-[#d3ddd3]">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#eef3ee] text-[#3d5945] text-xs font-semibold font-mono border border-[#d3ddd3]">
                   <Code size={15} weight="bold" /> Full-Stack Web Developer
                 </span>
-                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#eef3ee] text-[#3d5945] text-xs font-semibold font-mono border border-[#d3ddd3]">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#eef3ee] text-[#3d5945] text-xs font-semibold font-mono border border-[#d3ddd3]">
                   <Lightning size={15} weight="bold" /> Apps Script Automation
                 </span>
-                <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#eef3ee] text-[#3d5945] text-xs font-semibold font-mono border border-[#d3ddd3]">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#eef3ee] text-[#3d5945] text-xs font-semibold font-mono border border-[#d3ddd3]">
                   <GraduationCap size={15} weight="bold" /> Computer Engineering
                 </span>
               </div>
 
-              <div className="flex flex-wrap items-center gap-6">
+              <div className="flex flex-wrap items-center gap-4 sm:gap-6">
                 <a href="#projects" onClick={(e) => scrollToSection(e, 'projects')} className="hero-btn-primary group">
                   View My Work
                   <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
@@ -286,10 +295,10 @@ function App() {
               className="lg:col-span-5 flex flex-col gap-6 w-full max-w-md mx-auto lg:max-w-none"
             >
               {/* Profile Frame with glass/border and custom shape */}
-              <div className="profile-frame aspect-[4/5] w-full relative">
+              <div className="profile-frame aspect-[4/5] w-full relative pointer-events-auto cursor-pointer">
                 {/* Ambient Background Circles */}
-                <div className="absolute top-1/2 left-1/2 w-[350px] h-[350px] -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white/30 z-10 pointer-events-none"></div>
-                <div className="absolute top-1/2 left-1/2 w-[450px] h-[450px] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10 z-10 pointer-events-none"></div>
+                <div className="absolute top-1/2 left-1/2 w-[350px] max-w-[85vw] h-[350px] max-h-[85vw] -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white/30 z-10 pointer-events-none"></div>
+                <div className="absolute top-1/2 left-1/2 w-[450px] max-w-[95vw] h-[450px] max-h-[95vw] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10 z-10 pointer-events-none"></div>
 
                 <img
                   src={profile}
@@ -308,7 +317,7 @@ function App() {
                   </div>
                   <div>
                     <h4 className="text-xs font-semibold text-gray-900 font-sans">Education</h4>
-                    <p className="text-[11px] text-[#556b4f] font-mono mt-0.5">3rd-Year Student</p>
+                    <p className="text-[11px] text-[#556b4f] font-mono mt-0.5">4th-Year Student</p>
                     <p className="text-xs text-gray-600 mt-1 font-sans">BS Computer Engineering — CIT-U</p>
                   </div>
                 </div>
@@ -328,15 +337,15 @@ function App() {
           </div>
         </section>
 
-        <section id="projects" className="min-h-[140vh] py-20 px-4 md:px-8 flex flex-col justify-start">
-          <div className="flex justify-between items-end max-w-6xl mx-auto mb-12 border-b border-gray-200/80 pb-6 w-full">
+        <section id="projects" className="min-h-[160vh] py-16 md:py-20 px-3 sm:px-6 md:px-8 flex flex-col justify-start">
+          <div className="flex justify-between items-end max-w-6xl mx-auto mb-8 md:mb-12 border-b border-gray-200/80 pb-6 w-full">
             <div className="flex flex-col items-start">
               <span className="text-[#556b4f] uppercase tracking-wider text-xs font-bold font-mono mb-2">01 — Projects</span>
-              <h2 className="text-4xl md:text-5xl font-bold text-[#1a1515] font-sans" style={{ fontFamily: "Century Gothic, sans-serif" }}>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1a1515] font-sans" style={{ fontFamily: "Century Gothic, sans-serif" }}>
                 Fresh from Michael's Desk
               </h2>
             </div>
-            <a href="#contact-me" onClick={(e) => scrollToSection(e, 'contact-me')} className="text-[#556b4f] hover:underline font-bold text-sm flex items-center gap-1 mb-1 transition-all duration-300">
+            <a href="#contact-me" onClick={(e) => scrollToSection(e, 'contact-me')} className="text-[#556b4f] hover:underline font-bold text-xs sm:text-sm flex items-center gap-1 mb-1 transition-all duration-300">
               Let's collaborate <ArrowRight size={16} />
             </a>
           </div>
@@ -346,23 +355,23 @@ function App() {
       {/* Work Experience Section with Aceternity Timeline */}
       <Timeline data={experienceData} />
 
-      <section id='tech-stack' className='py-24 bg-transparent my-12 relative z-10'>
+      <section id='tech-stack' className='py-16 md:py-24 bg-transparent my-6 md:my-12 relative z-10'>
         <motion.div
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, amount: 0.05 }}
-          className='max-w-6xl mx-auto px-4 md:px-8'
+          className='max-w-6xl mx-auto px-3 sm:px-6 md:px-8'
         >
           <motion.div
             variants={{
               hidden: { opacity: 0, y: 20 },
               show: { opacity: 1, y: 0, transition: { duration: 0.4, ease: "easeOut" } }
             }}
-            className="flex flex-col items-start mb-12"
+            className="flex flex-col items-start mb-8 md:mb-12"
           >
             <span className="text-[#556b4f] uppercase tracking-wider text-xs font-bold font-mono mb-2">03 — Expertise</span>
             <h2
-              className="text-4xl font-bold text-[#1a1515] font-sans"
+              className="text-3xl sm:text-4xl font-bold text-[#1a1515] font-sans"
               style={{ fontFamily: "Century Gothic, sans-serif" }}
             >
               My stack
@@ -404,11 +413,11 @@ function App() {
         </motion.div>
       </section>
 
-      <section id='about-me' className='about-me-section py-24 bg-gradient-to-b from-[#f7faf7] to-[#eef3ee]'>
-        <div className='about-me-shell max-w-6xl mx-auto px-4 md:px-8'>
-          <div className="flex flex-col items-center mb-12 text-center">
+      <section id='about-me' className='about-me-section py-16 md:py-24 bg-gradient-to-b from-[#f7faf7] to-[#eef3ee]'>
+        <div className='about-me-shell max-w-6xl mx-auto px-3 sm:px-6 md:px-8'>
+          <div className="flex flex-col items-center mb-8 md:mb-12 text-center">
             <span className="text-[#556b4f] uppercase tracking-wider text-xs font-bold font-mono mb-2">03 — Story</span>
-            <h2 className='about-me-title text-4xl font-bold text-[#1a1515] font-sans' style={{ fontFamily: "Century Gothic, sans-serif" }}>About Me</h2>
+            <h2 className='about-me-title text-3xl sm:text-4xl font-bold text-[#1a1515] font-sans' style={{ fontFamily: "Century Gothic, sans-serif" }}>About Me</h2>
           </div>
 
           <div className='about-carousel relative' aria-label='About me photo carousel'>
@@ -454,12 +463,12 @@ function App() {
             ))}
           </div>
 
-          <p className='about-slogan mt-8 font-sans font-medium text-lg text-center text-[#3d5945]'>Leveling up in every mile and every line.</p>
+          <p className='about-slogan mt-6 md:mt-8 font-sans font-medium text-base sm:text-lg text-center text-[#3d5945]'>Leveling up in every mile and every line.</p>
         </div>
       </section>
 
-      <section id='contact-me' className='py-24 bg-white border-t border-gray-100'>
-        <div className='max-w-6xl mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center'>
+      <section id='contact-me' className='py-16 md:py-24 bg-white border-t border-gray-100'>
+        <div className='max-w-6xl mx-auto px-3 sm:px-6 md:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center'>
           {/* Left Column: Contact details */}
           <div className="lg:col-span-5 flex flex-col items-start text-left">
             <span className="text-[#556b4f] uppercase tracking-wider text-xs font-bold font-mono mb-2">04 — Contact</span>
