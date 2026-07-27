@@ -27,7 +27,7 @@ import HeroParallaxWrapper from "./HeroParallax";
 import ProjectDetailModal from "./ProjectDetailModal";
 import Timeline from "./Timeline";
 import SplashScreen from "./SplashScreen";
-import { GithubLogo, LinkedinLogo, FacebookLogo, GraduationCap, ArrowRight, Atom, CaretLeft, CaretRight, EnvelopeSimple, Phone, Code, Lightning, Gear } from "@phosphor-icons/react";
+import { GithubLogo, LinkedinLogo, FacebookLogo, GraduationCap, ArrowRight, Atom, CaretLeft, CaretRight, EnvelopeSimple, Phone, Code, Lightning, Gear, ArrowUpRight, FileText } from "@phosphor-icons/react";
 import { motion, AnimatePresence } from "framer-motion";
 
 const techStack = [
@@ -71,6 +71,18 @@ function App() {
               <span>Applied modern software development methodologies and agile workflows in an enterprise environment.</span>
             </li>
           </ul>
+          <div className="pt-3">
+            <a
+              href="https://drive.google.com/file/d/1K3qLQPEFsnMVSfjFNRZioPfLWxdcfQKN/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#eef3ee] hover:bg-[#3d5945] text-[#3d5945] hover:text-white text-xs sm:text-sm font-semibold transition-all duration-200 border border-[#d3ddd3]/80 group shadow-sm"
+            >
+              <FileText size={18} weight="duotone" className="shrink-0" />
+              <span>Innodata Projects, Reflections & Learning Outcomes</span>
+              <ArrowUpRight size={16} weight="bold" className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </a>
+          </div>
         </div>
       ),
     },
