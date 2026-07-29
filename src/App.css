@@ -1231,4 +1231,8 @@
     border-radius: 4rem 2rem 4rem 2rem !important;
     max-width: 100% !important;
   }
+
+  #hero {
+    padding-top: 6rem !important;
+  }
 }

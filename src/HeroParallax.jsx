@@ -320,6 +320,14 @@ function onFormSubmit(e) {
 
 export default function HeroParallaxWrapper({ children, onSelectProject }) {
   const containerRef = useRef(null);
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -348,9 +356,13 @@ export default function HeroParallaxWrapper({ children, onSelectProject }) {
     springConfig
   );
 
-  // 3. Vertical TranslateY: Frozen at 950px (pushed DOWN below header) between 0.32 and 0.82
+  // 3. Vertical TranslateY: Pushed DOWN further on mobile view so cards don't collide with stacked text
+  const translateYValues = isMobile
+    ? [160, 680, 1350, 1600, 2250]
+    : [-80, 450, 1050, 950, 1950];
+
   const translateY = useSpring(
-    useTransform(scrollYProgress, [0, 0.18, 0.32, 0.82, 1], [-80, 450, 1050, 950, 1950]),
+    useTransform(scrollYProgress, [0, 0.18, 0.32, 0.82, 1], translateYValues),
     springConfig
   );
 
