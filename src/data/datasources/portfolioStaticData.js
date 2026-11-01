@@ -21,6 +21,11 @@ import tecnectRegisterImg from '../../assets/projects/tecnect_register.png';
 import tecnectMarketplaceImg from '../../assets/projects/tecnect_marketplace.png';
 import tecnectPostImg from '../../assets/projects/tecnect_post.png';
 import tecnectFullpageImg from '../../assets/projects/tecnect_fullpage.png';
+import tlcDashboardImg from '../../assets/projects/tlc_dashboard.png';
+import tlcSuperAdminImg from '../../assets/projects/tlc_superadmin.png';
+import tlcUserManagementImg from '../../assets/projects/tlc_user_management.png';
+import tlcPoliciesImg from '../../assets/projects/tlc_policies.png';
+import tlcAcademicSetupImg from '../../assets/projects/tlc_academic_setup.png';
 import runImg from '../../assets/About Me/my_pitik.jpg';
 import run1Img from '../../assets/About Me/10k_finish.jpg';
 import run2Img from '../../assets/About Me/10k_with_divan.jpg';
@@ -155,21 +160,32 @@ export const tlcEngineProjectData = {
   id: 'tlc-engine',
   title: 'TLC Engine',
   monogram: 'TLC',
-  category: 'Multi-Tenant Platform',
-  roleTitle: 'Frontend & UI/UX Contributor',
+  category: 'Teaching Load & Compliance Platform',
+  roleTitle: 'Full-Stack Developer & QA',
   period: '2025 – Present',
-  displayLink: 'github.com/michael-031/tlc-engine',
-  link: 'https://github.com/michael-031/tlc-engine',
-  subtitle: 'Multi-Tenant Platform with Role-Based Access Control (RBAC)',
+  displayLink: 'tlc-engine.vercel.app',
+  link: 'https://tlc-engine.vercel.app/#features',
+  image: tlcDashboardImg,
+  roleImage: tlcUserManagementImg,
+  secondaryImage: tlcSuperAdminImg,
+  images: [
+    { src: tlcDashboardImg, label: 'Admin Dashboard' },
+    { src: tlcSuperAdminImg, label: 'Super Admin Tenants' },
+    { src: tlcUserManagementImg, label: 'RBAC User Management' },
+    { src: tlcPoliciesImg, label: 'Teaching Load Policy' },
+    { src: tlcAcademicSetupImg, label: 'Academic Setup' },
+  ],
+  subtitle: 'Multi-Tenant Teaching Load & Compliance Platform with RBAC',
   description:
-    'TLC Engine is an enterprise multi-tenant management platform built to deliver secure, role-isolated administrative workflows, fine-grained RBAC permission controls, and unified UI/UX design across multiple organization tenants.',
+    'TLC Engine (Teaching Load & Compliance Platform) is a multi-tenant academic platform designed to modernize faculty workload management, automate teaching load calculations, enforce institutional policies, and monitor real-time compliance across departments with granular Role-Based Access Control (RBAC).',
   contributions: [
-    'Designed intuitive UI/UX and developed core frontend features of the system.',
-    "Evaluated and refined teammates' UI/UX designs to ensure consistency, usability, and quality.",
+    'Engineered full-stack features across the multi-tenant architecture, including teaching load computation, institutional policy enforcement, and approval workflows.',
+    'Developed responsive interfaces for Super Admins and Institutional Admins covering Academic Setup, Teaching Load Policies, and RBAC Account Management.',
+    'Performed comprehensive Quality Assurance (QA) testing across tenant isolation, role permissions, overload validation rules, and end-to-end UI workflows to ensure production reliability.',
   ],
   challenges:
-    'Designing a scalable multi-tenant RBAC architecture required strict state isolation and dynamic role propagation. I implemented robust frontend permission guards, modular layout shells, and centralized state management to maintain high performance, security, and design consistency across all tenant views.',
-  tech: ['TypeScript', 'Next.js', 'Supabase', 'Node.js', 'React', 'Tailwind CSS'],
+    'Enforcing complex academic workload policies and strict multi-tenant data isolation while maintaining accurate real-time compliance calculations required rigorous full-stack engineering and QA validation. I implemented role-isolated API and frontend permission guards, automated policy validation rules, and thorough QA test coverage across all stakeholder workflows.',
+  tech: ['Next.js', 'TypeScript', 'React', 'Supabase', 'Node.js', 'Tailwind CSS'],
 };
 
 export const tecnectProjectData = {
@@ -259,57 +275,49 @@ export const parallaxProductsData = [
     category: 'Project Name',
     projectDetails: tlcEngineProjectData,
     sectionIndex: 0,
-    type: 'mock',
-    subtitle: 'Multi-Tenant Platform with Role-Based Access Control (RBAC)',
-    bgGradient: 'from-[#1e2e24] via-slate-900 to-black',
-    tech: ['TLC Engine', 'Multi-Tenant', '2025 – Present'],
+    type: 'image',
+    thumbnail: tlcDashboardImg,
+    subtitle: 'Multi-Tenant Teaching Load & Compliance Platform with RBAC',
+    tech: ['TLC Platform', 'Multi-Tenant', '2025 – Present'],
   },
   {
-    title: 'Platform Overview',
-    category: 'Brief Description',
+    title: 'Super Admin & Tenant Analytics',
+    category: 'Multi-Tenant Architecture',
     projectDetails: tlcEngineProjectData,
     sectionIndex: 0,
-    type: 'mock',
-    subtitle:
-      'Multi-tenant platform built for role-isolated administrative workflows, fine-grained RBAC permission controls, and unified UI/UX design.',
-    bgGradient: 'from-slate-900 via-[#27392c] to-zinc-950',
-    tech: ['RBAC', 'Multi-Tenant', 'Enterprise'],
+    type: 'image',
+    thumbnail: tlcSuperAdminImg,
+    tech: ['Active Tenants', 'System Health', 'Compliance'],
   },
   {
-    title: 'Architecture & Stack',
-    category: 'Tech Stack Used',
-    projectDetails: tlcEngineProjectData,
-    sectionIndex: 2,
-    type: 'code',
-    filename: 'RBACGuard.tsx',
-    codeSnippet: `export function RBACGuard({ role, required, children }) {
-  const { userPermissions } = useAuthContext();
-  const hasAccess = checkTenantPermission(userPermissions, required);
-  if (!hasAccess) return <AccessDeniedFallback />;
-  return <>{children}</>;
-}`,
-    tech: ['React', 'TypeScript', 'Node.js', 'RBAC'],
-  },
-  {
-    title: 'Frontend & UI/UX Contributor',
+    title: 'Full-Stack Developer & QA',
     category: 'My Role',
     projectDetails: tlcEngineProjectData,
     sectionIndex: 1,
     type: 'mock',
     subtitle:
-      'Contributed to development, architected core frontend RBAC features, and evaluated teammate UI/UX designs for consistency & usability.',
+      'Engineered full-stack teaching load & RBAC features, built administrative dashboards, and conducted end-to-end Quality Assurance (QA) testing.',
     bgGradient: 'from-emerald-950 via-slate-900 to-zinc-950',
-    tech: ['Contributor', 'Frontend', 'UI/UX Designer'],
+    tech: ['Full-Stack Dev', 'Quality Assurance (QA)', 'RBAC'],
   },
   {
-    title: 'TLC System Preview',
+    title: 'RBAC Account Management',
+    category: 'Role-Based Access Control',
+    projectDetails: tlcEngineProjectData,
+    sectionIndex: 2,
+    type: 'image',
+    thumbnail: tlcUserManagementImg,
+    tech: ['Role Permissions', 'Account Management', 'Next.js'],
+  },
+  {
+    title: 'Teaching Load Policy & Setup',
     category: 'Sample Image of the App',
     projectDetails: tlcEngineProjectData,
     sectionIndex: 0,
     type: 'image',
-    thumbnail: lemivonImg,
-    secondaryImage: lemivonMobileImg,
-    tech: ['Multi-Tenant UI', 'Dashboard'],
+    thumbnail: tlcPoliciesImg,
+    secondaryImage: tlcAcademicSetupImg,
+    tech: ['Policy Engine', 'Academic Setup'],
   },
 
   // ROW 2: TecnecT
