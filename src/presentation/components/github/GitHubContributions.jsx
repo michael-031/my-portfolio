@@ -2,12 +2,13 @@ import React from 'react';
 import { GithubLogo } from '@phosphor-icons/react';
 import { useGitHubContributions } from '../../../application/hooks/useGitHubContributions';
 
+// Dark Obsidian Monochrome & Silver-White Palette
 const LEVEL_COLORS = [
-  '#f0f4ef', // level 0 - soft neutral off-white/green
-  '#c5dac1', // level 1 - light sage
-  '#9bb193', // level 2 - mid sage
-  '#556b4f', // level 3 - forest sage
-  '#3d5945', // level 4 - primary theme forest green
+  '#191820', // level 0 - deep obsidian empty cell
+  '#2f2e3b', // level 1 - muted slate
+  '#525166', // level 2 - mid steel
+  '#a1a1b5', // level 3 - bright silver
+  '#ffffff', // level 4 - pure high-contrast white
 ];
 
 export default function GitHubContributions({ username = 'michael-031' }) {
@@ -25,24 +26,27 @@ export default function GitHubContributions({ username = 'michael-031' }) {
   } = useGitHubContributions(username);
 
   return (
-    <div className="w-full bg-white/90 backdrop-blur-md border border-[#e2e8f0] rounded-2xl p-4 sm:p-6 shadow-sm font-sans transition-all duration-300 hover:shadow-md">
+    <div className="w-full bg-[#121117]/90 backdrop-blur-md border border-white/10 rounded-2xl p-4 sm:p-6 shadow-xl font-sans transition-all duration-300 hover:border-white/20">
       {/* Top Header Row */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5">
         <div className="flex items-center gap-2.5">
-          <div className="p-2 bg-[#eef3ee] rounded-xl text-[#3d5945]">
+          <div className="p-2 bg-white/8 border border-white/12 rounded-xl text-white">
             <GithubLogo size={22} weight="bold" />
           </div>
           <div>
-            <h3 className="text-base sm:text-lg font-bold text-[#1a1515] font-sans tracking-tight">
+            <h3
+              className="text-base sm:text-lg font-bold text-white tracking-tight"
+              style={{ fontFamily: 'Poppins, sans-serif' }}
+            >
               {loading
                 ? 'Loading live contributions...'
                 : `${totalCount} contributions ${
                     selectedYear === 'lastYear' ? 'in the last year' : `in ${selectedYear}`
                   }`}
             </h3>
-            <p className="text-xs text-[#556b4f] font-mono mt-0.5">
+            <p className="text-xs text-zinc-400 font-mono mt-0.5">
               {hoveredDay ? (
-                <span className="text-[#3d5945] font-semibold">
+                <span className="text-white font-semibold">
                   {hoveredDay.count} contribution{hoveredDay.count === 1 ? '' : 's'} on{' '}
                   {new Date(hoveredDay.date).toLocaleDateString('en-US', {
                     month: 'short',
@@ -61,10 +65,10 @@ export default function GitHubContributions({ username = 'michael-031' }) {
         <div className="flex items-center gap-1.5 self-start sm:self-auto flex-wrap">
           <button
             onClick={() => setSelectedYear('lastYear')}
-            className={`px-3 py-1.5 text-xs font-semibold font-mono rounded-lg transition-all ${
+            className={`px-3 py-1.5 text-xs font-semibold font-mono rounded-lg transition-all cursor-pointer ${
               selectedYear === 'lastYear'
-                ? 'bg-[#3d5945] text-white shadow-sm'
-                : 'bg-[#f0f4ef] text-[#556b4f] hover:bg-[#e2ebe0] hover:text-[#27392c]'
+                ? 'bg-white text-[#0e0d12] shadow-sm'
+                : 'bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white border border-white/10'
             }`}
           >
             Last Year
@@ -73,10 +77,10 @@ export default function GitHubContributions({ username = 'michael-031' }) {
             <button
               key={y}
               onClick={() => setSelectedYear(y)}
-              className={`px-3 py-1.5 text-xs font-semibold font-mono rounded-lg transition-all ${
+              className={`px-3 py-1.5 text-xs font-semibold font-mono rounded-lg transition-all cursor-pointer ${
                 selectedYear === y
-                  ? 'bg-[#3d5945] text-white shadow-sm'
-                  : 'bg-[#f0f4ef] text-[#556b4f] hover:bg-[#e2ebe0] hover:text-[#27392c]'
+                  ? 'bg-white text-[#0e0d12] shadow-sm'
+                  : 'bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white border border-white/10'
               }`}
             >
               {y}
@@ -88,17 +92,17 @@ export default function GitHubContributions({ username = 'michael-031' }) {
       {/* Main Contribution Graph SVG (Fluid 100% Responsive - NO HORIZONTAL SCROLL) */}
       <div className="w-full">
         {loading ? (
-          <div className="h-[130px] flex items-center justify-center text-xs text-[#556b4f] font-mono">
+          <div className="h-[130px] flex items-center justify-center text-xs text-zinc-400 font-mono">
             Fetching GitHub activity from @{username}...
           </div>
         ) : error || !weeks.length ? (
-          <div className="h-[130px] flex flex-col items-center justify-center gap-2 text-xs text-gray-500">
+          <div className="h-[130px] flex flex-col items-center justify-center gap-2 text-xs text-zinc-400">
             <p>Unable to load live GitHub data right now.</p>
             <a
               href={`https://github.com/${username}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[#3d5945] font-semibold hover:underline"
+              className="text-white font-semibold hover:underline"
             >
               View profile directly on GitHub ↗
             </a>
@@ -115,20 +119,20 @@ export default function GitHubContributions({ username = 'michael-031' }) {
                 key={idx}
                 x={32 + m.weekIndex * 13.2}
                 y="13"
-                className="fill-[#556b4f] text-[10px] font-mono"
+                className="fill-zinc-400 text-[10px] font-mono"
               >
                 {m.text}
               </text>
             ))}
 
             {/* Day Labels (Mon, Wed, Fri) */}
-            <text x="0" y="44" className="fill-[#556b4f] text-[9.5px] font-mono">
+            <text x="0" y="44" className="fill-zinc-400 text-[9.5px] font-mono">
               Mon
             </text>
-            <text x="0" y="70" className="fill-[#556b4f] text-[9.5px] font-mono">
+            <text x="0" y="70" className="fill-zinc-400 text-[9.5px] font-mono">
               Wed
             </text>
-            <text x="0" y="96" className="fill-[#556b4f] text-[9.5px] font-mono">
+            <text x="0" y="96" className="fill-zinc-400 text-[9.5px] font-mono">
               Fri
             </text>
 
@@ -158,7 +162,7 @@ export default function GitHubContributions({ username = 'michael-031' }) {
                     rx="2.5"
                     ry="2.5"
                     fill={color}
-                    className="transition-all duration-150 cursor-pointer hover:stroke-[#3d5945] hover:stroke-1"
+                    className="transition-all duration-150 cursor-pointer hover:stroke-white hover:stroke-1"
                     onMouseEnter={() => setHoveredDay(day)}
                     onMouseLeave={() => setHoveredDay(null)}
                   >
@@ -172,12 +176,12 @@ export default function GitHubContributions({ username = 'michael-031' }) {
       </div>
 
       {/* Footer / Legend Row adhering to theme colors */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-3 mt-4 pt-4 border-t border-[#f1f5f9] text-xs font-mono text-[#556b4f]">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-3 mt-4 pt-4 border-t border-white/10 text-xs font-mono text-zinc-400">
         <a
           href={`https://github.com/${username}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:text-[#3d5945] font-semibold transition-colors flex items-center gap-1.5"
+          className="hover:text-white font-semibold transition-colors flex items-center gap-1.5"
         >
           <GithubLogo size={16} weight="bold" /> View live profile @{username} ↗
         </a>
@@ -187,7 +191,7 @@ export default function GitHubContributions({ username = 'michael-031' }) {
           {LEVEL_COLORS.map((color, idx) => (
             <div
               key={idx}
-              className="w-3 h-3 rounded-[2.5px] border border-black/5"
+              className="w-3 h-3 rounded-[2.5px] border border-white/10"
               style={{ backgroundColor: color }}
             />
           ))}

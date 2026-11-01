@@ -47,18 +47,18 @@ export default function HeroSection({ profile, onNavigate }) {
           <SplitText delay={100} duration={1}>
             <h1 className="hero-title text-4xl sm:text-5xl md:text-7xl font-bold mt-2 mb-4">
               Hello, <br />
-              I&apos;m <span className="text-[#3d5945]">{profile.firstName}</span>
+              I&apos;m <span className="metallic-text">{profile.firstName}</span>
             </h1>
           </SplitText>
 
-          <h2 className="text-xl md:text-2xl font-semibold text-[#27392c] mb-4 font-sans flex flex-wrap items-center gap-2">
-            {profile.headline.primary} <span className="text-[#9BB193]">•</span>{' '}
+          <h2 className="text-xl md:text-2xl font-semibold text-zinc-200 mb-4 font-sans flex flex-wrap items-center gap-2">
+            {profile.headline.primary} <span className="text-zinc-500">•</span>{' '}
             {profile.headline.secondary}
           </h2>
 
-          <p className="hero-description text-base sm:text-lg md:text-xl mb-6 font-sans font-light text-gray-600 leading-relaxed">
+          <p className="hero-description text-base sm:text-lg md:text-xl mb-6 font-sans font-light text-zinc-400 leading-relaxed">
             {profile.description.prefix}
-            <span className="font-medium text-gray-900">{profile.description.highlight}</span>
+            <span className="font-medium text-white">{profile.description.highlight}</span>
             {profile.description.suffix}
           </p>
 
@@ -68,7 +68,7 @@ export default function HeroSection({ profile, onNavigate }) {
               return (
                 <span
                   key={badge.id}
-                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#eef3ee] text-[#3d5945] text-xs font-semibold font-mono border border-[#d3ddd3]"
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/8 text-zinc-200 text-xs font-semibold font-mono border border-white/15"
                 >
                   <IconComponent size={15} weight="bold" /> {badge.label}
                 </span>
@@ -115,7 +115,7 @@ export default function HeroSection({ profile, onNavigate }) {
           {/* Profile Frame with glass/border and custom shape */}
           <div className="profile-frame aspect-[4/5] w-full relative pointer-events-auto cursor-pointer">
             {/* Ambient Background Circles */}
-            <div className="absolute top-1/2 left-1/2 w-[350px] max-w-[85vw] h-[350px] max-h-[85vw] -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white/30 z-10 pointer-events-none"></div>
+            <div className="absolute top-1/2 left-1/2 w-[350px] max-w-[85vw] h-[350px] max-h-[85vw] -translate-x-1/2 -translate-y-1/2 rounded-full border-2 border-white/20 z-10 pointer-events-none"></div>
             <div className="absolute top-1/2 left-1/2 w-[450px] max-w-[95vw] h-[450px] max-h-[95vw] -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/10 z-10 pointer-events-none"></div>
 
             <img
@@ -124,7 +124,7 @@ export default function HeroSection({ profile, onNavigate }) {
               className="w-full h-full object-cover"
             />
             {/* bottom gradient fade */}
-            <div className="absolute bottom-0 left-0 w-full h-1/4 bg-gradient-to-t from-[#9BB193]/60 to-transparent pointer-events-none"></div>
+            <div className="absolute bottom-0 left-0 w-full h-1/4 bg-gradient-to-t from-[#0e0d12]/80 to-transparent pointer-events-none"></div>
           </div>
 
           {/* Context Cards Grid */}
@@ -133,13 +133,13 @@ export default function HeroSection({ profile, onNavigate }) {
               const CardIcon = HIGHLIGHT_ICON_MAP[card.iconName] || GraduationCap;
               return (
                 <div key={card.id} className="education-card p-5 flex items-start gap-3">
-                  <div className="p-2.5 bg-[#eef3ee] rounded-xl text-[#3d5945] flex-shrink-0">
+                  <div className="p-2.5 bg-white/8 border border-white/10 rounded-xl text-white flex-shrink-0">
                     <CardIcon size={24} weight="duotone" />
                   </div>
                   <div>
-                    <h4 className="text-xs font-semibold text-gray-900 font-sans">{card.title}</h4>
-                    <p className="text-[11px] text-[#556b4f] font-mono mt-0.5">{card.subtitle}</p>
-                    <p className="text-xs text-gray-600 mt-1 font-sans">{card.detail}</p>
+                    <h4 className="text-xs font-semibold text-white font-sans">{card.title}</h4>
+                    <p className="text-[11px] text-zinc-400 font-mono mt-0.5">{card.subtitle}</p>
+                    <p className="text-xs text-zinc-300 mt-1 font-sans">{card.detail}</p>
                   </div>
                 </div>
               );

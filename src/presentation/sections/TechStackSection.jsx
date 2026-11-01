@@ -17,12 +17,12 @@ export default function TechStackSection({ techItems = [] }) {
           }}
           className="flex flex-col items-start mb-8 md:mb-12"
         >
-          <span className="text-[#556b4f] uppercase tracking-wider text-xs font-bold font-mono mb-2">
+          <span className="text-zinc-400 uppercase tracking-wider text-xs font-bold font-mono mb-2">
             03 — Expertise
           </span>
           <h2
-            className="text-3xl sm:text-4xl font-bold text-[#1a1515] font-sans"
-            style={{ fontFamily: 'Century Gothic, sans-serif' }}
+            className="text-3xl sm:text-4xl font-bold text-white"
+            style={{ fontFamily: 'Poppins, sans-serif' }}
           >
             My stack
           </h2>

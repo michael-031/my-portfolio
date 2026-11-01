@@ -13,10 +13,10 @@ export default function SplashScreen({ onFinish }) {
         y: '-100%',
         transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] },
       }}
-      className="fixed inset-0 z-[9999] bg-[#141a15] text-[#eef3ee] flex flex-col items-center justify-between py-12 px-6 font-sans select-none overflow-hidden"
+      className="fixed inset-0 z-[9999] bg-[#0e0d12] text-white flex flex-col items-center justify-between py-12 px-6 font-sans select-none overflow-hidden"
     >
       {/* Top Bar Header */}
-      <div className="w-full max-w-6xl flex justify-between items-center text-xs font-mono text-[#9BB193]/70 uppercase tracking-widest">
+      <div className="w-full max-w-6xl flex justify-between items-center text-xs font-mono text-zinc-400 uppercase tracking-widest">
         <span>Portfolio 2026</span>
         <span>Michael Inoc</span>
       </div>
@@ -27,9 +27,9 @@ export default function SplashScreen({ onFinish }) {
         <div className="relative mb-8 flex items-center justify-center">
           <motion.div
             initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: [0.95, 1.05, 0.95], opacity: [0.4, 0.7, 0.4] }}
+            animate={{ scale: [0.95, 1.05, 0.95], opacity: [0.25, 0.5, 0.25] }}
             transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-            className="absolute w-40 h-40 rounded-full bg-[#3d5945]/40 blur-2xl pointer-events-none"
+            className="absolute w-40 h-40 rounded-full bg-white/15 blur-2xl pointer-events-none"
           />
           <motion.img
             initial={{ scale: 0.85, opacity: 0 }}
@@ -37,7 +37,7 @@ export default function SplashScreen({ onFinish }) {
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             src={logo}
             alt="Michael Inoc Portfolio"
-            className="h-16 md:h-20 object-contain relative z-10 filter drop-shadow-[0_4px_12px_rgba(61,89,69,0.5)]"
+            className="h-16 md:h-20 object-contain relative z-10 brightness-125 filter drop-shadow-[0_4px_12px_rgba(255,255,255,0.2)]"
           />
         </div>
 
@@ -46,41 +46,41 @@ export default function SplashScreen({ onFinish }) {
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-2xl md:text-4xl font-extrabold text-[#eef3ee] mb-2 tracking-tight"
-          style={{ fontFamily: 'Century Gothic, sans-serif' }}
+          className="text-2xl md:text-4xl font-extrabold metallic-text mb-2 tracking-tight"
+          style={{ fontFamily: 'Poppins, sans-serif' }}
         >
-          Full-Stack & Automation Specialist
+          Full-Stack &amp; Automation Specialist
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.35 }}
-          className="text-xs md:text-sm font-mono text-[#9BB193] tracking-wider mb-8"
+          className="text-xs md:text-sm font-mono text-zinc-400 tracking-wider mb-8"
         >
-          Crafting Web Applications & Google Apps Script Automations
+          Crafting Web Applications &amp; Google Apps Script Automations
         </motion.p>
 
         {/* Animated Progress Bar */}
-        <div className="w-64 md:w-80 h-1.5 bg-white/10 rounded-full overflow-hidden relative mb-4 border border-white/5">
+        <div className="w-64 md:w-80 h-1.5 bg-white/10 rounded-full overflow-hidden relative mb-4 border border-white/10">
           <motion.div
-            className="h-full bg-gradient-to-r from-[#3d5945] via-[#556b4f] to-[#9BB193] rounded-full"
+            className="h-full bg-gradient-to-r from-zinc-500 via-zinc-200 to-white rounded-full"
             style={{ width: `${progress}%` }}
             transition={{ ease: 'easeOut' }}
           />
         </div>
 
         {/* Counter Percentage */}
-        <span className="font-mono text-sm font-bold text-[#9BB193] tracking-widest">
+        <span className="font-mono text-sm font-bold text-zinc-200 tracking-widest">
           {progress}%
         </span>
       </div>
 
       {/* Bottom Footer Status */}
-      <div className="w-full max-w-6xl flex justify-between items-center text-xs font-mono text-gray-500 border-t border-[#3d5945]/20 pt-4">
+      <div className="w-full max-w-6xl flex justify-between items-center text-xs font-mono text-zinc-500 border-t border-white/10 pt-4">
         <span>Initializing Environment</span>
-        <span className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-[#9BB193] animate-pulse"></span>
+        <span className="flex items-center gap-2 text-zinc-300">
+          <span className="w-2 h-2 rounded-full bg-white animate-pulse"></span>
           Ready
         </span>
       </div>
