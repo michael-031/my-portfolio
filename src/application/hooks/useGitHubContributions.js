@@ -57,7 +57,7 @@ export function useGitHubContributions(username = 'michael-031') {
 
   const years = useMemo(() => extractAvailableYears(data), [data]);
 
-  const { filteredContributions, totalCount } = useMemo(
+  const { filteredContributions, totalCount, activeDays, peakDay, recentTimeline } = useMemo(
     () => filterContributionsByYear(data, selectedYear),
     [data, selectedYear]
   );
@@ -76,6 +76,9 @@ export function useGitHubContributions(username = 'michael-031') {
     hoveredDay,
     setHoveredDay,
     totalCount,
+    activeDays,
+    peakDay,
+    recentTimeline,
     weeks,
     monthLabels,
   };

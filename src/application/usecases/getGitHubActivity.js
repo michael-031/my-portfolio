@@ -15,8 +15,17 @@ export function extractAvailableYears(data) {
  */
 export function filterContributionsByYear(data, selectedYear) {
   if (!data || !data.contributions) {
-    return { filteredContributions: [], totalCount: 0 };
+    return {
+      filteredContributions: [],
+      totalCount: 0,
+      activeDays: 0,
+      peakDay: { count: 0, date: null },
+      recentTimeline: [],
+    };
   }
+
+  let filtered = [];
+  let total = 0;
 
   if (selectedYear === 'lastYear') {
     const sorted = [...data.contributions].sort((a, b) => new Date(a.date) - new Date(b.date));
@@ -26,22 +35,38 @@ export function filterContributionsByYear(data, selectedYear) {
     const startDate = new Date(endDate);
     startDate.setDate(startDate.getDate() - 364);
 
-    const filtered = sorted.filter((item) => {
+    filtered = sorted.filter((item) => {
       const d = new Date(item.date);
       return d >= startDate && d <= endDate;
     });
 
-    const total = filtered.reduce((acc, curr) => acc + curr.count, 0);
-    return { filteredContributions: filtered, totalCount: total };
+    total = filtered.reduce((acc, curr) => acc + curr.count, 0);
+  } else {
+    filtered = data.contributions.filter((item) => item.date.startsWith(selectedYear));
+    total =
+      data.total?.[selectedYear] !== undefined
+        ? data.total[selectedYear]
+        : filtered.reduce((acc, curr) => acc + curr.count, 0);
   }
 
-  const filtered = data.contributions.filter((item) => item.date.startsWith(selectedYear));
-  const total =
-    data.total?.[selectedYear] !== undefined
-      ? data.total[selectedYear]
-      : filtered.reduce((acc, curr) => acc + curr.count, 0);
+  const activeEntries = filtered.filter((item) => item.count > 0);
+  const activeDays = activeEntries.length;
+  const peakDay = activeEntries.reduce(
+    (max, curr) => (curr.count > max.count ? curr : max),
+    { count: 0, date: null }
+  );
 
-  return { filteredContributions: filtered, totalCount: total };
+  const recentTimeline = [...activeEntries]
+    .sort((a, b) => new Date(b.date) - new Date(a.date))
+    .slice(0, 5);
+
+  return {
+    filteredContributions: filtered,
+    totalCount: total,
+    activeDays,
+    peakDay,
+    recentTimeline,
+  };
 }
 
 /**

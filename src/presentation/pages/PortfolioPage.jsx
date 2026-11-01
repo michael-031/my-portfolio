@@ -56,11 +56,15 @@ export default function PortfolioPage() {
 
       <ExperienceSection experiences={experiences} />
 
-      <TechStackSection techItems={techStack.all} />
+      <TechStackSection techStack={techStack} />
 
       <AboutSection gallery={profile.gallery} slogan={profile.aboutSlogan} />
 
-      <ContactSection contact={profile.contact} socials={profile.socials} />
+      <ContactSection
+        contact={profile.contact}
+        socials={profile.socials}
+        onNavigate={scrollToSection}
+      />
     </main>
   );
 }

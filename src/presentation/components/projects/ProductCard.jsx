@@ -31,12 +31,12 @@ export function ProductCard({ product, translate, onSelectProject }) {
       }}
       onClick={handleClick}
       key={product.title}
-      className="group/product h-80 w-[calc(100vw-2.5rem)] max-w-[24rem] sm:w-[28rem] sm:max-w-none relative flex-shrink-0 rounded-2xl overflow-hidden shadow-xl border border-gray-200/80 bg-white/95 backdrop-blur-sm pointer-events-auto cursor-pointer"
+      className="group/product h-80 w-[calc(100vw-2.5rem)] max-w-[24rem] sm:w-[28rem] sm:max-w-none relative flex-shrink-0 rounded-2xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.65)] border border-white/12 bg-[#121117]/95 backdrop-blur-md pointer-events-auto cursor-pointer transition-colors hover:border-white/30"
     >
       <a href="#" onClick={handleClick} className="block h-full w-full relative">
         {/* Render Image Card */}
         {product.type === 'image' && (
-          <div className="w-full h-full relative bg-gray-50 flex items-center justify-center">
+          <div className="w-full h-full relative bg-[#0b0a0e] flex items-center justify-center">
             <img
               src={product.thumbnail}
               className="object-cover object-top h-full w-full transition-transform duration-500 group-hover/product:scale-105"
@@ -47,57 +47,57 @@ export function ProductCard({ product, translate, onSelectProject }) {
 
         {/* Render Code Terminal Card */}
         {product.type === 'code' && (
-          <div className="w-full h-full bg-[#18181b] text-gray-200 p-4 font-mono text-[11px] flex flex-col justify-between select-none">
+          <div className="w-full h-full bg-[#0b0a0f] text-zinc-200 p-4 font-mono text-[11px] flex flex-col justify-between select-none">
             <div>
-              <div className="flex items-center justify-between pb-2.5 mb-2.5 border-b border-gray-800">
+              <div className="flex items-center justify-between pb-2.5 mb-2.5 border-b border-white/10">
                 <div className="flex items-center gap-1.5">
                   <span className="w-3 h-3 rounded-full bg-red-500/80"></span>
                   <span className="w-3 h-3 rounded-full bg-yellow-500/80"></span>
                   <span className="w-3 h-3 rounded-full bg-green-500/80"></span>
-                  <span className="ml-2 font-mono text-xs text-gray-400">{product.filename}</span>
+                  <span className="ml-2 font-mono text-xs text-zinc-400">{product.filename}</span>
                 </div>
                 <button
                   onClick={handleCopy}
-                  className="text-gray-400 hover:text-white transition-colors pointer-events-auto"
+                  className="text-zinc-400 hover:text-white transition-colors pointer-events-auto"
                   title="Copy code"
                 >
                   {copied ? (
-                    <CheckCircle size={15} className="text-green-400" />
+                    <CheckCircle size={15} className="text-emerald-400" />
                   ) : (
                     <Copy size={15} />
                   )}
                 </button>
               </div>
-              <pre className="text-emerald-400/90 text-[10.5px] leading-relaxed overflow-hidden">
+              <pre className="text-zinc-200 text-[10.5px] leading-relaxed overflow-hidden">
                 <code>{product.codeSnippet}</code>
               </pre>
             </div>
-            <div className="flex items-center justify-between pt-2 border-t border-gray-800 text-[10px] text-gray-500">
+            <div className="flex items-center justify-between pt-2 border-t border-white/10 text-[10px] text-zinc-500">
               <span>// {product.category}</span>
-              <span className="text-[#9BB193]">Michael Inoc Studio</span>
+              <span className="text-zinc-300">Michael Inoc Studio</span>
             </div>
           </div>
         )}
 
         {/* Render Styled Mock UI Card */}
         {product.type === 'mock' && (
-          <div
-            className={`w-full h-full bg-gradient-to-br ${product.bgGradient} p-6 flex flex-col justify-between text-white relative`}
-          >
+          <div className="w-full h-full bg-gradient-to-br from-[#191822] via-[#121117] to-[#0a090d] p-6 flex flex-col justify-between text-white relative">
             <div>
-              <span className="inline-block px-2.5 py-1 rounded-full bg-white/10 text-xs font-mono font-semibold backdrop-blur-md mb-4 border border-white/10">
+              <span className="inline-block px-3 py-1 rounded-full bg-white/8 text-xs font-mono font-semibold backdrop-blur-md mb-4 border border-white/12 text-zinc-200">
                 {product.category}
               </span>
-              <h3 className="text-2xl font-bold font-sans tracking-tight mb-2">{product.title}</h3>
-              <p className="text-xs text-gray-300 font-sans leading-relaxed">{product.subtitle}</p>
+              <h3 className="text-2xl font-bold font-display tracking-tight mb-2 text-white">
+                {product.title}
+              </h3>
+              <p className="text-xs text-zinc-400 font-sans leading-relaxed">{product.subtitle}</p>
             </div>
 
-            <div className="p-3 bg-white/5 rounded-xl border border-white/10 backdrop-blur-md flex items-center justify-between">
-              <div className="flex flex-wrap gap-1">
+            <div className="p-3 bg-white/[0.04] rounded-xl border border-white/10 backdrop-blur-md flex items-center justify-between">
+              <div className="flex flex-wrap gap-1.5">
                 {product.tech?.map((t) => (
                   <span
                     key={t}
-                    className="text-[10px] font-mono font-medium px-2 py-0.5 rounded bg-white/10 text-gray-200"
+                    className="text-[10px] font-mono font-medium px-2.5 py-0.5 rounded-full bg-white/10 text-zinc-200"
                   >
                     {t}
                   </span>
@@ -108,11 +108,11 @@ export function ProductCard({ product, translate, onSelectProject }) {
         )}
 
         {/* Hover Overlay with details */}
-        <div className="absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-95 bg-gradient-to-t from-black via-black/80 to-transparent transition duration-300 flex flex-col justify-end p-6">
-          <span className="text-xs font-mono text-[#9BB193] uppercase font-bold tracking-wider mb-1">
+        <div className="absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-95 bg-gradient-to-t from-[#09080c] via-[#09080c]/85 to-transparent transition duration-300 flex flex-col justify-end p-6">
+          <span className="text-xs font-mono text-zinc-400 uppercase font-bold tracking-wider mb-1">
             {product.category}
           </span>
-          <h2 className="text-xl font-bold text-white font-sans tracking-tight mb-2">
+          <h2 className="text-xl font-bold text-white font-display tracking-tight mb-2">
             {product.title}
           </h2>
           <div className="flex items-center justify-between">
@@ -120,14 +120,14 @@ export function ProductCard({ product, translate, onSelectProject }) {
               {product.tech?.map((t) => (
                 <span
                   key={t}
-                  className="text-[10px] font-mono bg-white/20 text-white px-2 py-0.5 rounded"
+                  className="text-[10px] font-mono bg-white/15 text-white px-2.5 py-0.5 rounded-full"
                 >
                   {t}
                 </span>
               ))}
             </div>
-            <span className="inline-flex items-center gap-1 text-xs font-bold text-white bg-[#3d5945] px-3 py-1.5 rounded-full">
-              Explore <ArrowUpRight size={14} />
+            <span className="inline-flex items-center gap-1 text-xs font-display font-bold text-[#0e0d12] bg-white px-3.5 py-1.5 rounded-full">
+              Explore <ArrowUpRight size={14} weight="bold" />
             </span>
           </div>
         </div>
