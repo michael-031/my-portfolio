@@ -1,6 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useScroll, useTransform, motion } from "framer-motion";
-import { Briefcase, Building, Calendar, CheckCircle } from "@phosphor-icons/react";
+import React, { useEffect, useRef, useState } from 'react';
+import { useScroll, useTransform, motion } from 'framer-motion';
+import { Building, Calendar, FileText, ArrowUpRight } from '@phosphor-icons/react';
 
 export default function Timeline({ data }) {
   const ref = useRef(null);
@@ -12,18 +12,21 @@ export default function Timeline({ data }) {
       const rect = ref.current.getBoundingClientRect();
       setHeight(rect.height);
     }
-  }, [ref]);
+  }, [ref, data]);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start 20%", "end 80%"],
+    offset: ['start 20%', 'end 80%'],
   });
 
   const heightTransform = useTransform(scrollYProgress, [0, 1], [0, height]);
   const opacityTransform = useTransform(scrollYProgress, [0, 0.1], [0, 1]);
 
   return (
-    <section id="experience" className="w-full font-sans py-16 md:py-20 bg-gradient-to-b from-white via-[#fafcf9] to-white relative z-10">
+    <section
+      id="experience"
+      className="w-full font-sans py-16 md:py-20 bg-gradient-to-b from-white via-[#fafcf9] to-white relative z-10"
+    >
       <div className="w-full max-w-6xl mx-auto px-3 sm:px-6 md:px-8" ref={containerRef}>
         {/* Section Title Header */}
         <div className="flex flex-col items-start mb-10 md:mb-16 border-b border-gray-200/80 pb-6">
@@ -32,7 +35,7 @@ export default function Timeline({ data }) {
           </span>
           <h2
             className="text-3xl sm:text-4xl md:text-5xl font-bold text-[#1a1515] font-sans"
-            style={{ fontFamily: "Century Gothic, sans-serif" }}
+            style={{ fontFamily: 'Century Gothic, sans-serif' }}
           >
             Work Experience
           </h2>
@@ -45,7 +48,7 @@ export default function Timeline({ data }) {
         <div ref={ref} className="relative max-w-5xl mx-auto pb-12">
           {data.map((item, index) => (
             <div
-              key={index}
+              key={item.id || index}
               className="flex flex-col md:flex-row justify-start pt-6 md:pt-16 gap-6 md:gap-12"
             >
               {/* Sticky Timeline Left Date / Badge Column */}
@@ -61,7 +64,7 @@ export default function Timeline({ data }) {
                   </span>
                   <h3
                     className="text-lg sm:text-xl md:text-2xl font-bold text-[#1a1515] mt-2 font-sans"
-                    style={{ fontFamily: "Century Gothic, sans-serif" }}
+                    style={{ fontFamily: 'Century Gothic, sans-serif' }}
                   >
                     {item.role}
                   </h3>
@@ -77,19 +80,60 @@ export default function Timeline({ data }) {
                         <Building size={20} weight="bold" />
                       </div>
                       <div>
-                        <h4 className="text-base sm:text-lg font-bold text-[#3d5945] font-sans" style={{ fontFamily: "Century Gothic, sans-serif" }}>
+                        <h4
+                          className="text-base sm:text-lg font-bold text-[#3d5945] font-sans"
+                          style={{ fontFamily: 'Century Gothic, sans-serif' }}
+                        >
                           {item.company}
                         </h4>
-                        <span className="text-xs text-gray-500 font-mono">{item.location || "Software Engineering"}</span>
+                        <span className="text-xs text-gray-500 font-mono">
+                          {item.location || 'Software Engineering'}
+                        </span>
                       </div>
                     </div>
                     <span className="text-xs font-mono bg-[#3d5945] text-white px-3 py-1 rounded-full font-semibold">
-                      {item.type || "Internship"}
+                      {item.type || 'Internship'}
                     </span>
                   </div>
 
                   <div className="text-sm md:text-base text-gray-700 font-sans leading-relaxed">
-                    {item.content}
+                    {item.content ? (
+                      item.content
+                    ) : (
+                      <div className="space-y-3">
+                        {item.summary && (
+                          <p className="text-gray-700 font-sans leading-relaxed">{item.summary}</p>
+                        )}
+                        {item.highlights?.length > 0 && (
+                          <ul className="space-y-2 text-sm text-gray-600 font-sans">
+                            {item.highlights.map((highlight, hIdx) => (
+                              <li key={hIdx} className="flex items-start gap-2">
+                                <span className="w-1.5 h-1.5 rounded-full bg-[#3d5945] mt-2 shrink-0"></span>
+                                <span>{highlight}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                        {item.documentLink && (
+                          <div className="pt-3">
+                            <a
+                              href={item.documentLink.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#eef3ee] hover:bg-[#3d5945] text-[#3d5945] hover:text-white text-xs sm:text-sm font-semibold transition-all duration-200 border border-[#d3ddd3]/80 group shadow-sm"
+                            >
+                              <FileText size={18} weight="duotone" className="shrink-0" />
+                              <span>{item.documentLink.label}</span>
+                              <ArrowUpRight
+                                size={16}
+                                weight="bold"
+                                className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                              />
+                            </a>
+                          </div>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -99,7 +143,7 @@ export default function Timeline({ data }) {
           {/* Animated Scroll Bar */}
           <div
             style={{
-              height: height + "px",
+              height: height + 'px',
             }}
             className="absolute left-3 md:left-0 top-0 overflow-hidden w-[3px] bg-gradient-to-b from-transparent via-[#d3ddd3] to-transparent"
           >

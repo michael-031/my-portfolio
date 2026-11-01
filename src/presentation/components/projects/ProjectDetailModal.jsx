@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, ArrowUpRight } from '@phosphor-icons/react';
 
 export default function ProjectDetailModal({ project, initialSection = 0, onClose }) {
@@ -9,9 +9,9 @@ export default function ProjectDetailModal({ project, initialSection = 0, onClos
 
   const content = [
     {
-      id: "description",
-      title: "Description",
-      badge: "Project Overview",
+      id: 'description',
+      title: 'Description',
+      badge: 'Project Overview',
       body: (
         <p className="text-base md:text-lg text-gray-700 font-sans leading-relaxed">
           {project?.description}
@@ -29,14 +29,22 @@ export default function ProjectDetailModal({ project, initialSection = 0, onClos
             <div className="w-full h-full bg-gradient-to-br from-[#1b281e] to-[#0f1711] p-6 flex flex-col justify-between text-left text-white">
               <span className="text-xs font-mono text-[#9BB193]">{project?.category}</span>
               <div>
-                <h4 className="text-xl font-bold text-white mb-2" style={{ fontFamily: "Century Gothic, sans-serif" }}>
+                <h4
+                  className="text-xl font-bold text-white mb-2"
+                  style={{ fontFamily: 'Century Gothic, sans-serif' }}
+                >
                   {project?.title}
                 </h4>
-                <p className="text-xs text-gray-300 font-sans leading-relaxed">{project?.subtitle}</p>
+                <p className="text-xs text-gray-300 font-sans leading-relaxed">
+                  {project?.subtitle}
+                </p>
               </div>
               <div className="flex gap-1.5 flex-wrap">
                 {project?.tech?.map((t) => (
-                  <span key={t} className="text-[10px] font-mono bg-white/10 px-2 py-0.5 rounded text-gray-200">
+                  <span
+                    key={t}
+                    className="text-[10px] font-mono bg-white/10 px-2 py-0.5 rounded text-gray-200"
+                  >
                     {t}
                   </span>
                 ))}
@@ -47,8 +55,8 @@ export default function ProjectDetailModal({ project, initialSection = 0, onClos
       ),
     },
     {
-      id: "role",
-      title: "Role & Key Contributions",
+      id: 'role',
+      title: 'Role & Key Contributions',
       badge: `${project?.roleTitle || 'Contributor'} — ${project?.period || '2025'}`,
       body: (
         <ul className="space-y-4">
@@ -57,7 +65,10 @@ export default function ProjectDetailModal({ project, initialSection = 0, onClos
             const itemText = isObject ? item.text : item;
 
             return (
-              <li key={idx} className="flex items-start gap-3 text-sm md:text-base text-gray-700 font-sans leading-relaxed group">
+              <li
+                key={idx}
+                className="flex items-start gap-3 text-sm md:text-base text-gray-700 font-sans leading-relaxed group"
+              >
                 <span className="w-2.5 h-2.5 rounded-full bg-[#3d5945] mt-2 flex-shrink-0 group-hover:scale-125 group-hover:bg-[#27392c] transition-all"></span>
                 <span className="font-medium text-gray-800">{itemText}</span>
               </li>
@@ -68,8 +79,13 @@ export default function ProjectDetailModal({ project, initialSection = 0, onClos
       visual: (
         <div className="w-full h-full bg-gradient-to-br from-[#1b2b1f] via-[#121c15] to-[#0d1610] p-6 flex flex-col justify-between text-left text-white">
           <div>
-            <span className="text-xs font-mono text-[#9BB193] uppercase tracking-wider">Role & Responsibilities</span>
-            <h4 className="text-2xl font-bold text-white mt-2 mb-3" style={{ fontFamily: "Century Gothic, sans-serif" }}>
+            <span className="text-xs font-mono text-[#9BB193] uppercase tracking-wider">
+              Role & Responsibilities
+            </span>
+            <h4
+              className="text-2xl font-bold text-white mt-2 mb-3"
+              style={{ fontFamily: 'Century Gothic, sans-serif' }}
+            >
               {project?.roleTitle}
             </h4>
             <p className="text-xs text-gray-300 font-mono bg-[#3d5945]/40 p-3 rounded-lg border border-[#3d5945]/60 inline-block">
@@ -77,10 +93,15 @@ export default function ProjectDetailModal({ project, initialSection = 0, onClos
             </p>
           </div>
           <div>
-            <span className="text-[11px] font-mono text-gray-400 block mb-2">Technologies Used</span>
+            <span className="text-[11px] font-mono text-gray-400 block mb-2">
+              Technologies Used
+            </span>
             <div className="flex flex-wrap gap-2">
               {project?.tech?.map((t) => (
-                <span key={t} className="text-xs font-mono bg-white/15 px-3 py-1 rounded-full text-white font-semibold">
+                <span
+                  key={t}
+                  className="text-xs font-mono bg-white/15 px-3 py-1 rounded-full text-white font-semibold"
+                >
                   {t}
                 </span>
               ))}
@@ -90,9 +111,9 @@ export default function ProjectDetailModal({ project, initialSection = 0, onClos
       ),
     },
     {
-      id: "challenges",
-      title: "Challenges and Solution",
-      badge: "Technical Problem Solving",
+      id: 'challenges',
+      title: 'Challenges and Solution',
+      badge: 'Technical Problem Solving',
       body: (
         <p className="text-base md:text-lg text-gray-700 font-sans leading-relaxed">
           {project?.challenges}
@@ -108,12 +129,18 @@ export default function ProjectDetailModal({ project, initialSection = 0, onClos
             />
           ) : (
             <div className="w-full h-full bg-gradient-to-br from-[#27392c] to-[#121a14] p-6 flex flex-col justify-center items-start text-white">
-              <span className="text-xs font-mono text-[#9BB193] uppercase tracking-wider mb-2">Technical Solution</span>
-              <h4 className="text-xl font-bold text-white mb-2" style={{ fontFamily: "Century Gothic, sans-serif" }}>
+              <span className="text-xs font-mono text-[#9BB193] uppercase tracking-wider mb-2">
+                Technical Solution
+              </span>
+              <h4
+                className="text-xl font-bold text-white mb-2"
+                style={{ fontFamily: 'Century Gothic, sans-serif' }}
+              >
                 Architecture & Performance
               </h4>
               <p className="text-sm text-gray-300 leading-relaxed">
-                Engineered efficient data flow, low latency UI states, and robust modular code structures.
+                Engineered efficient data flow, low latency UI states, and robust modular code
+                structures.
               </p>
             </div>
           )}
@@ -131,8 +158,6 @@ export default function ProjectDetailModal({ project, initialSection = 0, onClos
     if (scrollContainerRef.current && sectionRefs.current[index]) {
       const container = scrollContainerRef.current;
       const targetElement = sectionRefs.current[index];
-
-      // Calculate position relative to modal scroll container
       const targetTop = targetElement.offsetTop - container.offsetTop - 24;
 
       container.scrollTo({
@@ -147,7 +172,6 @@ export default function ProjectDetailModal({ project, initialSection = 0, onClos
   };
 
   useEffect(() => {
-    // Lock background body scroll while modal is active
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
 
@@ -171,6 +195,7 @@ export default function ProjectDetailModal({ project, initialSection = 0, onClos
       }, 150);
       return () => clearTimeout(timer);
     }
+    return undefined;
   }, [initialSection]);
 
   const handleScroll = () => {
@@ -178,7 +203,8 @@ export default function ProjectDetailModal({ project, initialSection = 0, onClos
     if (!scrollContainerRef.current) return;
 
     const container = scrollContainerRef.current;
-    const isAtBottom = container.scrollTop + container.clientHeight >= container.scrollHeight - 40;
+    const isAtBottom =
+      container.scrollTop + container.clientHeight >= container.scrollHeight - 40;
     const isAtTop = container.scrollTop <= 30;
 
     if (isAtTop) {
@@ -263,7 +289,9 @@ export default function ProjectDetailModal({ project, initialSection = 0, onClos
               <ArrowUpRight size={14} />
             </a>
           ) : (
-            <span className="text-xs font-mono text-gray-500 shrink-0">Internal Enterprise Repository</span>
+            <span className="text-xs font-mono text-gray-500 shrink-0">
+              Internal Enterprise Repository
+            </span>
           )}
         </header>
 
@@ -275,7 +303,7 @@ export default function ProjectDetailModal({ project, initialSection = 0, onClos
           <div className="max-w-6xl w-full mx-auto">
             <h1
               className="text-4xl md:text-6xl font-extrabold text-[#1a1515] text-center mb-12 tracking-tight"
-              style={{ fontFamily: "Century Gothic, sans-serif" }}
+              style={{ fontFamily: 'Century Gothic, sans-serif' }}
             >
               {project.title}
             </h1>
@@ -304,13 +332,11 @@ export default function ProjectDetailModal({ project, initialSection = 0, onClos
                       </span>
                       <h2
                         className="text-3xl font-bold text-[#3d5945] mb-4 pointer-events-none"
-                        style={{ fontFamily: "Century Gothic, sans-serif" }}
+                        style={{ fontFamily: 'Century Gothic, sans-serif' }}
                       >
                         {item.title}
                       </h2>
-                      <div className="w-full">
-                        {item.body}
-                      </div>
+                      <div className="w-full">{item.body}</div>
                     </motion.div>
                   );
                 })}
@@ -343,7 +369,11 @@ export default function ProjectDetailModal({ project, initialSection = 0, onClos
         </div>
 
         <footer className="w-full py-4 text-center text-xs font-mono text-gray-500 border-t border-gray-200 bg-[#f8faf8] shrink-0">
-          Press <kbd className="px-1.5 py-0.5 bg-gray-200 rounded text-gray-800 font-bold border border-gray-300">Esc</kbd> or click top-left arrow to return
+          Press{' '}
+          <kbd className="px-1.5 py-0.5 bg-gray-200 rounded text-gray-800 font-bold border border-gray-300">
+            Esc
+          </kbd>{' '}
+          or click top-left arrow to return
         </footer>
       </motion.div>
     </AnimatePresence>
