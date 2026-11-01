@@ -9,6 +9,7 @@ export default function ProjectDetailModal({
   isDark = true,
 }) {
   const [activeSection, setActiveSection] = useState(initialSection);
+  const [selectedPreview, setSelectedPreview] = useState(null);
   const scrollContainerRef = useRef(null);
   const sectionRefs = useRef([]);
 
@@ -93,7 +94,26 @@ export default function ProjectDetailModal({
           })}
         </ul>
       ),
-      visual: (
+      visual: project?.roleImage ? (
+        <div className="w-full h-full bg-[#121117] flex items-center justify-center overflow-hidden relative group">
+          <img
+            src={project.roleImage}
+            alt={`${project.title} — ${project.roleTitle}`}
+            className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+          />
+          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent p-4 text-left">
+            <span className="text-[10px] font-mono text-zinc-300 uppercase tracking-wider">
+              Role &amp; Responsibilities
+            </span>
+            <h4
+              className="text-base font-bold text-white"
+              style={{ fontFamily: 'Poppins, sans-serif' }}
+            >
+              {project?.roleTitle} ({project?.period})
+            </h4>
+          </div>
+        </div>
+      ) : (
         <div className="w-full h-full bg-gradient-to-br from-[#191822] via-[#121117] to-[#0b0a0f] p-6 flex flex-col justify-between text-left text-white">
           <div>
             <span className="text-xs font-mono text-zinc-400 uppercase tracking-wider">
@@ -174,6 +194,7 @@ export default function ProjectDetailModal({
 
   const scrollToSection = (index) => {
     setActiveSection(index);
+    setSelectedPreview(null);
     isProgrammaticScrollRef.current = true;
 
     if (scrollContainerRef.current && sectionRefs.current[index]) {
@@ -229,12 +250,19 @@ export default function ProjectDetailModal({
     const isAtTop = container.scrollTop <= 30;
 
     if (isAtTop) {
-      setActiveSection(0);
+      setActiveSection((prev) => {
+        if (prev !== 0) setSelectedPreview(null);
+        return 0;
+      });
       return;
     }
 
     if (isAtBottom) {
-      setActiveSection(content.length - 1);
+      const lastIdx = content.length - 1;
+      setActiveSection((prev) => {
+        if (prev !== lastIdx) setSelectedPreview(null);
+        return lastIdx;
+      });
       return;
     }
 
@@ -256,7 +284,10 @@ export default function ProjectDetailModal({
       }
     });
 
-    setActiveSection(closestIndex);
+    setActiveSection((prev) => {
+      if (prev !== closestIndex) setSelectedPreview(null);
+      return closestIndex;
+    });
   };
 
   if (!project) return null;
@@ -408,14 +439,27 @@ export default function ProjectDetailModal({
                   <div className="w-full h-full rounded bg-zinc-900 overflow-hidden relative">
                     <AnimatePresence mode="wait">
                       <motion.div
-                        key={activeSection}
+                        key={selectedPreview ? selectedPreview.label : activeSection}
                         initial={{ opacity: 0, scale: 0.96 }}
                         animate={{ opacity: 1, scale: 1 }}
                         exit={{ opacity: 0, scale: 1.04 }}
                         transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                         className="w-full h-full"
                       >
-                        {content[activeSection].visual}
+                        {selectedPreview ? (
+                          <div className="w-full h-full bg-[#121117] flex items-center justify-center overflow-hidden relative group">
+                            <img
+                              src={selectedPreview.src}
+                              alt={selectedPreview.label}
+                              className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
+                            />
+                            <div className="absolute bottom-2 right-2 bg-black/75 backdrop-blur-md px-2.5 py-1 rounded-full text-[10px] font-mono text-white border border-white/15">
+                              {selectedPreview.label}
+                            </div>
+                          </div>
+                        ) : (
+                          content[activeSection].visual
+                        )}
                       </motion.div>
                     </AnimatePresence>
                   </div>
@@ -424,6 +468,46 @@ export default function ProjectDetailModal({
                 <div className="w-[112%] max-w-xl h-3.5 bg-gradient-to-r from-zinc-700 via-zinc-500 to-zinc-700 rounded-b-xl shadow-md relative -mt-1 border-t border-zinc-600">
                   <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-1 bg-zinc-800 rounded-b"></div>
                 </div>
+
+                {project?.images?.length > 0 && (
+                  <div className="w-full max-w-lg mt-5">
+                    <span
+                      className={`block text-[11px] font-mono uppercase tracking-wider mb-2 text-center ${
+                        isDark ? 'text-zinc-400' : 'text-gray-500'
+                      }`}
+                    >
+                      Project Screens ({project.images.length}) — Click to Preview
+                    </span>
+                    <div className="grid grid-cols-4 sm:grid-cols-7 gap-2">
+                      {project.images.map((imgItem, idx) => {
+                        const isCurrent = selectedPreview?.src === imgItem.src;
+                        return (
+                          <button
+                            key={imgItem.label || idx}
+                            type="button"
+                            onClick={() => setSelectedPreview(imgItem)}
+                            className={`group relative aspect-[16/10] rounded-lg overflow-hidden border-2 transition-all cursor-pointer ${
+                              isCurrent
+                                ? isDark
+                                  ? 'border-white scale-105 shadow-md'
+                                  : 'border-[#3d5945] scale-105 shadow-md'
+                                : isDark
+                                  ? 'border-white/15 opacity-70 hover:opacity-100 hover:border-white/50'
+                                  : 'border-gray-300 opacity-75 hover:opacity-100 hover:border-[#3d5945]'
+                            }`}
+                            title={imgItem.label}
+                          >
+                            <img
+                              src={imgItem.src}
+                              alt={imgItem.label}
+                              className="w-full h-full object-cover object-top"
+                            />
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>

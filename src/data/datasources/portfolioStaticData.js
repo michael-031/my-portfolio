@@ -14,6 +14,13 @@ import figmaIcon from '../../assets/figma.png';
 import appscriptIcon from '../../assets/google-apps-script.png';
 import lemivonImg from '../../assets/projects/Lemivon.png';
 import lemivonMobileImg from '../../assets/projects/lemivon_mobile.png';
+import tecnectHeroImg from '../../assets/projects/tecnect_hero.png';
+import tecnectLandingImg from '../../assets/projects/tecnect_landing.png';
+import tecnectLoginImg from '../../assets/projects/tecnect_login.png';
+import tecnectRegisterImg from '../../assets/projects/tecnect_register.png';
+import tecnectMarketplaceImg from '../../assets/projects/tecnect_marketplace.png';
+import tecnectPostImg from '../../assets/projects/tecnect_post.png';
+import tecnectFullpageImg from '../../assets/projects/tecnect_fullpage.png';
 import runImg from '../../assets/About Me/my_pitik.jpg';
 import run1Img from '../../assets/About Me/10k_finish.jpg';
 import run2Img from '../../assets/About Me/10k_with_divan.jpg';
@@ -170,21 +177,33 @@ export const tecnectProjectData = {
   title: 'TecnecT',
   monogram: 'TCT',
   category: 'Campus Web Platform',
-  roleTitle: 'UI/UX & Frontend Developer',
+  roleTitle: 'Frontend Developer',
   period: '2025',
   displayLink: 'github.com/michael-031/tecnect',
   link: 'https://github.com/michael-031',
-  subtitle: 'Campus Equipment Rentals, Lost & Found, and Real-Time Messaging',
+  image: tecnectLandingImg,
+  roleImage: tecnectLoginImg,
+  secondaryImage: tecnectMarketplaceImg,
+  images: [
+    { src: tecnectLandingImg, label: 'Landing & Login UI' },
+    { src: tecnectHeroImg, label: 'Campus Hero View' },
+    { src: tecnectMarketplaceImg, label: 'Marketplace Grid' },
+    { src: tecnectLoginImg, label: 'Welcome Login' },
+    { src: tecnectRegisterImg, label: 'Create Account' },
+    { src: tecnectPostImg, label: 'Post an Item' },
+    { src: tecnectFullpageImg, label: 'Full Web Page' },
+  ],
+  subtitle: 'Campus Marketplace for Trading, Equipment Rentals, and Lost & Found',
   description:
-    'TecnecT is a comprehensive campus web application empowering students and faculty to seamlessly handle equipment rentals, manage lost-and-found item tracking, and communicate instantly through embedded real-time messaging.',
+    'TecnecT (TeknnecT) is a comprehensive campus marketplace and web application empowering students to trade items, rent campus equipment, report or find lost items, and connect with fellow students through real-time messaging.',
   contributions: [
-    'Designed and developed the user interface for a campus web application supporting rentals, lost-and-found services, and real-time messaging.',
-    'Built responsive frontend components and ensured smooth user experience across devices.',
-    'Collaborated with backend developers to integrate APIs and application features.',
+    'Developed responsive frontend interfaces for the campus marketplace, item listings, category filters, and student messaging.',
+    'Built user authentication screens (Login & Create Account flows) and the interactive "Post an Item" multi-type form (Trade, Rent, Lost, Found).',
+    'Translated the TeknnecT Figma UI design into reusable React components and integrated frontend views with backend APIs.',
   ],
   challenges:
-    'Integrating real-time messaging alongside campus inventory rentals required synchronized state updates across mobile and desktop viewports. I engineered responsive components and streamlined WebSocket API integration to maintain fast data delivery and fluid user interaction.',
-  tech: ['React', 'Python', 'FastAPI', 'WebSockets', 'Tailwind CSS'],
+    'Building a unified frontend interface supporting multiple campus listing workflows (Trade, Rent, Lost, and Found) alongside real-time student messaging required clean state management and responsive layouts. I engineered modular React components, dynamic category filtering, and streamlined API integration to deliver a fast and intuitive user experience across devices.',
+  tech: ['React', 'JavaScript', 'Tailwind CSS', 'Figma', 'WebSockets'],
 };
 
 export const lemivonProjectData = {
@@ -197,6 +216,7 @@ export const lemivonProjectData = {
   displayLink: 'study-taa.vercel.app',
   link: 'https://study-taa.vercel.app',
   image: lemivonImg,
+  secondaryImage: lemivonMobileImg,
   subtitle: 'AI-Powered Study & Automated Material Organization Platform',
   description:
     'Lemivon is a modern study platform that uses AI to help users organize study materials and improve learning efficiency. I was responsible for backend development and contributed to parts of the frontend, ensuring a functional and user-friendly experience.',
@@ -297,54 +317,50 @@ export const parallaxProductsData = [
     title: 'TecnecT',
     category: 'Project Name',
     projectDetails: tecnectProjectData,
-    type: 'mock',
-    subtitle: 'Campus Equipment Rentals, Lost & Found, and Real-Time Messaging',
-    bgGradient: 'from-slate-950 via-[#27392c] to-[#1a1515]',
+    sectionIndex: 0,
+    type: 'image',
+    thumbnail: tecnectHeroImg,
+    subtitle: 'Campus Marketplace for Trading, Equipment Rentals, and Lost & Found',
     tech: ['TecnecT', 'Campus Web App', '2025'],
   },
   {
-    title: 'Campus Web Platform',
-    category: 'Brief Description',
+    title: 'Welcome & Login Interface',
+    category: 'Campus Web Platform',
     projectDetails: tecnectProjectData,
-    type: 'mock',
-    subtitle:
-      'Comprehensive campus web application supporting student equipment rentals, lost-and-found item tracking, and real-time messaging.',
-    bgGradient: 'from-zinc-950 via-slate-900 to-[#1e2e24]',
-    tech: ['Campus App', 'Rentals', 'Messaging'],
+    sectionIndex: 0,
+    type: 'image',
+    thumbnail: tecnectLandingImg,
+    tech: ['Campus App', 'Authentication UI', 'React'],
   },
   {
-    title: 'Real-Time API & Stack',
-    category: 'Tech Stack Used',
-    projectDetails: tecnectProjectData,
-    type: 'code',
-    filename: 'server.py',
-    codeSnippet: `from fastapi import FastAPI, WebSocket
-
-app = FastAPI(title="TecnecT Realtime API")
-
-@app.websocket("/ws/chat/{student_id}")
-async def chat_endpoint(websocket: WebSocket, student_id: str):
-    await manager.connect(websocket, student_id)
-    # Real-time WebSocket messaging`,
-    tech: ['React', 'Python', 'FastAPI', 'WebSockets'],
-  },
-  {
-    title: 'UI/UX & Frontend Dev',
+    title: 'Frontend Developer',
     category: 'My Role',
     projectDetails: tecnectProjectData,
+    sectionIndex: 1,
     type: 'mock',
     subtitle:
-      'Designed & developed campus application UI, built responsive frontend components, and integrated real-time APIs.',
+      'Developed responsive React frontend interfaces, authentication flows, campus marketplace listings, item posting forms, and real-time messaging views.',
     bgGradient: 'from-[#27392c] via-slate-900 to-black',
-    tech: ['UI/UX Developer', 'Frontend', 'API Integration'],
+    tech: ['Frontend Developer', 'React', 'Tailwind CSS'],
   },
   {
-    title: 'TecnecT Campus Interface',
+    title: 'Campus Marketplace Grid',
+    category: 'Frontend UI',
+    projectDetails: tecnectProjectData,
+    sectionIndex: 2,
+    type: 'image',
+    thumbnail: tecnectMarketplaceImg,
+    tech: ['Trade & Rent', 'Lost & Found', 'Search & Filter'],
+  },
+  {
+    title: 'TecnecT Account & Listing UI',
     category: 'Sample Image of the App',
     projectDetails: tecnectProjectData,
+    sectionIndex: 0,
     type: 'image',
-    thumbnail: lemivonMobileImg,
-    tech: ['Mobile & Web UX', 'Campus App'],
+    thumbnail: tecnectRegisterImg,
+    secondaryImage: tecnectPostImg,
+    tech: ['Create Account UI', 'Post Item Form'],
   },
 
   // ROW 3: Lemivon

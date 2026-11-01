@@ -13,7 +13,9 @@ export class Project {
     displayLink,
     link,
     image = null,
+    roleImage = null,
     secondaryImage = null,
+    images = [],
     subtitle,
     description,
     contributions = [],
@@ -29,7 +31,9 @@ export class Project {
     this.displayLink = displayLink;
     this.link = link;
     this.image = image;
+    this.roleImage = roleImage;
     this.secondaryImage = secondaryImage;
+    this.images = images;
     this.subtitle = subtitle;
     this.description = description;
     this.contributions = contributions;
