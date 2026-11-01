@@ -2,7 +2,12 @@ import React, { useEffect, useRef, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowLeft, ArrowUpRight } from '@phosphor-icons/react';
 
-export default function ProjectDetailModal({ project, initialSection = 0, onClose }) {
+export default function ProjectDetailModal({
+  project,
+  initialSection = 0,
+  onClose,
+  isDark = true,
+}) {
   const [activeSection, setActiveSection] = useState(initialSection);
   const scrollContainerRef = useRef(null);
   const sectionRefs = useRef([]);
@@ -13,7 +18,11 @@ export default function ProjectDetailModal({ project, initialSection = 0, onClos
       title: 'Description',
       badge: 'Project Overview',
       body: (
-        <p className="text-base md:text-lg text-zinc-300 font-sans leading-relaxed">
+        <p
+          className={`text-base md:text-lg font-sans leading-relaxed ${
+            isDark ? 'text-zinc-300' : 'text-gray-700'
+          }`}
+        >
           {project?.description}
         </p>
       ),
@@ -67,10 +76,18 @@ export default function ProjectDetailModal({ project, initialSection = 0, onClos
             return (
               <li
                 key={idx}
-                className="flex items-start gap-3 text-sm md:text-base text-zinc-300 font-sans leading-relaxed group"
+                className={`flex items-start gap-3 text-sm md:text-base font-sans leading-relaxed group ${
+                  isDark ? 'text-zinc-300' : 'text-gray-700'
+                }`}
               >
-                <span className="w-2.5 h-2.5 rounded-full bg-white mt-2 flex-shrink-0 group-hover:scale-125 transition-all"></span>
-                <span className="font-medium text-zinc-200">{itemText}</span>
+                <span
+                  className={`w-2.5 h-2.5 rounded-full mt-2 flex-shrink-0 group-hover:scale-125 transition-all ${
+                    isDark ? 'bg-white' : 'bg-[#3d5945]'
+                  }`}
+                ></span>
+                <span className={`font-medium ${isDark ? 'text-zinc-200' : 'text-gray-800'}`}>
+                  {itemText}
+                </span>
               </li>
             );
           })}
@@ -115,7 +132,11 @@ export default function ProjectDetailModal({ project, initialSection = 0, onClos
       title: 'Challenges and Solution',
       badge: 'Technical Problem Solving',
       body: (
-        <p className="text-base md:text-lg text-zinc-300 font-sans leading-relaxed">
+        <p
+          className={`text-base md:text-lg font-sans leading-relaxed ${
+            isDark ? 'text-zinc-300' : 'text-gray-700'
+          }`}
+        >
           {project?.challenges}
         </p>
       ),
@@ -247,19 +268,37 @@ export default function ProjectDetailModal({ project, initialSection = 0, onClos
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.99 }}
         transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-        className="fixed inset-0 z-[100] bg-[#0e0d12] text-white overflow-hidden font-sans flex flex-col justify-between"
+        className={`fixed inset-0 z-[100] overflow-hidden font-sans flex flex-col justify-between ${
+          isDark ? 'bg-[#0e0d12] text-white' : 'bg-white text-[#1a1515]'
+        }`}
       >
-        <header className="w-full px-8 py-4 flex items-center justify-between border-b border-white/10 bg-[#121117]/90 backdrop-blur-md shrink-0 z-10 gap-4">
+        <header
+          className={`w-full px-8 py-4 flex items-center justify-between border-b backdrop-blur-md shrink-0 z-10 gap-4 ${
+            isDark
+              ? 'border-white/10 bg-[#121117]/90'
+              : 'border-gray-200/80 bg-white/90'
+          }`}
+        >
           <button
             onClick={onClose}
-            className="flex items-center justify-center w-10 h-10 rounded-full bg-white/10 text-white hover:bg-white hover:text-[#0e0d12] transition-all duration-200 cursor-pointer shadow-sm hover:scale-105 active:scale-95 shrink-0"
+            className={`flex items-center justify-center w-10 h-10 rounded-full transition-all duration-200 cursor-pointer shadow-sm hover:scale-105 active:scale-95 shrink-0 ${
+              isDark
+                ? 'bg-white/10 text-white hover:bg-white hover:text-[#0e0d12]'
+                : 'bg-[#eef3ee] text-[#3d5945] hover:bg-[#3d5945] hover:text-white'
+            }`}
             aria-label="Back to Portfolio"
             title="Back to Portfolio (Esc)"
           >
             <ArrowLeft size={20} weight="bold" />
           </button>
 
-          <div className="flex items-center gap-1 sm:gap-2 bg-[#09080c] p-1 rounded-full border border-white/10 overflow-x-auto max-w-full">
+          <div
+            className={`flex items-center gap-1 sm:gap-2 p-1 rounded-full border overflow-x-auto max-w-full ${
+              isDark
+                ? 'bg-[#09080c] border-white/10'
+                : 'bg-[#f4f7f4] border-gray-200/60'
+            }`}
+          >
             {content.map((sec, idx) => {
               const isSelected = activeSection === idx;
               return (
@@ -268,8 +307,12 @@ export default function ProjectDetailModal({ project, initialSection = 0, onClos
                   onClick={() => scrollToSection(idx)}
                   className={`px-3 sm:px-4 py-1.5 rounded-full text-xs font-mono font-medium transition-all duration-200 cursor-pointer whitespace-nowrap ${
                     isSelected
-                      ? 'bg-white text-[#0e0d12] shadow-sm font-semibold scale-105'
-                      : 'text-zinc-400 hover:text-white hover:bg-white/10'
+                      ? isDark
+                        ? 'bg-white text-[#0e0d12] shadow-sm font-semibold scale-105'
+                        : 'bg-[#3d5945] text-white shadow-sm font-semibold scale-105'
+                      : isDark
+                        ? 'text-zinc-400 hover:text-white hover:bg-white/10'
+                        : 'text-gray-600 hover:text-[#3d5945] hover:bg-white/70'
                   }`}
                 >
                   {sec.title}
@@ -283,7 +326,11 @@ export default function ProjectDetailModal({ project, initialSection = 0, onClos
               href={project.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-mono text-zinc-200 hover:text-white transition-colors underline underline-offset-4 font-semibold shrink-0"
+              className={`inline-flex items-center gap-1.5 text-xs sm:text-sm font-mono transition-colors underline underline-offset-4 font-semibold shrink-0 ${
+                isDark
+                  ? 'text-zinc-200 hover:text-white'
+                  : 'text-[#3d5945] hover:text-[#27392c]'
+              }`}
             >
               {project.displayLink || project.link.replace(/^https?:\/\//, '')}
               <ArrowUpRight size={14} />
@@ -302,7 +349,9 @@ export default function ProjectDetailModal({ project, initialSection = 0, onClos
         >
           <div className="max-w-6xl w-full mx-auto">
             <h1
-              className="text-4xl md:text-6xl font-extrabold metallic-text text-center mb-12 tracking-tight"
+              className={`text-4xl md:text-6xl font-extrabold text-center mb-12 tracking-tight ${
+                isDark ? 'metallic-text' : 'text-[#1a1515]'
+              }`}
               style={{ fontFamily: 'Poppins, sans-serif' }}
             >
               {project.title}
@@ -322,16 +371,28 @@ export default function ProjectDetailModal({ project, initialSection = 0, onClos
                       transition={{ duration: 0.3 }}
                       className={`flex flex-col items-start text-left min-h-[260px] justify-center border-l-4 pl-6 pr-4 py-6 rounded-r-2xl cursor-pointer transition-all duration-300 ${
                         isActive
-                          ? 'border-white bg-white/5 shadow-sm'
-                          : 'border-transparent hover:border-white/25 hover:bg-white/[0.02]'
+                          ? isDark
+                            ? 'border-white bg-white/5 shadow-sm'
+                            : 'border-[#3d5945] bg-[#3d5945]/5 shadow-sm'
+                          : isDark
+                            ? 'border-transparent hover:border-white/25 hover:bg-white/[0.02]'
+                            : 'border-transparent hover:border-gray-300 hover:bg-gray-50/70'
                       }`}
                       title="Click to scroll to and focus this section"
                     >
-                      <span className="text-xs font-mono font-bold text-zinc-200 bg-white/10 px-3.5 py-1 rounded-full border border-white/15 mb-4 pointer-events-none">
+                      <span
+                        className={`text-xs font-mono font-bold px-3.5 py-1 rounded-full border mb-4 pointer-events-none ${
+                          isDark
+                            ? 'text-zinc-200 bg-white/10 border-white/15'
+                            : 'text-[#3d5945] bg-[#eef3ee] border-[#d3ddd3]'
+                        }`}
+                      >
                         {item.badge}
                       </span>
                       <h2
-                        className="text-3xl font-bold text-white mb-4 pointer-events-none"
+                        className={`text-3xl font-bold mb-4 pointer-events-none ${
+                          isDark ? 'text-white' : 'text-[#3d5945]'
+                        }`}
                         style={{ fontFamily: 'Poppins, sans-serif' }}
                       >
                         {item.title}
@@ -368,9 +429,21 @@ export default function ProjectDetailModal({ project, initialSection = 0, onClos
           </div>
         </div>
 
-        <footer className="w-full py-4 text-center text-xs font-mono text-zinc-400 border-t border-white/10 bg-[#121117] shrink-0">
+        <footer
+          className={`w-full py-4 text-center text-xs font-mono border-t shrink-0 ${
+            isDark
+              ? 'text-zinc-400 border-white/10 bg-[#121117]'
+              : 'text-gray-500 border-gray-200 bg-[#f8faf8]'
+          }`}
+        >
           Press{' '}
-          <kbd className="px-1.5 py-0.5 bg-white/10 rounded text-white font-bold border border-white/20">
+          <kbd
+            className={`px-1.5 py-0.5 rounded font-bold border ${
+              isDark
+                ? 'bg-white/10 text-white border-white/20'
+                : 'bg-gray-200 text-gray-800 border-gray-300'
+            }`}
+          >
             Esc
           </kbd>{' '}
           or click top-left arrow to return

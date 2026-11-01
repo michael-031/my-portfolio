@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-export default function TechStackSection({ techItems = [] }) {
+export default function TechStackSection({ techItems = [], isDark = true }) {
   return (
     <section id="tech-stack" className="py-16 md:py-24 bg-transparent my-6 md:my-12 relative z-10">
       <motion.div
@@ -17,11 +17,15 @@ export default function TechStackSection({ techItems = [] }) {
           }}
           className="flex flex-col items-start mb-8 md:mb-12"
         >
-          <span className="text-zinc-400 uppercase tracking-wider text-xs font-bold font-mono mb-2">
+          <span
+            className={`uppercase tracking-wider text-xs font-bold font-mono mb-2 ${
+              isDark ? 'text-zinc-400' : 'text-[#556b4f]'
+            }`}
+          >
             03 — Expertise
           </span>
           <h2
-            className="text-3xl sm:text-4xl font-bold text-white"
+            className={`text-3xl sm:text-4xl font-bold ${isDark ? 'text-white' : 'text-[#1a1515]'}`}
             style={{ fontFamily: 'Poppins, sans-serif' }}
           >
             My stack

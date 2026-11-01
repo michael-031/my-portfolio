@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { AnimatePresence } from 'framer-motion';
 import { usePortfolioData } from '../../application/hooks/usePortfolioData';
 import { useActiveSection } from '../../application/hooks/useActiveSection';
+import { useTheme } from '../../application/hooks/useTheme';
 import SplashScreen from '../components/common/SplashScreen';
 import Navbar from '../components/layout/Navbar';
 import HeroParallaxWrapper from '../components/projects/HeroParallax';
@@ -19,6 +20,7 @@ export default function PortfolioPage() {
 
   const { profile, parallaxProducts, experiences, techStack } = usePortfolioData();
   const { activeSection, scrollToSection } = useActiveSection();
+  const { isDark, toggleTheme } = useTheme('dark');
 
   const handleSelectProject = (project, section = 0) => {
     if (project) {
@@ -39,6 +41,8 @@ export default function PortfolioPage() {
         navigation={profile.navigation}
         activeSection={activeSection}
         onNavigate={scrollToSection}
+        isDark={isDark}
+        onToggleTheme={toggleTheme}
       />
 
       {selectedProject && (
@@ -46,21 +50,22 @@ export default function PortfolioPage() {
           project={selectedProject.project || selectedProject}
           initialSection={selectedProject.section ?? 0}
           onClose={() => setSelectedProject(null)}
+          isDark={isDark}
         />
       )}
 
       <HeroParallaxWrapper products={parallaxProducts} onSelectProject={handleSelectProject}>
-        <HeroSection profile={profile} onNavigate={scrollToSection} />
-        <ProjectsHeaderSection onNavigate={scrollToSection} />
+        <HeroSection profile={profile} onNavigate={scrollToSection} isDark={isDark} />
+        <ProjectsHeaderSection onNavigate={scrollToSection} isDark={isDark} />
       </HeroParallaxWrapper>
 
-      <ExperienceSection experiences={experiences} />
+      <ExperienceSection experiences={experiences} isDark={isDark} />
 
-      <TechStackSection techItems={techStack.all} />
+      <TechStackSection techItems={techStack.all} isDark={isDark} />
 
-      <AboutSection gallery={profile.gallery} slogan={profile.aboutSlogan} />
+      <AboutSection gallery={profile.gallery} slogan={profile.aboutSlogan} isDark={isDark} />
 
-      <ContactSection contact={profile.contact} socials={profile.socials} />
+      <ContactSection contact={profile.contact} socials={profile.socials} isDark={isDark} />
     </main>
   );
 }

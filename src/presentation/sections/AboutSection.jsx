@@ -2,18 +2,22 @@ import React from 'react';
 import { CaretLeft, CaretRight } from '@phosphor-icons/react';
 import { useCarousel } from '../../application/hooks/useCarousel';
 
-export default function AboutSection({ gallery = [], slogan = '' }) {
+export default function AboutSection({ gallery = [], slogan = '', isDark = true }) {
   const { currentSlide, goToSlide, goToPrevious, goToNext } = useCarousel(gallery.length, 3800);
 
   return (
     <section id="about-me" className="about-me-section py-16 md:py-24">
       <div className="about-me-shell max-w-6xl mx-auto px-3 sm:px-6 md:px-8">
         <div className="flex flex-col items-center mb-8 md:mb-12 text-center">
-          <span className="text-zinc-400 uppercase tracking-wider text-xs font-bold font-mono mb-2">
+          <span
+            className={`uppercase tracking-wider text-xs font-bold font-mono mb-2 ${
+              isDark ? 'text-zinc-400' : 'text-[#556b4f]'
+            }`}
+          >
             03 — Story
           </span>
           <h2
-            className="about-me-title text-3xl sm:text-4xl font-bold text-white"
+            className="about-me-title text-3xl sm:text-4xl font-bold"
             style={{ fontFamily: 'Poppins, sans-serif' }}
           >
             About Me
@@ -30,7 +34,7 @@ export default function AboutSection({ gallery = [], slogan = '' }) {
             <CaretLeft size={20} weight="bold" />
           </button>
 
-          <div className="about-carousel-stage rounded-2xl overflow-hidden shadow-lg border border-white/12">
+          <div className="about-carousel-stage rounded-2xl overflow-hidden shadow-lg">
             {gallery.map((image, index) => (
               <img
                 key={image.alt}
@@ -63,7 +67,7 @@ export default function AboutSection({ gallery = [], slogan = '' }) {
           ))}
         </div>
 
-        <p className="about-slogan mt-6 md:mt-8 font-medium text-base sm:text-lg text-center text-zinc-300">
+        <p className="about-slogan mt-6 md:mt-8 font-medium text-base sm:text-lg text-center">
           {slogan}
         </p>
       </div>

@@ -2,8 +2,7 @@ import React from 'react';
 import { GithubLogo } from '@phosphor-icons/react';
 import { useGitHubContributions } from '../../../application/hooks/useGitHubContributions';
 
-// Dark Obsidian Monochrome & Silver-White Palette
-const LEVEL_COLORS = [
+const DARK_LEVEL_COLORS = [
   '#191820', // level 0 - deep obsidian empty cell
   '#2f2e3b', // level 1 - muted slate
   '#525166', // level 2 - mid steel
@@ -11,7 +10,15 @@ const LEVEL_COLORS = [
   '#ffffff', // level 4 - pure high-contrast white
 ];
 
-export default function GitHubContributions({ username = 'michael-031' }) {
+const LIGHT_LEVEL_COLORS = [
+  '#f0f4ef', // level 0 - soft neutral off-white/green
+  '#c5dac1', // level 1 - light sage
+  '#9bb193', // level 2 - mid sage
+  '#556b4f', // level 3 - forest sage
+  '#3d5945', // level 4 - primary theme forest green
+];
+
+export default function GitHubContributions({ username = 'michael-031', isDark = true }) {
   const {
     loading,
     error,
@@ -25,17 +32,33 @@ export default function GitHubContributions({ username = 'michael-031' }) {
     monthLabels,
   } = useGitHubContributions(username);
 
+  const levelColors = isDark ? DARK_LEVEL_COLORS : LIGHT_LEVEL_COLORS;
+
   return (
-    <div className="w-full bg-[#121117]/90 backdrop-blur-md border border-white/10 rounded-2xl p-4 sm:p-6 shadow-xl font-sans transition-all duration-300 hover:border-white/20">
+    <div
+      className={`w-full backdrop-blur-md border rounded-2xl p-4 sm:p-6 font-sans transition-all duration-300 ${
+        isDark
+          ? 'bg-[#121117]/90 border-white/10 shadow-xl hover:border-white/20'
+          : 'bg-white/90 border-[#e2e8f0] shadow-sm hover:shadow-md'
+      }`}
+    >
       {/* Top Header Row */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-5">
         <div className="flex items-center gap-2.5">
-          <div className="p-2 bg-white/8 border border-white/12 rounded-xl text-white">
+          <div
+            className={`p-2 rounded-xl ${
+              isDark
+                ? 'bg-white/8 border border-white/12 text-white'
+                : 'bg-[#eef3ee] text-[#3d5945]'
+            }`}
+          >
             <GithubLogo size={22} weight="bold" />
           </div>
           <div>
             <h3
-              className="text-base sm:text-lg font-bold text-white tracking-tight"
+              className={`text-base sm:text-lg font-bold tracking-tight ${
+                isDark ? 'text-white' : 'text-[#1a1515]'
+              }`}
               style={{ fontFamily: 'Poppins, sans-serif' }}
             >
               {loading
@@ -44,9 +67,13 @@ export default function GitHubContributions({ username = 'michael-031' }) {
                     selectedYear === 'lastYear' ? 'in the last year' : `in ${selectedYear}`
                   }`}
             </h3>
-            <p className="text-xs text-zinc-400 font-mono mt-0.5">
+            <p
+              className={`text-xs font-mono mt-0.5 ${
+                isDark ? 'text-zinc-400' : 'text-[#556b4f]'
+              }`}
+            >
               {hoveredDay ? (
-                <span className="text-white font-semibold">
+                <span className={`font-semibold ${isDark ? 'text-white' : 'text-[#3d5945]'}`}>
                   {hoveredDay.count} contribution{hoveredDay.count === 1 ? '' : 's'} on{' '}
                   {new Date(hoveredDay.date).toLocaleDateString('en-US', {
                     month: 'short',
@@ -67,8 +94,12 @@ export default function GitHubContributions({ username = 'michael-031' }) {
             onClick={() => setSelectedYear('lastYear')}
             className={`px-3 py-1.5 text-xs font-semibold font-mono rounded-lg transition-all cursor-pointer ${
               selectedYear === 'lastYear'
-                ? 'bg-white text-[#0e0d12] shadow-sm'
-                : 'bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white border border-white/10'
+                ? isDark
+                  ? 'bg-white text-[#0e0d12] shadow-sm'
+                  : 'bg-[#3d5945] text-white shadow-sm'
+                : isDark
+                  ? 'bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white border border-white/10'
+                  : 'bg-[#f0f4ef] text-[#556b4f] hover:bg-[#e2ebe0] hover:text-[#27392c]'
             }`}
           >
             Last Year
@@ -79,8 +110,12 @@ export default function GitHubContributions({ username = 'michael-031' }) {
               onClick={() => setSelectedYear(y)}
               className={`px-3 py-1.5 text-xs font-semibold font-mono rounded-lg transition-all cursor-pointer ${
                 selectedYear === y
-                  ? 'bg-white text-[#0e0d12] shadow-sm'
-                  : 'bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white border border-white/10'
+                  ? isDark
+                    ? 'bg-white text-[#0e0d12] shadow-sm'
+                    : 'bg-[#3d5945] text-white shadow-sm'
+                  : isDark
+                    ? 'bg-white/5 text-zinc-400 hover:bg-white/10 hover:text-white border border-white/10'
+                    : 'bg-[#f0f4ef] text-[#556b4f] hover:bg-[#e2ebe0] hover:text-[#27392c]'
               }`}
             >
               {y}
@@ -92,7 +127,11 @@ export default function GitHubContributions({ username = 'michael-031' }) {
       {/* Main Contribution Graph SVG (Fluid 100% Responsive - NO HORIZONTAL SCROLL) */}
       <div className="w-full">
         {loading ? (
-          <div className="h-[130px] flex items-center justify-center text-xs text-zinc-400 font-mono">
+          <div
+            className={`h-[130px] flex items-center justify-center text-xs font-mono ${
+              isDark ? 'text-zinc-400' : 'text-[#556b4f]'
+            }`}
+          >
             Fetching GitHub activity from @{username}...
           </div>
         ) : error || !weeks.length ? (
@@ -102,7 +141,9 @@ export default function GitHubContributions({ username = 'michael-031' }) {
               href={`https://github.com/${username}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white font-semibold hover:underline"
+              className={`font-semibold hover:underline ${
+                isDark ? 'text-white' : 'text-[#3d5945]'
+              }`}
             >
               View profile directly on GitHub ↗
             </a>
@@ -119,20 +160,34 @@ export default function GitHubContributions({ username = 'michael-031' }) {
                 key={idx}
                 x={32 + m.weekIndex * 13.2}
                 y="13"
-                className="fill-zinc-400 text-[10px] font-mono"
+                className={`text-[10px] font-mono ${
+                  isDark ? 'fill-zinc-400' : 'fill-[#556b4f]'
+                }`}
               >
                 {m.text}
               </text>
             ))}
 
             {/* Day Labels (Mon, Wed, Fri) */}
-            <text x="0" y="44" className="fill-zinc-400 text-[9.5px] font-mono">
+            <text
+              x="0"
+              y="44"
+              className={`text-[9.5px] font-mono ${isDark ? 'fill-zinc-400' : 'fill-[#556b4f]'}`}
+            >
               Mon
             </text>
-            <text x="0" y="70" className="fill-zinc-400 text-[9.5px] font-mono">
+            <text
+              x="0"
+              y="70"
+              className={`text-[9.5px] font-mono ${isDark ? 'fill-zinc-400' : 'fill-[#556b4f]'}`}
+            >
               Wed
             </text>
-            <text x="0" y="96" className="fill-zinc-400 text-[9.5px] font-mono">
+            <text
+              x="0"
+              y="96"
+              className={`text-[9.5px] font-mono ${isDark ? 'fill-zinc-400' : 'fill-[#556b4f]'}`}
+            >
               Fri
             </text>
 
@@ -142,7 +197,7 @@ export default function GitHubContributions({ username = 'michael-031' }) {
               return week.map((day, dIdx) => {
                 if (!day) return null;
                 const yPos = 23 + dIdx * 13;
-                const color = LEVEL_COLORS[day.level] || LEVEL_COLORS[0];
+                const color = levelColors[day.level] || levelColors[0];
                 const formattedDate = new Date(day.date).toLocaleDateString('en-US', {
                   month: 'short',
                   day: 'numeric',
@@ -162,7 +217,9 @@ export default function GitHubContributions({ username = 'michael-031' }) {
                     rx="2.5"
                     ry="2.5"
                     fill={color}
-                    className="transition-all duration-150 cursor-pointer hover:stroke-white hover:stroke-1"
+                    className={`transition-all duration-150 cursor-pointer hover:stroke-1 ${
+                      isDark ? 'hover:stroke-white' : 'hover:stroke-[#3d5945]'
+                    }`}
                     onMouseEnter={() => setHoveredDay(day)}
                     onMouseLeave={() => setHoveredDay(null)}
                   >
@@ -176,22 +233,30 @@ export default function GitHubContributions({ username = 'michael-031' }) {
       </div>
 
       {/* Footer / Legend Row adhering to theme colors */}
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-3 mt-4 pt-4 border-t border-white/10 text-xs font-mono text-zinc-400">
+      <div
+        className={`flex flex-col sm:flex-row items-center justify-between gap-3 mt-4 pt-4 border-t text-xs font-mono ${
+          isDark ? 'border-white/10 text-zinc-400' : 'border-[#f1f5f9] text-[#556b4f]'
+        }`}
+      >
         <a
           href={`https://github.com/${username}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:text-white font-semibold transition-colors flex items-center gap-1.5"
+          className={`font-semibold transition-colors flex items-center gap-1.5 ${
+            isDark ? 'hover:text-white' : 'hover:text-[#3d5945]'
+          }`}
         >
           <GithubLogo size={16} weight="bold" /> View live profile @{username} ↗
         </a>
 
         <div className="flex items-center gap-1.5 text-xs font-mono">
           <span>Less</span>
-          {LEVEL_COLORS.map((color, idx) => (
+          {levelColors.map((color, idx) => (
             <div
               key={idx}
-              className="w-3 h-3 rounded-[2.5px] border border-white/10"
+              className={`w-3 h-3 rounded-[2.5px] border ${
+                isDark ? 'border-white/10' : 'border-black/5'
+              }`}
               style={{ backgroundColor: color }}
             />
           ))}
