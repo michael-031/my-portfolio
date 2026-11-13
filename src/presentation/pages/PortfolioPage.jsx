@@ -79,11 +79,11 @@ const MENU_CARDS = [
   {
     href: '#experience',
     title: 'Innodata internship',
-    desc: 'Apps Script and full-stack delivery',
-    img: '/images/tecnect-mockup.jpg',
+    desc: 'Safety Log Portal & HSE KPI Dashboard',
+    img: '/images/innodata-experience-mockup.jpg',
     w: 1200,
     h: 675,
-    alt: 'TeknnecT campus marketplace preview',
+    alt: 'Mockup of the Safety Log Portal and Executive HSE Safety KPI Dashboard built at Innodata',
   },
   {
     href: '#stack',
@@ -401,18 +401,18 @@ const PortfolioPage = () => {
               <div className="section-head">
                 <h2 id="exp-h">Experience in software and delivery</h2>
                 <p className="t-lead">
-                  Applied engineering across workplace automation, AI prompt systems, and relational web databases.
+                  Applied engineering across internal safety platforms, KPI analytics, and operational workflows.
                 </p>
               </div>
               <ul className="rows">
                 <li>
                   <span className="rows__name">
                     Innodata Knowledge and Services Inc.
-                    <small>Software Engineering Intern, June to July 2026: Apps Script and AI workflows.</small>
+                    <small>Software Engineering Intern, June to July 2026: Internal HSE platforms &amp; Apps Script.</small>
                   </span>
                   <span className="rows__value">
                     <a
-                      href="https://drive.google.com/drive/folders/106pY5G6r26yF1i5a-c7x01kE9qI3O81y?usp=sharing"
+                      href="https://drive.google.com/file/d/1K3qLQPEFsnMVSfjFNRZioPfLWxdcfQKN/view?usp=sharing"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -422,17 +422,17 @@ const PortfolioPage = () => {
                 </li>
                 <li>
                   <span className="rows__name">
-                    Full-stack Next.js delivery
-                    <small>Database schemas, server routes, and responsive TypeScript components.</small>
+                    Safety Log Portal
+                    <small>Centralized intake portal for incident reports, near-miss observations, and safety permits.</small>
                   </span>
-                  <span className="rows__value">PostgreSQL · SQLite</span>
+                  <span className="rows__value">Internal Tool</span>
                 </li>
                 <li>
                   <span className="rows__name">
-                    Access control and validation
-                    <small>Role-based permission checks and verified multi-step user workflows.</small>
+                    Executive HSE Safety KPI Dashboard &amp; Calculator
+                    <small>Real-time TRIR/LTIFR calculations, leading &amp; lagging metrics, and compliance views.</small>
                   </span>
-                  <span className="rows__value">RBAC · QA</span>
+                  <span className="rows__value">Analytics · KPI</span>
                 </li>
               </ul>
             </div>
@@ -440,10 +440,10 @@ const PortfolioPage = () => {
             <div className="span-6 start-7">
               <div className="exp__media">
                 <img
-                  src="/images/run-finish.jpg"
-                  alt="Michael Inoc at the finish line of a 10K road run in Cebu"
-                  width="750"
-                  height="1000"
+                  src="/images/innodata-experience-mockup.jpg"
+                  alt="Sanitized mockup of the Executive HSE Safety KPI Dashboard and Safety Log Portal built during the Innodata internship"
+                  width="1200"
+                  height="675"
                   decoding="async"
                 />
               </div>
@@ -595,15 +595,6 @@ const PortfolioPage = () => {
                   </dd>
                 </div>
               </dl>
-              <div className="enquiry__photo">
-                <img
-                  src="/images/my-pitik.jpg"
-                  alt="Michael Inoc running a 10K road race in Cebu"
-                  width="760"
-                  height="570"
-                  decoding="async"
-                />
-              </div>
             </div>
 
             <div className="span-6 start-7">
