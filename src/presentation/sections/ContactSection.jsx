@@ -21,10 +21,12 @@ export default function ContactSection({ contact, socials = [], isDark = true })
             04 — Contact
           </span>
           <h2
-            className={`text-4xl font-bold mb-6 ${isDark ? 'text-white' : 'text-[#1a1515]'}`}
-            style={{ fontFamily: 'Poppins, sans-serif' }}
+            className={`heading-vibe text-4xl sm:text-5xl font-bold mb-6 ${isDark ? 'text-white' : 'text-[#1a1515]'}`}
           >
-            Let&apos;s connect
+            Let&apos;s{' '}
+            <span className={isDark ? 'metallic-text' : 'text-[#3d5945]'}>
+              connect
+            </span>
           </h2>
           <p
             className={`mb-8 font-sans leading-relaxed ${

@@ -2,6 +2,8 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 export default function TechStackSection({ techItems = [], isDark = true }) {
+  const loopedTechItems = [...techItems, ...techItems];
+
   return (
     <section id="tech-stack" className="py-16 md:py-24 bg-transparent my-6 md:my-12 relative z-10">
       <motion.div
@@ -25,46 +27,35 @@ export default function TechStackSection({ techItems = [], isDark = true }) {
             03 — Expertise
           </span>
           <h2
-            className={`text-3xl sm:text-4xl font-bold ${isDark ? 'text-white' : 'text-[#1a1515]'}`}
-            style={{ fontFamily: 'Poppins, sans-serif' }}
+            className={`heading-vibe text-3xl sm:text-4xl md:text-5xl font-bold ${isDark ? 'text-white' : 'text-[#1a1515]'}`}
           >
-            My stack
+            My{' '}
+            <span className={isDark ? 'metallic-text' : 'text-[#3d5945]'}>
+              stack
+            </span>
           </h2>
         </motion.div>
 
         <motion.div
           variants={{
-            hidden: {},
-            show: {
-              transition: {
-                staggerChildren: 0.04,
-                delayChildren: 0.1,
-              },
-            },
+            hidden: { opacity: 0, y: 20 },
+            show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
           }}
-          className="tech-grid"
+          className="tech-slider"
+          aria-label="Sliding tech stack"
         >
-          {techItems.map((tech) => (
-            <motion.div
-              variants={{
-                hidden: { opacity: 0, y: 25, scale: 0.95 },
-                show: {
-                  opacity: 1,
-                  y: 0,
-                  scale: 1,
-                  transition: { duration: 0.45, ease: 'easeOut' },
-                },
-              }}
-              key={tech.name}
-              className="tech-card"
-              title={tech.name}
-              whileHover={{ scale: 1.03 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              <img src={tech.icon} alt={tech.name} />
-              <span className="tech-name">{tech.name}</span>
-            </motion.div>
-          ))}
+          <div className="tech-slider-track">
+            {loopedTechItems.map((tech, index) => (
+              <div
+                key={`${tech.name}-${index}`}
+                className="tech-card"
+                title={tech.name}
+              >
+                <img src={tech.icon} alt={tech.name} />
+                <span className="tech-name">{tech.name}</span>
+              </div>
+            ))}
+          </div>
         </motion.div>
       </motion.div>
     </section>

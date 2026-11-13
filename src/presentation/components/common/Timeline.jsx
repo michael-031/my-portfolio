@@ -42,12 +42,14 @@ export default function Timeline({ data, isDark = true }) {
             02 — Experience
           </span>
           <h2
-            className={`text-3xl sm:text-4xl md:text-5xl font-bold ${
+            className={`heading-vibe text-3xl sm:text-4xl md:text-5xl font-bold ${
               isDark ? 'text-white' : 'text-[#1a1515]'
             }`}
-            style={{ fontFamily: 'Poppins, sans-serif' }}
           >
-            Work Experience
+            Work{' '}
+            <span className={isDark ? 'metallic-text' : 'text-[#3d5945]'}>
+              Experience
+            </span>
           </h2>
           <p
             className={`text-sm md:text-base max-w-xl mt-3 font-sans ${

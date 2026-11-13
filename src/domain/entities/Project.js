@@ -16,6 +16,7 @@ export class Project {
     roleImage = null,
     secondaryImage = null,
     images = [],
+    codeSnippet = '',
     subtitle,
     description,
     contributions = [],
@@ -34,6 +35,7 @@ export class Project {
     this.roleImage = roleImage;
     this.secondaryImage = secondaryImage;
     this.images = images;
+    this.codeSnippet = codeSnippet;
     this.subtitle = subtitle;
     this.description = description;
     this.contributions = contributions;

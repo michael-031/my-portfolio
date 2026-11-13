@@ -38,7 +38,7 @@ export function useActiveSection(sections = DEFAULT_SECTIONS) {
     const element = document.getElementById(id);
     if (element) {
       const headerOffset = 72;
-      const extraScrollDown = id === 'projects' ? 60 : 0;
+      const extraScrollDown = 0;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.pageYOffset - headerOffset + extraScrollDown;
 

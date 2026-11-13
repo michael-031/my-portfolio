@@ -17,10 +17,12 @@ export default function AboutSection({ gallery = [], slogan = '', isDark = true 
             03 — Story
           </span>
           <h2
-            className="about-me-title text-3xl sm:text-4xl font-bold"
-            style={{ fontFamily: 'Poppins, sans-serif' }}
+            className="heading-vibe about-me-title text-3xl sm:text-4xl md:text-5xl font-bold"
           >
-            About Me
+            About{' '}
+            <span className={isDark ? 'metallic-text' : 'text-[#3d5945]'}>
+              Me
+            </span>
           </h2>
         </div>
 

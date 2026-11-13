@@ -4,24 +4,9 @@ import {
   GithubLogo,
   LinkedinLogo,
   FacebookLogo,
-  GraduationCap,
   ArrowRight,
-  Code,
-  Lightning,
-  Gear,
 } from '@phosphor-icons/react';
 import SplitText from '../components/common/SplitText';
-
-const BADGE_ICON_MAP = {
-  Code,
-  Lightning,
-  GraduationCap,
-};
-
-const HIGHLIGHT_ICON_MAP = {
-  GraduationCap,
-  Gear,
-};
 
 const SOCIAL_ICON_MAP = {
   GithubLogo,
@@ -33,7 +18,7 @@ export default function HeroSection({ profile, onNavigate, isDark = true }) {
   return (
     <section
       id="hero"
-      className="min-h-[100dvh] lg:min-h-[120vh] flex items-center justify-center w-full px-3 sm:px-6 md:px-8 py-16 lg:py-28"
+      className="min-h-[100dvh] flex items-center justify-center w-full px-3 sm:px-6 md:px-8 py-16 lg:py-24"
     >
       <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
         {/* Left Column: Intro & Info */}
@@ -55,9 +40,10 @@ export default function HeroSection({ profile, onNavigate, isDark = true }) {
           </SplitText>
 
           <h2
-            className={`text-xl md:text-2xl font-semibold mb-4 font-sans flex flex-wrap items-center gap-2 ${
+            className={`text-xl md:text-2xl font-semibold mb-4 font-sans tracking-tight flex flex-wrap items-center gap-2 ${
               isDark ? 'text-zinc-200' : 'text-[#27392c]'
             }`}
+            style={{ fontFamily: 'Poppins, sans-serif', letterSpacing: '-0.02em' }}
           >
             {profile.headline.primary}{' '}
             <span className={isDark ? 'text-zinc-500' : 'text-[#9BB193]'}>•</span>{' '}
@@ -65,7 +51,7 @@ export default function HeroSection({ profile, onNavigate, isDark = true }) {
           </h2>
 
           <p
-            className={`hero-description text-base sm:text-lg md:text-xl mb-6 font-sans font-light leading-relaxed ${
+            className={`hero-description text-base sm:text-lg md:text-xl mb-8 font-sans font-light leading-relaxed ${
               isDark ? 'text-zinc-400' : 'text-gray-600'
             }`}
           >
@@ -75,24 +61,6 @@ export default function HeroSection({ profile, onNavigate, isDark = true }) {
             </span>
             {profile.description.suffix}
           </p>
-
-          <div className="flex flex-wrap gap-2.5 mb-8">
-            {profile.badges.map((badge) => {
-              const IconComponent = BADGE_ICON_MAP[badge.iconName] || Code;
-              return (
-                <span
-                  key={badge.id}
-                  className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold font-mono border ${
-                    isDark
-                      ? 'bg-white/8 text-zinc-200 border-white/15'
-                      : 'bg-[#eef3ee] text-[#3d5945] border-[#d3ddd3]'
-                  }`}
-                >
-                  <IconComponent size={15} weight="bold" /> {badge.label}
-                </span>
-              );
-            })}
-          </div>
 
           <div className="flex flex-wrap items-center gap-4 sm:gap-6">
             <a
@@ -121,9 +89,41 @@ export default function HeroSection({ profile, onNavigate, isDark = true }) {
               })}
             </div>
           </div>
+
+          <div
+            className={`mt-10 pt-6 border-t grid grid-cols-2 gap-6 sm:gap-10 w-full max-w-lg ${
+              isDark ? 'border-white/10' : 'border-gray-200'
+            }`}
+          >
+            {profile.highlights.map((item, idx) => (
+              <div key={item.id} className="flex flex-col items-start text-left">
+                <span
+                  className={`text-[10px] font-mono uppercase tracking-[0.2em] mb-1.5 ${
+                    isDark ? 'text-zinc-500' : 'text-[#556b4f]'
+                  }`}
+                >
+                  0{idx + 1} // {item.title}
+                </span>
+                <p
+                  className={`heading-vibe text-sm sm:text-base font-bold ${
+                    isDark ? 'text-zinc-100' : 'text-[#1a1515]'
+                  }`}
+                >
+                  {item.detail}
+                </p>
+                <span
+                  className={`text-xs font-mono mt-1 ${
+                    isDark ? 'text-zinc-400' : 'text-gray-500'
+                  }`}
+                >
+                  {item.subtitle}
+                </span>
+              </div>
+            ))}
+          </div>
         </motion.div>
 
-        {/* Right Column: Image and Context Badges */}
+        {/* Right Column: Portrait */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -147,49 +147,6 @@ export default function HeroSection({ profile, onNavigate, isDark = true }) {
                 isDark ? 'from-[#0e0d12]/80' : 'from-[#9BB193]/60'
               }`}
             ></div>
-          </div>
-
-          {/* Context Cards Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {profile.highlights.map((card) => {
-              const CardIcon = HIGHLIGHT_ICON_MAP[card.iconName] || GraduationCap;
-              return (
-                <div key={card.id} className="education-card p-5 flex items-start gap-3">
-                  <div
-                    className={`p-2.5 rounded-xl flex-shrink-0 ${
-                      isDark
-                        ? 'bg-white/8 border border-white/10 text-white'
-                        : 'bg-[#eef3ee] text-[#3d5945]'
-                    }`}
-                  >
-                    <CardIcon size={24} weight="duotone" />
-                  </div>
-                  <div>
-                    <h4
-                      className={`text-xs font-semibold font-sans ${
-                        isDark ? 'text-white' : 'text-gray-900'
-                      }`}
-                    >
-                      {card.title}
-                    </h4>
-                    <p
-                      className={`text-[11px] font-mono mt-0.5 ${
-                        isDark ? 'text-zinc-400' : 'text-[#556b4f]'
-                      }`}
-                    >
-                      {card.subtitle}
-                    </p>
-                    <p
-                      className={`text-xs mt-1 font-sans ${
-                        isDark ? 'text-zinc-300' : 'text-gray-600'
-                      }`}
-                    >
-                      {card.detail}
-                    </p>
-                  </div>
-                </div>
-              );
-            })}
           </div>
         </motion.div>
       </div>

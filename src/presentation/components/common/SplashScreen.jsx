@@ -49,7 +49,7 @@ export default function SplashScreen({ onFinish }) {
           className="text-2xl md:text-4xl font-extrabold metallic-text mb-2 tracking-tight"
           style={{ fontFamily: 'Poppins, sans-serif' }}
         >
-          Full-Stack &amp; Automation Specialist
+          Full-Stack Web Developer
         </motion.h1>
 
         <motion.p
@@ -58,7 +58,7 @@ export default function SplashScreen({ onFinish }) {
           transition={{ duration: 0.6, delay: 0.35 }}
           className="text-xs md:text-sm font-mono text-zinc-400 tracking-wider mb-8"
         >
-          Crafting Web Applications &amp; Google Apps Script Automations
+          Building Web Applications, PWAs &amp; AI Integrations
         </motion.p>
 
         {/* Animated Progress Bar */}

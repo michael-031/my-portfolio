@@ -35,22 +35,21 @@ import hike1Img from '../../assets/About Me/hike2.jpg';
 export const profileStaticData = {
   name: 'Michael Inoc',
   firstName: 'Michael',
-  eyebrow: 'Michael Inoc // Full-Stack Web Developer & Automation Specialist',
+  eyebrow: 'Michael Inoc // Full-Stack Web Developer',
   headline: {
-    primary: 'Full-Stack Web Developer',
-    secondary: 'Apps Script Automation',
+    primary: 'Web Developer',
+    secondary: 'Web Apps, PWA & AI Integration',
   },
   description: {
-    prefix:
-      'Crafting high-performance full-stack web applications, interactive user experiences, and tailored ',
-    highlight: 'Google Apps Script automations',
-    suffix: ' to streamline workflows and boost productivity.',
+    prefix: 'Building high-performance full-stack ',
+    highlight: 'web applications and PWAs',
+    suffix: ' with practical AI integrations and modern, responsive user experiences.',
   },
   avatar: profileImg,
   logo: logoImg,
   badges: [
-    { id: 'fullstack', label: 'Full-Stack Web Developer', iconName: 'Code' },
-    { id: 'automation', label: 'Apps Script Automation', iconName: 'Lightning' },
+    { id: 'fullstack', label: 'Web Developer', iconName: 'Code' },
+    { id: 'pwa-ai', label: 'Web Apps, PWA & AI Integration', iconName: 'Lightning' },
     { id: 'education', label: 'Computer Engineering', iconName: 'GraduationCap' },
   ],
   highlights: [
@@ -64,8 +63,8 @@ export const profileStaticData = {
     {
       id: 'expertise',
       title: 'Core Expertise',
-      subtitle: 'Web & Automation',
-      detail: 'Full-Stack & Apps Script',
+      subtitle: 'Web Apps & PWA',
+      detail: 'Full-Stack Web & AI Integration',
       iconName: 'Gear',
     },
   ],
@@ -250,11 +249,23 @@ export const permitTrackerProjectData = {
   id: 'permit-tracker',
   title: 'Permit Tracker & Safety Management System',
   monogram: 'PTS',
-  category: 'Safety & Automation System',
-  roleTitle: 'Automation & Full-Stack Developer',
+  category: 'Web Application & Safety System',
+  roleTitle: 'Full-Stack Web Developer',
   period: '2025',
   displayLink: 'github.com/michael-031/permit-tracker',
   link: 'https://github.com/michael-031/permit-tracker.git',
+  codeSnippet: `// Google Apps Script Trigger & Supabase Webhook
+function onFormSubmit(e) {
+  const responses = e.namedValues;
+  const payload = normalizePermitPayload(responses);
+  
+  UrlFetchApp.fetch(SUPABASE_REST_URL + '/permits', {
+    method: 'POST',
+    headers: { 'apikey': SUPABASE_ANON_KEY },
+    contentType: 'application/json',
+    payload: JSON.stringify(payload)
+  });
+}`,
   subtitle: 'Google Forms/Sheets + Apps Script Webhooks + Supabase + React 19 Dashboard',
   description:
     'Permit Tracker is an enterprise workplace safety platform capturing safety data via Google Forms, automating ingestion & webhooks using Google Apps Script in Google Sheets, synchronizing records to Supabase PostgreSQL, and rendering real-time dashboards with custom PDF printing.',
@@ -470,7 +481,7 @@ function onFormSubmit(e) {
     tech: ['Apps Script', 'JavaScript', 'Supabase REST'],
   },
   {
-    title: 'Automation & Full-Stack Dev',
+    title: 'Full-Stack Web Developer',
     category: 'My Role',
     projectDetails: permitTrackerProjectData,
     sectionIndex: 1,
@@ -478,7 +489,7 @@ function onFormSubmit(e) {
     subtitle:
       'Built Google Apps Script form triggers, webhooks, Supabase PostgreSQL data sync, and client-side PDF export engine.',
     bgGradient: 'from-sky-950 via-slate-900 to-zinc-950',
-    tech: ['Automation Lead', 'Apps Script', 'React 19'],
+    tech: ['Full-Stack Dev', 'Apps Script', 'React 19'],
   },
   {
     title: 'Safety Dashboard Preview',

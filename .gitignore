@@ -23,3 +23,7 @@ dist-ssr
 *.sln
 *.sw?
 .codex_tmp_claude_skills/
+.taste-shots/
+.taste-skill/
+shots/
+/assets/
