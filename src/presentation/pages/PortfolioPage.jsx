@@ -579,14 +579,14 @@ const PortfolioPage = () => {
                       GitHub
                     </a>
                     <a
-                      href="https://www.linkedin.com/in/michael-inoc-591093399"
+                      href="https://www.linkedin.com/in/michael-inoc/"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
                       LinkedIn
                     </a>
                     <a
-                      href="https://www.facebook.com/michael.inoc.90/"
+                      href="https://web.facebook.com/michaelzz450"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -771,7 +771,7 @@ const PortfolioPage = () => {
                   </svg>
                 </a>
                 <a
-                  href="https://www.linkedin.com/in/michael-inoc-591093399"
+                  href="https://www.linkedin.com/in/michael-inoc/"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="LinkedIn"
@@ -781,7 +781,7 @@ const PortfolioPage = () => {
                   </svg>
                 </a>
                 <a
-                  href="https://www.facebook.com/michael.inoc.90/"
+                  href="https://web.facebook.com/michaelzz450"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Facebook"
